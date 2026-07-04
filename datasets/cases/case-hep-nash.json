@@ -1,0 +1,19 @@
+{
+  "id": "hep-nash",
+  "title": "NASH — implied and partial",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "At week 52, resmetirom reduced liver fat compared with placebo.1 Resmetirom resolved fibrosis and improved overall survival.2",
+  "goldClaims": [
+    { "originalText": "At week 52, resmetirom reduced liver fat compared with placebo.1", "text": "At week 52, resmetirom reduced liver fat compared with placebo", "citations": [1] },
+    { "originalText": "Resmetirom resolved fibrosis and improved overall survival.2", "text": "Resmetirom resolved fibrosis and improved overall survival", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "MAESTRO table (Bianchi 2023)", "text": "Table 2. MRI-PDFF liver fat change at week 52 (%): resmetirom -32.9, placebo -10.4." },
+    "2": { "name": "MAESTRO histology", "text": "Fibrosis resolution without worsening of NASH was achieved more often with resmetirom than placebo (26% vs 14%). Overall survival was not assessed during the trial period." }
+  },
+  "goldVerdicts": [
+    { "claimText": "At week 52, resmetirom reduced liver fat compared with placebo", "citation": 1, "verdict": "implied_by_data", "rationale": "Support is an MRI-PDFF data table with no narrative sentence (rule 5)." },
+    { "claimText": "Resmetirom resolved fibrosis and improved overall survival", "citation": 2, "verdict": "partial_support", "rationale": "Fibrosis resolution is explicit; overall survival was not assessed — compound claim, one half holds (rule 4)." }
+  ]
+}

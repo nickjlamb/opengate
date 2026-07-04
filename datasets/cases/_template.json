@@ -1,0 +1,27 @@
+{
+  "id": "REPLACE-with-unique-id",
+  "title": "Short human-readable title",
+  "notes": "Where this case came from, what it stresses, any caveats.",
+
+  "manuscript": "Paste the manuscript section here, with citation markers exactly as the author wrote them.",
+
+  "goldClaims": [
+    {
+      "originalText": "claim sentence WITH its citation marker, e.g. ...placebo.1,2",
+      "text": "claim sentence WITHOUT citation markers (clean form used for verification)",
+      "citations": [1, 2]
+    }
+  ],
+
+  "goldNonClaims": [
+    "Sentences a reviewer should NOT extract (background, aims, transitions). Used for precision."
+  ],
+
+  "references": {
+    "1": { "name": "First-author Year", "text": "Optional: reference text/snippet. Needed only for online verdict accuracy." }
+  },
+
+  "goldVerdicts": [
+    { "claimText": "clean claim text", "citation": 1, "verdict": "strong_support|partial_support|implied_by_data|overclaim|not_supported|contradicted", "rationale": "one line citing the LABELING-GUIDE.md rule that fixes this verdict", "_requires": "online" }
+  ]
+}

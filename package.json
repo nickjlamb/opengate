@@ -1,0 +1,28 @@
+{
+  "name": "opengate",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenGATE — Open Grounded AI Testing & Evaluation. An open-source framework for evaluating evidence-grounded AI systems.",
+  "license": "MIT",
+  "author": "Nick Lamb (https://www.pharmatools.ai)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickjlamb/opengate.git"
+  },
+  "keywords": [
+    "evaluation",
+    "llm",
+    "rag",
+    "grounding",
+    "hallucination",
+    "benchmarking",
+    "regression-testing"
+  ],
+  "scripts": {
+    "eval": "node src/runner.mjs",
+    "eval:online": "node src/runner.mjs --online",
+    "eval:ci": "node src/runner.mjs --ci",
+    "eval:baseline": "node src/runner.mjs --baseline"
+  }
+}

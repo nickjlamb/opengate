@@ -1,0 +1,22 @@
+{
+  "id": "derm-psoriasis",
+  "title": "Psoriasis — overclaim, implied, partial",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "The biologic is effective for psoriasis of all severities.1 The biologic improved joint symptoms.2 The biologic improved nail and scalp psoriasis.3",
+  "goldClaims": [
+    { "originalText": "The biologic is effective for psoriasis of all severities.1", "text": "The biologic is effective for psoriasis of all severities", "citations": [1] },
+    { "originalText": "The biologic improved joint symptoms.2", "text": "The biologic improved joint symptoms", "citations": [2] },
+    { "originalText": "The biologic improved nail and scalp psoriasis.3", "text": "The biologic improved nail and scalp psoriasis", "citations": [3] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "CLEAR-PSO (Haddad 2024)", "text": "Among patients with moderate-to-severe plaque psoriasis, the biologic achieved skin clearance more often than placebo. Patients with mild psoriasis were not studied." },
+    "2": { "name": "CLEAR-PSO joint substudy", "text": "Table 4. Joint pain score change from baseline: biologic -3.1, placebo -0.8." },
+    "3": { "name": "CLEAR-PSO regional", "text": "Nail psoriasis severity improved significantly with the biologic versus placebo (p<0.01). Scalp involvement was not evaluated." }
+  },
+  "goldVerdicts": [
+    { "claimText": "The biologic is effective for psoriasis of all severities", "citation": 1, "verdict": "overclaim", "rationale": "Ref supports moderate-to-severe only and says mild was not studied; claim broadens scope to all severities (rule 3)." },
+    { "claimText": "The biologic improved joint symptoms", "citation": 2, "verdict": "implied_by_data", "rationale": "Support is a data table (joint pain -3.1 vs -0.8) with no narrative sentence (rule 5)." },
+    { "claimText": "The biologic improved nail and scalp psoriasis", "citation": 3, "verdict": "partial_support", "rationale": "Nail improvement is explicit; scalp involvement was not evaluated — compound claim, one half holds (rule 4)." }
+  ]
+}

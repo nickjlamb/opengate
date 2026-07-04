@@ -1,0 +1,23 @@
+{
+  "id": "cardio-bp",
+  "title": "Blood pressure — clean overclaim (significance not stated)",
+  "notes": "Synthetic; controlled ground truth. Overclaim exemplar: claim asserts significance the reference reports an effect size for but never establishes. VERIFY before publishing.",
+  "manuscript": "Drug Z significantly lowered systolic blood pressure versus placebo.1 Stroke risk was reduced with Drug Z.1 Serious adverse events were comparable between groups.2 This post hoc analysis explored blood-pressure and safety outcomes.",
+  "goldClaims": [
+    { "originalText": "Drug Z significantly lowered systolic blood pressure versus placebo.1", "text": "Drug Z significantly lowered systolic blood pressure versus placebo", "citations": [1] },
+    { "originalText": "Stroke risk was reduced with Drug Z.1", "text": "Stroke risk was reduced with Drug Z", "citations": [1] },
+    { "originalText": "Serious adverse events were comparable between groups.2", "text": "Serious adverse events were comparable between groups", "citations": [2] }
+  ],
+  "goldNonClaims": [
+    "This post hoc analysis explored blood-pressure and safety outcomes."
+  ],
+  "references": {
+    "1": { "name": "ASCEND-BP primary (Khan 2024)", "text": "In this 12-week randomised trial, 620 patients with hypertension received Drug Z or placebo; the primary endpoint was change in office systolic blood pressure. Drug Z lowered systolic blood pressure by a mean of 12 mmHg compared with placebo. Point estimates and confidence intervals for the primary endpoint are reported in the supplementary appendix. This was a short-term, surrogate-endpoint study and was not designed to assess cardiovascular outcomes such as stroke or myocardial infarction." },
+    "2": { "name": "ASCEND-BP safety", "text": "Safety was assessed in all randomised patients. Serious adverse events occurred in 4.1% of patients receiving Drug Z and 4.3% receiving placebo (p=0.78). The most common adverse events were headache and dizziness, with similar frequencies in both groups. Overall tolerability was comparable between Drug Z and placebo." }
+  },
+  "goldVerdicts": [
+    { "claimText": "Drug Z significantly lowered systolic blood pressure versus placebo", "citation": 1, "verdict": "overclaim", "rationale": "Ref reports a 12 mmHg reduction but states no significance; claim asserts 'significantly' — overstated, not denied (rule 1)." },
+    { "claimText": "Stroke risk was reduced with Drug Z", "citation": 1, "verdict": "not_supported", "rationale": "Ref says the trial was not designed to assess stroke — no support for any version of the stroke claim (rule 3)." },
+    { "claimText": "Serious adverse events were comparable between groups", "citation": 2, "verdict": "strong_support", "rationale": "Ref states SAE 4.1% vs 4.3% (p=0.78) and calls tolerability comparable — explicit." }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "resp-copd",
+  "title": "COPD triple therapy — strong and partial support",
+  "notes": "Synthetic-but-realistic; controlled ground truth. Uses superscript-range citation style in the manuscript. VERIFY before publishing.",
+  "manuscript": "Triple therapy reduced the annual rate of moderate-to-severe exacerbations compared with dual bronchodilator therapy.1 Triple therapy improved lung function and reduced all-cause mortality.1,2 Background therapy was standardised across groups.",
+  "goldClaims": [
+    {
+      "originalText": "Triple therapy reduced the annual rate of moderate-to-severe exacerbations compared with dual bronchodilator therapy.1",
+      "text": "Triple therapy reduced the annual rate of moderate-to-severe exacerbations compared with dual bronchodilator therapy",
+      "citations": [1]
+    },
+    {
+      "originalText": "Triple therapy improved lung function and reduced all-cause mortality.1,2",
+      "text": "Triple therapy improved lung function and reduced all-cause mortality",
+      "citations": [1, 2]
+    }
+  ],
+  "goldNonClaims": [
+    "Background therapy was standardised across groups."
+  ],
+  "references": {
+    "1": {
+      "name": "IMPACT-style primary (Adeyemi 2023)",
+      "text": "Triple therapy significantly reduced the annual rate of moderate-to-severe exacerbations compared with dual bronchodilator therapy (rate ratio 0.75; 95% CI 0.70-0.81; p<0.001). Trough FEV1 was significantly improved with triple therapy versus dual therapy (least-squares mean difference 97 mL; p<0.001)."
+    },
+    "2": {
+      "name": "Mortality sub-analysis",
+      "text": "All-cause mortality was numerically lower with triple therapy, but the analysis was not powered for mortality and the difference did not reach statistical significance."
+    }
+  },
+  "goldVerdicts": [
+    { "claimText": "Triple therapy reduced the annual rate of moderate-to-severe exacerbations compared with dual bronchodilator therapy", "citation": 1, "verdict": "strong_support", "rationale": "Ref states the exacerbation rate reduction explicitly with rate ratio and p<0.001." },
+    { "claimText": "Triple therapy improved lung function and reduced all-cause mortality", "citation": 1, "verdict": "partial_support", "rationale": "Lung-function improvement is explicit; mortality reduction is not established in ref 1 — compound claim, one half holds (rule 4)." }
+  ]
+}

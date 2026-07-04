@@ -1,0 +1,19 @@
+{
+  "id": "hema-anemia",
+  "title": "Anemia — partial and contradicted",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "The agent reduced transfusion dependence and improved quality of life versus placebo.1 The agent improved overall survival.2",
+  "goldClaims": [
+    { "originalText": "The agent reduced transfusion dependence and improved quality of life versus placebo.1", "text": "The agent reduced transfusion dependence and improved quality of life versus placebo", "citations": [1] },
+    { "originalText": "The agent improved overall survival.2", "text": "The agent improved overall survival", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "ANEMIA-1 (Costa 2024)", "text": "In this trial, 410 patients with transfusion-dependent anaemia were randomised to the agent or placebo for 24 weeks; the primary endpoint was transfusion independence. Transfusion independence was achieved by 35% of agent-treated patients versus 12% with placebo (p<0.001). Iron parameters also improved with the agent. Patient-reported quality-of-life outcomes were not measured in this study." },
+    "2": { "name": "ANEMIA-1 survival", "text": "Survival was a pre-specified secondary endpoint. Over a median follow-up of 30 months, overall survival did not differ between the agent and placebo groups (hazard ratio 1.02; 95% CI 0.84-1.24)." }
+  },
+  "goldVerdicts": [
+    { "claimText": "The agent reduced transfusion dependence and improved quality of life versus placebo", "citation": 1, "verdict": "partial_support", "rationale": "Transfusion independence is explicit and significant; quality of life was not measured — compound claim, one half holds (rule 4)." },
+    { "claimText": "The agent improved overall survival", "citation": 2, "verdict": "contradicted", "rationale": "Ref says overall survival did not differ (HR 1.02) — negates an improvement (rule 1/2)." }
+  ]
+}

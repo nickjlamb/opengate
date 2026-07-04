@@ -1,0 +1,39 @@
+{
+  "id": "neuro-migraine",
+  "title": "Migraine prevention — contradicted, overclaim, not-supported",
+  "notes": "Synthetic-but-realistic; controlled ground truth covering the refutation end of the scale. VERIFY before publishing.",
+  "manuscript": "The anti-CGRP antibody reduced monthly migraine days versus placebo.1 The antibody was as effective in chronic migraine as in episodic migraine.1 The antibody eliminated migraine in most patients.1 It was also effective for medication-overuse headache.2",
+  "goldClaims": [
+    {
+      "originalText": "The antibody was as effective in chronic migraine as in episodic migraine.1",
+      "text": "The antibody was as effective in chronic migraine as in episodic migraine",
+      "citations": [1]
+    },
+    {
+      "originalText": "The antibody eliminated migraine in most patients.1",
+      "text": "The antibody eliminated migraine in most patients",
+      "citations": [1]
+    },
+    {
+      "originalText": "It was also effective for medication-overuse headache.2",
+      "text": "It was also effective for medication-overuse headache",
+      "citations": [2]
+    }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": {
+      "name": "CGRP trial (Park 2024)",
+      "text": "The antibody reduced monthly migraine days versus placebo (-3.7 vs -1.8 days; p<0.001). The treatment effect was larger in episodic migraine than in chronic migraine, where the reduction over placebo was smaller and did not reach significance in the chronic subgroup. A 50% response was achieved by 41% of patients; complete cessation of migraine was uncommon."
+    },
+    "2": {
+      "name": "CGRP trial methods",
+      "text": "Patients with medication-overuse headache were excluded from the trial. Efficacy in that population was not evaluated."
+    }
+  },
+  "goldVerdicts": [
+    { "claimText": "The antibody was as effective in chronic migraine as in episodic migraine", "citation": 1, "verdict": "contradicted", "rationale": "Ref says the effect was larger in episodic and did not reach significance in the chronic subgroup — negates the 'as effective' equivalence (rule 1)." },
+    { "claimText": "The antibody eliminated migraine in most patients", "citation": 1, "verdict": "contradicted", "rationale": "Ref says complete cessation was uncommon — explicit negation of 'most patients' (rule 1). Re-labeled from overclaim in v0.1." },
+    { "claimText": "It was also effective for medication-overuse headache", "citation": 2, "verdict": "not_supported", "rationale": "Ref says MOH patients were excluded and efficacy not evaluated — silent (rule 2)." }
+  ]
+}

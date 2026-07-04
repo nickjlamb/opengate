@@ -1,0 +1,21 @@
+{
+  "id": "onco-pdl1",
+  "title": "Immunotherapy — scope-broadening overclaim",
+  "notes": "Synthetic; controlled ground truth. Overclaim exemplar: benefit shown only in a subgroup, claim generalises to all patients while the reference is silent on the rest. Uses bracketed citations. VERIFY before publishing.",
+  "manuscript": "In patients with PD-L1-high tumours, nivolumab improved objective response rate versus chemotherapy [1]. Nivolumab improves response across all patients regardless of PD-L1 status [1]. Treatment-related deaths were rare [2].",
+  "goldClaims": [
+    { "originalText": "In patients with PD-L1-high tumours, nivolumab improved objective response rate versus chemotherapy [1].", "text": "In patients with PD-L1-high tumours, nivolumab improved objective response rate versus chemotherapy", "citations": [1] },
+    { "originalText": "Nivolumab improves response across all patients regardless of PD-L1 status [1].", "text": "Nivolumab improves response across all patients regardless of PD-L1 status", "citations": [1] },
+    { "originalText": "Treatment-related deaths were rare [2].", "text": "Treatment-related deaths were rare", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "CHECK-1 (Mori 2023)", "text": "Among patients with PD-L1-high tumours, the objective response rate was higher with nivolumab than chemotherapy (48% vs 27%). Outcomes in PD-L1-low patients were not reported in this analysis." },
+    "2": { "name": "CHECK-1 safety", "text": "Treatment-related deaths occurred in fewer than 1% of patients in each arm." }
+  },
+  "goldVerdicts": [
+    { "claimText": "In patients with PD-L1-high tumours, nivolumab improved objective response rate versus chemotherapy", "citation": 1, "verdict": "strong_support", "rationale": "Ref states ORR 48% vs 27% in the PD-L1-high group explicitly." },
+    { "claimText": "Nivolumab improves response across all patients regardless of PD-L1 status", "citation": 1, "verdict": "overclaim", "rationale": "Ref supports benefit only in PD-L1-high and is silent on other patients; claim broadens scope to all patients (rule 3)." },
+    { "claimText": "Treatment-related deaths were rare", "citation": 2, "verdict": "strong_support", "rationale": "Ref states treatment-related deaths <1% in each arm — supports 'rare'." }
+  ]
+}

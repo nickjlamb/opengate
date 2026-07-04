@@ -1,0 +1,19 @@
+{
+  "id": "psych-depression",
+  "title": "Depression — partial and not-supported",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "At week 6, the antidepressant reduced depression rating scores and improved cognitive function versus placebo [1]. The antidepressant was effective in treatment-resistant depression [2].",
+  "goldClaims": [
+    { "originalText": "At week 6, the antidepressant reduced depression rating scores and improved cognitive function versus placebo [1].", "text": "At week 6, the antidepressant reduced depression rating scores and improved cognitive function versus placebo", "citations": [1] },
+    { "originalText": "The antidepressant was effective in treatment-resistant depression [2].", "text": "The antidepressant was effective in treatment-resistant depression", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "MOOD-1 (Pereira 2023)", "text": "The antidepressant significantly reduced MADRS depression scores versus placebo at week 6 (p<0.001). Cognitive function was not assessed in this trial." },
+    "2": { "name": "MOOD-1 methods", "text": "Patients with treatment-resistant depression were not enrolled; eligibility required a first or second major depressive episode." }
+  },
+  "goldVerdicts": [
+    { "claimText": "At week 6, the antidepressant reduced depression rating scores and improved cognitive function versus placebo", "citation": 1, "verdict": "partial_support", "rationale": "Depression-score reduction is explicit; cognitive function was not assessed — compound claim, one half holds (rule 4)." },
+    { "claimText": "The antidepressant was effective in treatment-resistant depression", "citation": 2, "verdict": "not_supported", "rationale": "Ref says treatment-resistant patients were not enrolled — silent on this population (rule 2/3)." }
+  ]
+}

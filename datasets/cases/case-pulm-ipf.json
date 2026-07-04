@@ -1,0 +1,18 @@
+{
+  "id": "pulm-ipf",
+  "title": "Pulmonary fibrosis — partial and overclaim",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "The antifibrotic slowed the decline in forced vital capacity and reduced chronic cough.1 The antifibrotic reduced mortality.1",
+  "goldClaims": [
+    { "originalText": "The antifibrotic slowed the decline in forced vital capacity and reduced chronic cough.1", "text": "The antifibrotic slowed the decline in forced vital capacity and reduced chronic cough", "citations": [1] },
+    { "originalText": "The antifibrotic reduced mortality.1", "text": "The antifibrotic reduced mortality", "citations": [1] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "IPF-SLOW (Romano 2024)", "text": "The antifibrotic significantly slowed the decline in forced vital capacity versus placebo (p<0.001). Cough was not assessed. Mortality was numerically lower with the antifibrotic, but the trial was not powered for mortality and the difference was not significant." }
+  },
+  "goldVerdicts": [
+    { "claimText": "The antifibrotic slowed the decline in forced vital capacity and reduced chronic cough", "citation": 1, "verdict": "partial_support", "rationale": "FVC slowing is explicit; cough was not assessed — compound claim, one half holds (rule 4)." },
+    { "claimText": "The antifibrotic reduced mortality", "citation": 1, "verdict": "overclaim", "rationale": "Ref reports a numerically lower, underpowered, non-significant mortality difference; claim asserts a definite reduction that is not established and not denied (rule 1)." }
+  ]
+}

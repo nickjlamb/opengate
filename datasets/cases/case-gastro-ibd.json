@@ -1,0 +1,21 @@
+{
+  "id": "gastro-ibd",
+  "title": "IBD — strong, not-supported, contradicted in one section",
+  "notes": "Synthetic; controlled ground truth spanning three verdicts. VERIFY before publishing.",
+  "manuscript": "At week 6, vedolizumab induced clinical remission in more patients than placebo.1 Vedolizumab reduced the need for surgery within one year.1 Vedolizumab was effective in patients with prior biologic failure.2",
+  "goldClaims": [
+    { "originalText": "At week 6, vedolizumab induced clinical remission in more patients than placebo.1", "text": "At week 6, vedolizumab induced clinical remission in more patients than placebo", "citations": [1] },
+    { "originalText": "Vedolizumab reduced the need for surgery within one year.1", "text": "Vedolizumab reduced the need for surgery within one year", "citations": [1] },
+    { "originalText": "Vedolizumab was effective in patients with prior biologic failure.2", "text": "Vedolizumab was effective in patients with prior biologic failure", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "GEMINI-style primary (Abadi 2024)", "text": "Clinical remission at week 6 was achieved by 38% of vedolizumab and 19% of placebo patients (p<0.001). Surgical outcomes were not evaluated in this trial." },
+    "2": { "name": "Prior-biologic subgroup", "text": "Among patients with prior biologic failure, remission rates with vedolizumab were lower than placebo and did not favour vedolizumab." }
+  },
+  "goldVerdicts": [
+    { "claimText": "At week 6, vedolizumab induced clinical remission in more patients than placebo", "citation": 1, "verdict": "strong_support", "rationale": "Ref states remission 38% vs 19% with p<0.001 explicitly." },
+    { "claimText": "Vedolizumab reduced the need for surgery within one year", "citation": 1, "verdict": "not_supported", "rationale": "Ref says surgical outcomes were not evaluated — silent (rule 2)." },
+    { "claimText": "Vedolizumab was effective in patients with prior biologic failure", "citation": 2, "verdict": "contradicted", "rationale": "Ref says remission was lower than placebo and did not favour vedolizumab — negates 'effective' (rule 1)." }
+  ]
+}

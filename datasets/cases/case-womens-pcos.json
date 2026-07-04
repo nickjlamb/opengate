@@ -1,0 +1,21 @@
+{
+  "id": "womens-pcos",
+  "title": "PCOS — implied, contradicted, not-supported",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "More women ovulated with the treatment than with placebo.1 The treatment improved live birth rates.1 The treatment improved long-term metabolic outcomes.2",
+  "goldClaims": [
+    { "originalText": "More women ovulated with the treatment than with placebo.1", "text": "More women ovulated with the treatment than with placebo", "citations": [1] },
+    { "originalText": "The treatment improved live birth rates.1", "text": "The treatment improved live birth rates", "citations": [1] },
+    { "originalText": "The treatment improved long-term metabolic outcomes.2", "text": "The treatment improved long-term metabolic outcomes", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "PCOS-OV (Ali 2023)", "text": "Table 3. Ovulation rate: treatment 62%, placebo 28%. Live birth rates were similar between the treatment and placebo groups (24% vs 22%; not significant)." },
+    "2": { "name": "PCOS-OV follow-up", "text": "Long-term metabolic outcomes such as incident diabetes were not evaluated during the study." }
+  },
+  "goldVerdicts": [
+    { "claimText": "More women ovulated with the treatment than with placebo", "citation": 1, "verdict": "implied_by_data", "rationale": "Support is a data table (ovulation 62% vs 28%) with no narrative sentence (rule 5)." },
+    { "claimText": "The treatment improved live birth rates", "citation": 1, "verdict": "contradicted", "rationale": "Ref says live birth rates were similar (24% vs 22%, not significant) — negates an improvement (rule 1)." },
+    { "claimText": "The treatment improved long-term metabolic outcomes", "citation": 2, "verdict": "not_supported", "rationale": "Ref says metabolic outcomes were not evaluated — silent (rule 2)." }
+  ]
+}

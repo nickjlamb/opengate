@@ -1,0 +1,37 @@
+{
+  "id": "seed-teprotumumab",
+  "title": "Teprotumumab / thyroid eye disease — manuscript intro",
+  "notes": "Hand-labelled seed case. Demonstrates the schema and exercises claim extraction, citation detection, and (online) verdict accuracy.",
+  "manuscript": "Thyroid eye disease is a debilitating autoimmune condition. In the pivotal trials, teprotumumab reduced proptosis by 2.82 mm versus placebo.1,2 Diplopia improved in 53% of patients receiving teprotumumab compared with 25% receiving placebo (p<0.001).3 These benefits were consistent across the OPTIC and OPTIC-X studies.1,4 The aim of this review was to summarise long-term outcomes.",
+
+  "goldClaims": [
+    {
+      "originalText": "teprotumumab reduced proptosis by 2.82 mm versus placebo.1,2",
+      "text": "teprotumumab reduced proptosis by 2.82 mm versus placebo",
+      "citations": [1, 2]
+    },
+    {
+      "originalText": "Diplopia improved in 53% of patients receiving teprotumumab compared with 25% receiving placebo (p<0.001).3",
+      "text": "Diplopia improved in 53% of patients receiving teprotumumab compared with 25% receiving placebo (p<0.001)",
+      "citations": [3]
+    },
+    {
+      "originalText": "These benefits were consistent across the OPTIC and OPTIC-X studies.1,4",
+      "text": "These benefits were consistent across the OPTIC and OPTIC-X studies",
+      "citations": [1, 4]
+    }
+  ],
+
+  "goldNonClaims": [
+    "Thyroid eye disease is a debilitating autoimmune condition.",
+    "The aim of this review was to summarise long-term outcomes."
+  ],
+
+  "references": {
+    "1": { "name": "OPTIC trial (Douglas 2020)", "text": "In the OPTIC trial, teprotumumab reduced proptosis by a mean of 2.82 mm compared with placebo (p<0.001)." }
+  },
+
+  "goldVerdicts": [
+    { "claimText": "teprotumumab reduced proptosis by 2.82 mm versus placebo", "citation": 1, "verdict": "strong_support", "rationale": "Ref states the 2.82 mm proptosis reduction vs placebo explicitly with p<0.001.", "_requires": "online" }
+  ]
+}

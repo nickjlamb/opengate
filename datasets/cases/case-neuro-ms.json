@@ -1,0 +1,21 @@
+{
+  "id": "neuro-ms",
+  "title": "Multiple sclerosis — strong, contradicted, implied",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "The therapy reduced the annualised relapse rate compared with the active comparator.1 The therapy halted disability progression.1 The therapy reduced the number of new MRI lesions.2",
+  "goldClaims": [
+    { "originalText": "The therapy reduced the annualised relapse rate compared with the active comparator.1", "text": "The therapy reduced the annualised relapse rate compared with the active comparator", "citations": [1] },
+    { "originalText": "The therapy halted disability progression.1", "text": "The therapy halted disability progression", "citations": [1] },
+    { "originalText": "The therapy reduced the number of new MRI lesions.2", "text": "The therapy reduced the number of new MRI lesions", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "MS-COMPARE (Fischer 2024)", "text": "The annualised relapse rate was significantly lower with the therapy than the active comparator (rate ratio 0.62; p<0.001). Confirmed disability progression did not differ significantly between the two groups." },
+    "2": { "name": "MS-COMPARE MRI", "text": "Table 3. New or enlarging T2 lesions over 96 weeks: therapy 1.2, comparator 3.8 (mean per patient)." }
+  },
+  "goldVerdicts": [
+    { "claimText": "The therapy reduced the annualised relapse rate compared with the active comparator", "citation": 1, "verdict": "strong_support", "rationale": "Ref states the relapse-rate reduction (rate ratio 0.62, p<0.001) explicitly." },
+    { "claimText": "The therapy halted disability progression", "citation": 1, "verdict": "contradicted", "rationale": "Ref says confirmed disability progression did not differ between groups — negates 'halted' (rule 1)." },
+    { "claimText": "The therapy reduced the number of new MRI lesions", "citation": 2, "verdict": "implied_by_data", "rationale": "Support is a lesion-count data table (1.2 vs 3.8) with no narrative sentence (rule 5)." }
+  ]
+}

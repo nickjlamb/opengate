@@ -1,0 +1,21 @@
+{
+  "id": "pain-oa",
+  "title": "Osteoarthritis — implied, overclaim, not-supported",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "At week 12, the drug reduced knee pain scores more than placebo.1 The drug significantly improved physical function.1 The drug slowed structural joint damage.2",
+  "goldClaims": [
+    { "originalText": "At week 12, the drug reduced knee pain scores more than placebo.1", "text": "At week 12, the drug reduced knee pain scores more than placebo", "citations": [1] },
+    { "originalText": "The drug significantly improved physical function.1", "text": "The drug significantly improved physical function", "citations": [1] },
+    { "originalText": "The drug slowed structural joint damage.2", "text": "The drug slowed structural joint damage", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "OA-RELIEF table (Marsh 2024)", "text": "Table 1. WOMAC pain change at week 12: drug -3.4, placebo -1.6. WOMAC physical-function score change: drug -2.9, placebo -1.4." },
+    "2": { "name": "OA-RELIEF imaging", "text": "Structural joint outcomes such as joint-space narrowing were not assessed in this trial." }
+  },
+  "goldVerdicts": [
+    { "claimText": "At week 12, the drug reduced knee pain scores more than placebo", "citation": 1, "verdict": "implied_by_data", "rationale": "Support is a data table (WOMAC pain -3.4 vs -1.6) with no narrative sentence (rule 5)." },
+    { "claimText": "The drug significantly improved physical function", "citation": 1, "verdict": "overclaim", "rationale": "Table shows a function change (-2.9 vs -1.4) but states no significance; claim asserts 'significantly' (rule 1)." },
+    { "claimText": "The drug slowed structural joint damage", "citation": 2, "verdict": "not_supported", "rationale": "Ref says structural outcomes were not assessed — silent (rule 2)." }
+  ]
+}

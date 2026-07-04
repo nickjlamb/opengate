@@ -1,0 +1,19 @@
+{
+  "id": "osteo-fracture",
+  "title": "Osteoporosis — overclaim and implied",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "The drug reduced fracture risk across all skeletal sites.1 The drug increased bone mineral density at the spine and hip.2",
+  "goldClaims": [
+    { "originalText": "The drug reduced fracture risk across all skeletal sites.1", "text": "The drug reduced fracture risk across all skeletal sites", "citations": [1] },
+    { "originalText": "The drug increased bone mineral density at the spine and hip.2", "text": "The drug increased bone mineral density at the spine and hip", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "BONE-1 (Eriksson 2023)", "text": "Vertebral fractures were significantly reduced with the drug versus placebo (p<0.001). Hip fractures were numerically fewer but the reduction did not reach statistical significance." },
+    "2": { "name": "BONE-1 densitometry", "text": "Table 5. Bone mineral density change from baseline (%) — spine: drug +6.8, placebo +0.4; hip: drug +3.9, placebo +0.2." }
+  },
+  "goldVerdicts": [
+    { "claimText": "The drug reduced fracture risk across all skeletal sites", "citation": 1, "verdict": "overclaim", "rationale": "Ref establishes a vertebral-fracture reduction only; hip reduction was non-significant. Claim generalises to all sites beyond what is established, without explicit denial (rule 1/3)." },
+    { "claimText": "The drug increased bone mineral density at the spine and hip", "citation": 2, "verdict": "implied_by_data", "rationale": "Support is a BMD data table for spine and hip with no narrative sentence (rule 5)." }
+  ]
+}

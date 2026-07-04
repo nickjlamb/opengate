@@ -1,0 +1,31 @@
+{
+  "id": "oncology-pembro",
+  "title": "Immunotherapy + chemo — PFS vs OS",
+  "notes": "Synthetic-but-realistic. Ground truth is controlled by pairing each claim with an authored reference snippet. VERIFY/expand before publishing as a benchmark.",
+  "manuscript": "In the PRISM-3 trial, pembrolizumab plus chemotherapy improved progression-free survival compared with chemotherapy alone (median 9.2 vs 5.1 months; HR 0.52, 95% CI 0.41-0.65).1 Overall survival was significantly prolonged with the combination.1 The aim of this analysis was to describe long-term outcomes.",
+  "goldClaims": [
+    {
+      "originalText": "pembrolizumab plus chemotherapy improved progression-free survival compared with chemotherapy alone (median 9.2 vs 5.1 months; HR 0.52, 95% CI 0.41-0.65).1",
+      "text": "pembrolizumab plus chemotherapy improved progression-free survival compared with chemotherapy alone (median 9.2 vs 5.1 months; HR 0.52, 95% CI 0.41-0.65)",
+      "citations": [1]
+    },
+    {
+      "originalText": "Overall survival was significantly prolonged with the combination.1",
+      "text": "Overall survival was significantly prolonged with the combination",
+      "citations": [1]
+    }
+  ],
+  "goldNonClaims": [
+    "The aim of this analysis was to describe long-term outcomes."
+  ],
+  "references": {
+    "1": {
+      "name": "PRISM-3 primary (Doe 2024)",
+      "text": "In the PRISM-3 study, pembrolizumab plus chemotherapy significantly improved progression-free survival versus chemotherapy alone, with a median of 9.2 months compared with 5.1 months (hazard ratio 0.52; 95% CI 0.41-0.65; p<0.001). Overall survival data were immature at the time of this analysis and the difference between arms did not reach statistical significance."
+    }
+  },
+  "goldVerdicts": [
+    { "claimText": "pembrolizumab plus chemotherapy improved progression-free survival compared with chemotherapy alone (median 9.2 vs 5.1 months; HR 0.52, 95% CI 0.41-0.65)", "citation": 1, "verdict": "strong_support", "rationale": "Ref states the PFS result with matching figures and p<0.001 explicitly." },
+    { "claimText": "Overall survival was significantly prolonged with the combination", "citation": 1, "verdict": "contradicted", "rationale": "Ref says OS was immature and did not reach significance — negates 'significantly prolonged' (rule 1)." }
+  ]
+}

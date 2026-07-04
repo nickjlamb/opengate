@@ -1,0 +1,33 @@
+{
+  "id": "diabetes-glp1",
+  "title": "GLP-1 — implied-by-data and partial support",
+  "notes": "Reference 1 is data-only (table-style) with no narrative sentence stating the claim, to probe implied_by_data. Synthetic; VERIFY before publishing.",
+  "manuscript": "At week 30, semaglutide reduced HbA1c more than placebo.1 Semaglutide reduced body weight and systolic blood pressure.2",
+  "goldClaims": [
+    {
+      "originalText": "At week 30, semaglutide reduced HbA1c more than placebo.1",
+      "text": "At week 30, semaglutide reduced HbA1c more than placebo",
+      "citations": [1]
+    },
+    {
+      "originalText": "Semaglutide reduced body weight and systolic blood pressure.2",
+      "text": "Semaglutide reduced body weight and systolic blood pressure",
+      "citations": [2]
+    }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": {
+      "name": "SUSTAIN data table (Lin 2022)",
+      "text": "Table 2. Change from baseline at week 30. HbA1c (%): semaglutide -1.8, placebo -0.3. Fasting plasma glucose (mmol/L): semaglutide -2.6, placebo -0.4. Values are least-squares means."
+    },
+    "2": {
+      "name": "SUSTAIN secondary endpoints",
+      "text": "Semaglutide significantly reduced body weight compared with placebo (-4.5 kg vs -1.0 kg; p<0.001). Systolic blood pressure was numerically lower with semaglutide, but the change was not reported as statistically significant and confidence intervals were not provided."
+    }
+  },
+  "goldVerdicts": [
+    { "claimText": "At week 30, semaglutide reduced HbA1c more than placebo", "citation": 1, "verdict": "implied_by_data", "rationale": "Support is in a data table (-1.8 vs -0.3) with no narrative sentence stating the comparison (rule 5)." },
+    { "claimText": "Semaglutide reduced body weight and systolic blood pressure", "citation": 2, "verdict": "partial_support", "rationale": "Weight reduction is explicit and significant; SBP change is non-significant — compound claim, one half holds (rule 4)." }
+  ]
+}

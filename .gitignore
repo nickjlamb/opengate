@@ -1,0 +1,8 @@
+node_modules/
+.env
+.DS_Store
+
+# Run snapshots are local artifacts; commit baseline.json deliberately if you
+# want a shared regression reference.
+results/*.json
+!results/baseline.json

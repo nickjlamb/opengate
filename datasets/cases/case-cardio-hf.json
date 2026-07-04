@@ -1,0 +1,21 @@
+{
+  "id": "cardio-hf",
+  "title": "Heart failure — implied, partial, not-supported",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "The drug lowered the rate of heart-failure hospitalisation versus placebo.1 The drug improved symptoms and reduced cardiovascular mortality.1 The drug improved renal outcomes.2",
+  "goldClaims": [
+    { "originalText": "The drug lowered the rate of heart-failure hospitalisation versus placebo.1", "text": "The drug lowered the rate of heart-failure hospitalisation versus placebo", "citations": [1] },
+    { "originalText": "The drug improved symptoms and reduced cardiovascular mortality.1", "text": "The drug improved symptoms and reduced cardiovascular mortality", "citations": [1] },
+    { "originalText": "The drug improved renal outcomes.2", "text": "The drug improved renal outcomes", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "HF-CARE table (Bauer 2024)", "text": "In this event-driven trial, 3,800 patients with heart failure were randomised to the drug or placebo and followed for a median of 26 months. Efficacy outcomes are shown in Table 2. The rate of heart-failure hospitalisation was 9.1 per 100 patient-years with the drug and 14.7 with placebo. The KCCQ symptom score improved significantly with the drug versus placebo (p<0.001). Cardiovascular mortality did not differ significantly between the groups (hazard ratio 0.96; 95% CI 0.84-1.10)." },
+    "2": { "name": "HF-CARE renal", "text": "This pre-specified analysis focused on cardiovascular and symptom endpoints. Renal outcomes, including changes in eGFR and progression to dialysis, were not among the endpoints assessed in this study." }
+  },
+  "goldVerdicts": [
+    { "claimText": "The drug lowered the rate of heart-failure hospitalisation versus placebo", "citation": 1, "verdict": "implied_by_data", "rationale": "Support is a data table (9.1 vs 14.7 per 100 patient-years) with no narrative sentence stating it (rule 5)." },
+    { "claimText": "The drug improved symptoms and reduced cardiovascular mortality", "citation": 1, "verdict": "partial_support", "rationale": "Symptom (KCCQ) improvement is explicit and significant; CV mortality did not differ — compound claim, one half holds (rule 4)." },
+    { "claimText": "The drug improved renal outcomes", "citation": 2, "verdict": "not_supported", "rationale": "Ref says renal outcomes were not assessed — silent (rule 2)." }
+  ]
+}

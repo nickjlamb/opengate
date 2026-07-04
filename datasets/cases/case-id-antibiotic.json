@@ -1,0 +1,18 @@
+{
+  "id": "id-antibiotic",
+  "title": "Antibiotic — strong (non-inferiority) and overclaim (superiority)",
+  "notes": "Synthetic; controlled ground truth. Overclaim exemplar: numerically higher cure rate, claim asserts superiority the trial did not establish. VERIFY before publishing.",
+  "manuscript": "The new antibiotic met its non-inferiority margin versus the comparator for clinical cure.1 The new antibiotic was superior to the comparator.1",
+  "goldClaims": [
+    { "originalText": "The new antibiotic met its non-inferiority margin versus the comparator for clinical cure.1", "text": "The new antibiotic met its non-inferiority margin versus the comparator for clinical cure", "citations": [1] },
+    { "originalText": "The new antibiotic was superior to the comparator.1", "text": "The new antibiotic was superior to the comparator", "citations": [1] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "ACUTE-NI (Vargas 2024)", "text": "Clinical cure was achieved in 88% of the new-antibiotic group and 85% of the comparator group; the new antibiotic met the pre-specified non-inferiority margin. The trial was not designed to test for superiority." }
+  },
+  "goldVerdicts": [
+    { "claimText": "The new antibiotic met its non-inferiority margin versus the comparator for clinical cure", "citation": 1, "verdict": "strong_support", "rationale": "Ref states the non-inferiority margin was met explicitly." },
+    { "claimText": "The new antibiotic was superior to the comparator", "citation": 1, "verdict": "overclaim", "rationale": "Cure was numerically higher (88% vs 85%) but the trial was not designed to test superiority; claim asserts an unestablished superiority, not denied (rule 1)." }
+  ]
+}

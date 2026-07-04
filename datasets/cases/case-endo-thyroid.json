@@ -1,0 +1,18 @@
+{
+  "id": "endo-thyroid",
+  "title": "Thyroid — implied and overclaim",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "More patients achieved normal TSH with the therapy than with placebo.1 The therapy significantly reduced goitre size.1",
+  "goldClaims": [
+    { "originalText": "More patients achieved normal TSH with the therapy than with placebo.1", "text": "More patients achieved normal TSH with the therapy than with placebo", "citations": [1] },
+    { "originalText": "The therapy significantly reduced goitre size.1", "text": "The therapy significantly reduced goitre size", "citations": [1] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "THYR-1 (Okoro 2023)", "text": "A total of 240 patients with goitre were randomised to the therapy or placebo for 24 weeks. Biochemical and imaging outcomes are summarised in Table 2. The proportion of patients with a normal TSH at week 24 was 71% in the therapy group and 38% in the placebo group. Mean goitre volume changed by -18% with the therapy and -4% with placebo over the study period. Adverse events were similar between the two groups." }
+  },
+  "goldVerdicts": [
+    { "claimText": "More patients achieved normal TSH with the therapy than with placebo", "citation": 1, "verdict": "implied_by_data", "rationale": "Support is a data table (71% vs 38%) with no narrative sentence stating it (rule 5)." },
+    { "claimText": "The therapy significantly reduced goitre size", "citation": 1, "verdict": "overclaim", "rationale": "Ref reports an 18% vs 4% goitre reduction but states no significance; claim asserts 'significantly' (rule 1)." }
+  ]
+}

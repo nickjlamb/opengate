@@ -1,0 +1,21 @@
+{
+  "id": "nephro-ckd",
+  "title": "CKD — implied, overclaim, not-supported",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "At week 52, the agent slowed the decline in eGFR compared with placebo.1 The agent was renoprotective across all stages of chronic kidney disease.1 The agent reduced cardiovascular mortality.2",
+  "goldClaims": [
+    { "originalText": "At week 52, the agent slowed the decline in eGFR compared with placebo.1", "text": "At week 52, the agent slowed the decline in eGFR compared with placebo", "citations": [1] },
+    { "originalText": "The agent was renoprotective across all stages of chronic kidney disease.1", "text": "The agent was renoprotective across all stages of chronic kidney disease", "citations": [1] },
+    { "originalText": "The agent reduced cardiovascular mortality.2", "text": "The agent reduced cardiovascular mortality", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "CKD-PROTECT table (Ndiaye 2024)", "text": "Table 1. Annual eGFR slope (mL/min/1.73m2): agent -2.1, placebo -3.9. Subgroup analyses were limited to patients in CKD stages 3 and 4." },
+    "2": { "name": "CKD-PROTECT endpoints", "text": "Cardiovascular mortality was not a pre-specified endpoint and was not analysed in this study." }
+  },
+  "goldVerdicts": [
+    { "claimText": "At week 52, the agent slowed the decline in eGFR compared with placebo", "citation": 1, "verdict": "implied_by_data", "rationale": "Support is a data table (eGFR slope -2.1 vs -3.9) with no narrative sentence stating it (rule 5)." },
+    { "claimText": "The agent was renoprotective across all stages of chronic kidney disease", "citation": 1, "verdict": "overclaim", "rationale": "Ref limits analysis to CKD stages 3-4; claim broadens to all stages (rule 3)." },
+    { "claimText": "The agent reduced cardiovascular mortality", "citation": 2, "verdict": "not_supported", "rationale": "Ref says CV mortality was not analysed — silent (rule 2)." }
+  ]
+}

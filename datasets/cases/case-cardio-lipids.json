@@ -1,0 +1,41 @@
+{
+  "id": "cardio-lipids",
+  "title": "Lipid lowering — overclaim and not-supported",
+  "notes": "Synthetic-but-realistic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "At week 24, treatment with alirocumab reduced LDL cholesterol by 58% versus placebo.1 Alirocumab significantly reduced the rate of cardiovascular death.1 Alirocumab also improved renal function in patients with chronic kidney disease.2 These results were observed across subgroups.",
+  "goldClaims": [
+    {
+      "originalText": "At week 24, treatment with alirocumab reduced LDL cholesterol by 58% versus placebo.1",
+      "text": "At week 24, treatment with alirocumab reduced LDL cholesterol by 58% versus placebo",
+      "citations": [1]
+    },
+    {
+      "originalText": "Alirocumab significantly reduced the rate of cardiovascular death.1",
+      "text": "Alirocumab significantly reduced the rate of cardiovascular death",
+      "citations": [1]
+    },
+    {
+      "originalText": "Alirocumab also improved renal function in patients with chronic kidney disease.2",
+      "text": "Alirocumab also improved renal function in patients with chronic kidney disease",
+      "citations": [2]
+    }
+  ],
+  "goldNonClaims": [
+    "These results were observed across subgroups."
+  ],
+  "references": {
+    "1": {
+      "name": "ODYSSEY-LDL (Roe 2023)",
+      "text": "At week 24, alirocumab reduced LDL cholesterol by a mean of 58% relative to placebo (p<0.001). For the composite of cardiovascular death, myocardial infarction, or stroke, a numerical reduction was observed (hazard ratio 0.85; 95% CI 0.72-1.01), but the difference was not statistically significant; cardiovascular death alone was not significantly reduced."
+    },
+    "2": {
+      "name": "ODYSSEY safety appendix",
+      "text": "Adverse events were balanced between groups. Injection-site reactions were more common with alirocumab. The safety analysis did not assess renal endpoints or kidney function."
+    }
+  },
+  "goldVerdicts": [
+    { "claimText": "At week 24, treatment with alirocumab reduced LDL cholesterol by 58% versus placebo", "citation": 1, "verdict": "strong_support", "rationale": "Ref states the 58% reduction with p<0.001 explicitly; claim does not exceed it." },
+    { "claimText": "Alirocumab significantly reduced the rate of cardiovascular death", "citation": 1, "verdict": "contradicted", "rationale": "Ref explicitly says cardiovascular death alone was NOT significantly reduced — direct negation of the significance assertion (rule 1)." },
+    { "claimText": "Alirocumab also improved renal function in patients with chronic kidney disease", "citation": 2, "verdict": "not_supported", "rationale": "Ref states renal endpoints were not assessed — silent on the claim (rule 2)." }
+  ]
+}

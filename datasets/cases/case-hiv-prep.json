@@ -1,0 +1,18 @@
+{
+  "id": "hiv-prep",
+  "title": "HIV prevention — strong and contradicted",
+  "notes": "Synthetic; controlled ground truth. VERIFY before publishing.",
+  "manuscript": "The long-acting injectable reduced HIV acquisition compared with daily oral PrEP.1 The injectable eliminated the risk of HIV acquisition.1",
+  "goldClaims": [
+    { "originalText": "The long-acting injectable reduced HIV acquisition compared with daily oral PrEP.1", "text": "The long-acting injectable reduced HIV acquisition compared with daily oral PrEP", "citations": [1] },
+    { "originalText": "The injectable eliminated the risk of HIV acquisition.1", "text": "The injectable eliminated the risk of HIV acquisition", "citations": [1] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "PREVENT-LA (Mwangi 2024)", "text": "In this randomised trial, 4,512 participants at risk of HIV were assigned to the long-acting injectable or daily oral PrEP and followed for a median of 18 months; the primary endpoint was incident HIV infection. HIV incidence was significantly lower with the long-acting injectable than with daily oral PrEP (0.40 vs 1.18 per 100 person-years; hazard ratio 0.34; 95% CI 0.18-0.62; p<0.001). Adherence, measured by drug levels, was higher in the injectable group. Incident HIV infections nonetheless occurred in a small number of injectable recipients, several of which were associated with delayed injection visits." }
+  },
+  "goldVerdicts": [
+    { "claimText": "The long-acting injectable reduced HIV acquisition compared with daily oral PrEP", "citation": 1, "verdict": "strong_support", "rationale": "Ref states incidence was significantly lower (HR 0.34, p<0.001) explicitly." },
+    { "claimText": "The injectable eliminated the risk of HIV acquisition", "citation": 1, "verdict": "contradicted", "rationale": "Ref says incident infections still occurred — negates 'eliminated the risk' (rule 1)." }
+  ]
+}

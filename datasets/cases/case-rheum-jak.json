@@ -1,0 +1,19 @@
+{
+  "id": "rheum-jak",
+  "title": "JAK inhibitor — implied-by-data and partial support",
+  "notes": "Synthetic; reference 1 is a data table with no narrative sentence (implied_by_data). VERIFY before publishing. (Avoids named endpoints like 'ACR20' that the citation normalizer mis-reads as a citation marker — see findings note.)",
+  "manuscript": "At week 24, the JAK inhibitor produced a higher clinical response rate than placebo.1 The JAK inhibitor improved physical function and reduced fatigue.2",
+  "goldClaims": [
+    { "originalText": "At week 24, the JAK inhibitor produced a higher clinical response rate than placebo.1", "text": "At week 24, the JAK inhibitor produced a higher clinical response rate than placebo", "citations": [1] },
+    { "originalText": "The JAK inhibitor improved physical function and reduced fatigue.2", "text": "The JAK inhibitor improved physical function and reduced fatigue", "citations": [2] }
+  ],
+  "goldNonClaims": [],
+  "references": {
+    "1": { "name": "RA-JAK table (Singh 2023)", "text": "In this 24-week trial, 350 patients with rheumatoid arthritis were randomised to the JAK inhibitor or placebo. Response outcomes are summarised in Table 3. At week 24, a clinical response was recorded in 62% of patients in the JAK-inhibitor group and 25% in the placebo group. Background therapy was unchanged during the study." },
+    "2": { "name": "RA-JAK secondary endpoints", "text": "Patient-reported outcomes were pre-specified secondary endpoints. Physical function, measured by HAQ-DI, improved significantly with the JAK inhibitor versus placebo (p<0.001). Fatigue scores (FACIT-Fatigue) were numerically better with the JAK inhibitor, but the difference did not reach statistical significance." }
+  },
+  "goldVerdicts": [
+    { "claimText": "At week 24, the JAK inhibitor produced a higher clinical response rate than placebo", "citation": 1, "verdict": "implied_by_data", "rationale": "Support is a data table (62% vs 25%) with no narrative sentence stating the comparison (rule 5)." },
+    { "claimText": "The JAK inhibitor improved physical function and reduced fatigue", "citation": 2, "verdict": "partial_support", "rationale": "Physical function improvement is explicit and significant; fatigue is non-significant — compound claim, one half holds (rule 4)." }
+  ]
+}
