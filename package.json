@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/nickjlamb/opengate.git"
   },
+  "bin": {
+    "opengate": "./src/runner.mjs"
+  },
   "keywords": [
     "evaluation",
     "llm",

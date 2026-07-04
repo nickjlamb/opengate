@@ -1,6 +1,6 @@
 # Writing an adapter
 
-An adapter is the boundary between OpenGATE's scorers and the system under test. Scorers never make network calls directly — they call the adapter, so evaluating a new system means writing one file. The bundled RefCheckr adapter (`src/adapters/refcheckr.mjs`) is the reference implementation.
+An adapter is the boundary between OpenGATE's scorers and the system under test. Scorers never make network calls directly — they call the adapter, so evaluating a new system means writing one file (or, for REST-backed systems, none: see the generic HTTP adapter below). The bundled RefCheckr adapter (`src/adapters/refcheckr.mjs`) is the reference implementation.
 
 **The methodology travels; only the gold set changes** — and the adapter is how it travels.
 
@@ -10,11 +10,36 @@ An adapter is the boundary between OpenGATE's scorers and the system under test.
 # default: the bundled RefCheckr adapter
 npm run eval:online
 
-# your own
+# your own, via flag or environment variable
+node src/runner.mjs --online --adapter ./adapters/my-system.mjs
 OPENGATE_ADAPTER=./adapters/my-system.mjs npm run eval:online
 ```
 
-Relative paths resolve from the current working directory. The adapter is loaded and validated before any scorer runs — a malformed adapter fails fast with a message listing every missing or mistyped export, even on offline runs.
+The `--adapter` flag takes precedence over `OPENGATE_ADAPTER`. Relative paths resolve from the current working directory. The adapter is loaded and validated before any scorer runs — a malformed adapter fails fast with a message listing every missing or mistyped export, even on offline runs.
+
+## No-code option: the generic HTTP adapter
+
+If your system already exposes (or can expose) endpoints speaking the contract shapes below, you don't need to write code. Describe the transport in a JSON config:
+
+```bash
+cp opengate.http.example.json opengate.http.json   # edit paths/headers
+node src/runner.mjs --online --adapter ./src/adapters/http.mjs
+```
+
+```json
+{
+  "name": "my-system",
+  "baseUrl": "${MY_SYSTEM_URL}",
+  "headers": { "Authorization": "Bearer ${MY_SYSTEM_TOKEN}" },
+  "endpoints": {
+    "splitClaims": "/api/claims/split",
+    "analyzeBatch": "/api/verify/batch"
+  },
+  "modelEnv": "MY_SYSTEM_MODEL"
+}
+```
+
+`${VAR}` placeholders are interpolated from the environment at load time; the config path defaults to `./opengate.http.json` and can be set with `OPENGATE_HTTP_CONFIG`. Latency and token capture are built in. The HTTP adapter maps *transport, not payloads* — if your API uses different request/response shapes, write a thin code adapter instead.
 
 ## The contract
 

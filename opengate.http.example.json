@@ -1,0 +1,12 @@
+{
+  "name": "my-system",
+  "baseUrl": "${MY_SYSTEM_URL}",
+  "headers": {
+    "Authorization": "Bearer ${MY_SYSTEM_TOKEN}"
+  },
+  "endpoints": {
+    "splitClaims": "/api/claims/split",
+    "analyzeBatch": "/api/verify/batch"
+  },
+  "modelEnv": "MY_SYSTEM_MODEL"
+}

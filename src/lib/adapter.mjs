@@ -50,9 +50,13 @@ export function validateAdapter(mod, source = 'adapter') {
   }
 }
 
-/** Load, validate, and normalise the adapter selected by OPENGATE_ADAPTER. */
-export async function loadAdapter() {
-  const spec = process.env.OPENGATE_ADAPTER;
+/**
+ * Load, validate, and normalise an adapter.
+ * Precedence: explicit argument (--adapter flag) > OPENGATE_ADAPTER env >
+ * bundled RefCheckr reference adapter.
+ */
+export async function loadAdapter(specOverride) {
+  const spec = specOverride || process.env.OPENGATE_ADAPTER;
   const path = spec ? resolve(process.cwd(), spec) : DEFAULT_ADAPTER;
   let mod;
   try {

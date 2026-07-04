@@ -23,10 +23,49 @@ const CASES_DIR = join(EVAL_ROOT, 'datasets', 'cases');
 const FIX_DIR = join(EVAL_ROOT, 'datasets', 'fixtures');
 const RESULTS_DIR = join(EVAL_ROOT, 'results');
 
-const args = new Set(process.argv.slice(2));
+const argv = process.argv.slice(2);
+const args = new Set(argv.filter(a => a.startsWith('-')));
 const ONLINE = args.has('--online');
 const CI = args.has('--ci');
 const SAVE_BASELINE = args.has('--baseline');
+
+// --adapter <path> overrides the OPENGATE_ADAPTER environment variable.
+const adapterFlagIdx = argv.indexOf('--adapter');
+const ADAPTER_SPEC = adapterFlagIdx >= 0 ? argv[adapterFlagIdx + 1] : undefined;
+if (adapterFlagIdx >= 0 && (!ADAPTER_SPEC || ADAPTER_SPEC.startsWith('-'))) {
+  console.error('--adapter requires a path, e.g. --adapter ./adapters/my-system.mjs');
+  process.exit(2);
+}
+
+if (args.has('--help') || args.has('-h')) {
+  console.log(`OpenGATE — Open-source evaluation for evidence-grounded AI
+
+Usage: opengate [options]        (or: node src/runner.mjs [options])
+
+Options:
+  --online           also run scorers that call the live system
+  --baseline         save this run as results/baseline.json
+  --ci               exit non-zero on any failure or metric regression
+  --adapter <path>   adapter module (overrides OPENGATE_ADAPTER;
+                     default: bundled RefCheckr reference adapter)
+  -h, --help         show this help
+  -v, --version      show version
+
+Environment:
+  OPENGATE_ADAPTER        adapter module path
+  OPENGATE_HTTP_CONFIG    config path for the generic HTTP adapter
+  OPENGATE_EVAL_REPEATS   run each verdict pair N times (consistency)
+  OPENGATE_EVAL_MODEL     label the deployment's model in the scorecard
+
+Docs: README.md · ADAPTERS.md`);
+  process.exit(0);
+}
+
+if (args.has('--version') || args.has('-v')) {
+  const pkg = JSON.parse(await readFile(join(dirname(fileURLToPath(import.meta.url)), '..', 'package.json'), 'utf8'));
+  console.log(pkg.version);
+  process.exit(0);
+}
 
 const SCORERS = [
   './scorers/citation-detection.mjs',
@@ -69,7 +108,7 @@ async function main() {
   // even for offline runs, so a broken config never produces a partial scorecard.
   let adapter;
   try {
-    adapter = await loadAdapter();
+    adapter = await loadAdapter(ADAPTER_SPEC);
   } catch (err) {
     console.error(err.message);
     process.exit(2);
