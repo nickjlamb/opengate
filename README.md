@@ -1,5 +1,7 @@
 # OpenGATE
 
+[![CI](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml/badge.svg)](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml)
+
 **Evidence over plausibility.**
 
 OpenGATE is an open-source framework for evaluating evidence-grounded AI systems — systems that must justify every answer from underlying source documents. It measures one thing above all: **can the system prove its answer from the source material?**
@@ -117,6 +119,24 @@ Full contract, minimal skeleton, and verdict-mapping notes: **[ADAPTERS.md](ADAP
 
 **The methodology travels; only the gold set changes.**
 
+## CI: the GitHub Action
+
+Use OpenGATE as a drop-in regression gate in any repository. Keep your gold set and committed `baseline.json` in your own tree; any metric that drops fails the build:
+
+```yaml
+- uses: nickjlamb/opengate@main
+  with:
+    datasets: ./evals/datasets      # your cases/ + fixtures/
+    results: ./evals/results        # where baseline.json lives
+    adapter: ./evals/my-adapter.mjs # or the bundled HTTP adapter
+    online: 'true'
+  env:
+    MY_SYSTEM_URL: ${{ vars.MY_SYSTEM_URL }}
+    MY_SYSTEM_TOKEN: ${{ secrets.MY_SYSTEM_TOKEN }}
+```
+
+All inputs are optional — with none, it runs the offline suite against the bundled gold set. The same overrides work locally: `--datasets <dir>` and `--results <dir>` (or `OPENGATE_DATASETS` / `OPENGATE_RESULTS`).
+
 ## Proven in production
 
 Run against RefCheckr's gold set, OpenGATE:
@@ -150,8 +170,7 @@ opengate/
 - **Second adapter** — Patiently AI (faithfulness evaluation for patient-language simplification)
 - **Author-year citation styles** — currently a tracked known gap (numbered styles are fully supported)
 - **Growing gold set** — more domains, all six verdict types, real-world reference material
-- **npm packaging** — extract `opengate` core as an installable package once the adapter surface stabilises
-- **GitHub Action** — drop-in regression gate for any repo
+- **npm packaging** — publish as `@pharmatools/opengate` once the adapter surface stabilises (the unscoped `opengate` npm name is taken by an unrelated project)
 
 ## Contributing
 

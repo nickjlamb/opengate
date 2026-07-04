@@ -13,15 +13,12 @@
 import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { execSync } from 'node:child_process';
 import { loadAdapter } from './lib/adapter.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const EVAL_ROOT = join(__dirname, '..');
-const CASES_DIR = join(EVAL_ROOT, 'datasets', 'cases');
-const FIX_DIR = join(EVAL_ROOT, 'datasets', 'fixtures');
-const RESULTS_DIR = join(EVAL_ROOT, 'results');
 
 const argv = process.argv.slice(2);
 const args = new Set(argv.filter(a => a.startsWith('-')));
@@ -29,13 +26,30 @@ const ONLINE = args.has('--online');
 const CI = args.has('--ci');
 const SAVE_BASELINE = args.has('--baseline');
 
-// --adapter <path> overrides the OPENGATE_ADAPTER environment variable.
-const adapterFlagIdx = argv.indexOf('--adapter');
-const ADAPTER_SPEC = adapterFlagIdx >= 0 ? argv[adapterFlagIdx + 1] : undefined;
-if (adapterFlagIdx >= 0 && (!ADAPTER_SPEC || ADAPTER_SPEC.startsWith('-'))) {
-  console.error('--adapter requires a path, e.g. --adapter ./adapters/my-system.mjs');
-  process.exit(2);
+// Value-taking flag: `--name <value>`, falling back to an env var.
+function argVal(flag, envName) {
+  const i = argv.indexOf(flag);
+  if (i < 0) return process.env[envName] || undefined;
+  const v = argv[i + 1];
+  if (!v || v.startsWith('-')) {
+    console.error(`${flag} requires a value, e.g. ${flag} <path>`);
+    process.exit(2);
+  }
+  return v;
 }
+
+// --adapter <path> overrides the OPENGATE_ADAPTER environment variable.
+const ADAPTER_SPEC = argVal('--adapter', 'OPENGATE_ADAPTER');
+
+// --datasets <dir> points at a directory containing cases/ and fixtures/ —
+// so third-party repos can keep their gold sets in their own tree.
+// --results <dir> relocates snapshots and baseline.json for the same reason.
+const DATASETS_SPEC = argVal('--datasets', 'OPENGATE_DATASETS');
+const RESULTS_SPEC = argVal('--results', 'OPENGATE_RESULTS');
+const DATA_ROOT = DATASETS_SPEC ? resolve(process.cwd(), DATASETS_SPEC) : join(EVAL_ROOT, 'datasets');
+const CASES_DIR = join(DATA_ROOT, 'cases');
+const FIX_DIR = join(DATA_ROOT, 'fixtures');
+const RESULTS_DIR = RESULTS_SPEC ? resolve(process.cwd(), RESULTS_SPEC) : join(EVAL_ROOT, 'results');
 
 if (args.has('--help') || args.has('-h')) {
   console.log(`OpenGATE — Open-source evaluation for evidence-grounded AI
@@ -48,11 +62,17 @@ Options:
   --ci               exit non-zero on any failure or metric regression
   --adapter <path>   adapter module (overrides OPENGATE_ADAPTER;
                      default: bundled RefCheckr reference adapter)
+  --datasets <dir>   directory containing cases/ and fixtures/
+                     (overrides OPENGATE_DATASETS; default: bundled datasets/)
+  --results <dir>    where to write snapshots and baseline.json
+                     (overrides OPENGATE_RESULTS; default: bundled results/)
   -h, --help         show this help
   -v, --version      show version
 
 Environment:
   OPENGATE_ADAPTER        adapter module path
+  OPENGATE_DATASETS       datasets directory (cases/ + fixtures/)
+  OPENGATE_RESULTS        results directory
   OPENGATE_HTTP_CONFIG    config path for the generic HTTP adapter
   OPENGATE_EVAL_REPEATS   run each verdict pair N times (consistency)
   OPENGATE_EVAL_MODEL     label the deployment's model in the scorecard

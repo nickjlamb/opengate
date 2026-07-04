@@ -1,0 +1,53 @@
+name: 'OpenGATE'
+description: >-
+  Regression gate for evidence-grounded AI. Runs OpenGATE evals and fails the
+  build if any metric drops against your committed baseline.
+author: 'Nick Lamb (PharmaTools.AI)'
+branding:
+  icon: 'check-square'
+  color: 'gray-dark'
+
+inputs:
+  datasets:
+    description: 'Directory in your repo containing cases/ and fixtures/ (defaults to the gold set bundled with OpenGATE).'
+    required: false
+    default: ''
+  results:
+    description: 'Directory in your repo for scorecards and baseline.json (commit baseline.json to gate regressions).'
+    required: false
+    default: ''
+  adapter:
+    description: 'Adapter module path, e.g. ./evals/my-adapter.mjs or the bundled HTTP adapter.'
+    required: false
+    default: ''
+  http-config:
+    description: 'Config path for the generic HTTP adapter (sets OPENGATE_HTTP_CONFIG).'
+    required: false
+    default: ''
+  online:
+    description: 'Also run scorers that call the live system (true/false).'
+    required: false
+    default: 'false'
+  node-version:
+    description: 'Node.js version to use.'
+    required: false
+    default: '20'
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Run OpenGATE regression gate
+      shell: bash
+      env:
+        OPENGATE_HTTP_CONFIG: ${{ inputs.http-config }}
+      run: |
+        FLAGS="--ci"
+        [ "${{ inputs.online }}" = "true" ] && FLAGS="$FLAGS --online"
+        [ -n "${{ inputs.adapter }}" ] && FLAGS="$FLAGS --adapter ${{ inputs.adapter }}"
+        [ -n "${{ inputs.datasets }}" ] && FLAGS="$FLAGS --datasets ${{ inputs.datasets }}"
+        [ -n "${{ inputs.results }}" ] && FLAGS="$FLAGS --results ${{ inputs.results }}"
+        node "${{ github.action_path }}/src/runner.mjs" $FLAGS
