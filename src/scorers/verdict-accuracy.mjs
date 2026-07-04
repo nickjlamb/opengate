@@ -1,10 +1,9 @@
 // ONLINE scorer — verdict accuracy + passage hallucination + consistency.
 //
 // Verifies ONE claim per call against its single cited reference (sent as a text
-// document) via POST /api/verify/batch. One-claim-per-call deliberately sidesteps
-// the batch endpoint's multi-claim reassembly — which drops claims when the model
-// returns a partial array — so this measures the model's verdict QUALITY, not the
-// batch-matching bug. (That batch bug is a separate, tracked production issue.)
+// document) via the adapter's analyzeBatch(). One-claim-per-call deliberately
+// sidesteps multi-claim reassembly bugs in batch endpoints, so this measures the
+// model's verdict QUALITY, not batch-matching behaviour.
 //
 // Metrics:
 //   • exact / adjacency verdict accuracy on the six-point support scale
@@ -13,12 +12,7 @@
 //   • guard_downgrades (verdicts the integrity guard downgraded)
 //   • consistency (when OPENGATE_EVAL_REPEATS > 1): verdict stability across repeats
 
-import {
-  onlineAvailable, onlineConfigHint, analyzeBatch,
-  resetTiming, callLatencies, percentile, runModel,
-  resetTokens, tokenTotals,
-} from '../adapters/refcheckr.mjs';
-import { verdictAccuracy, confusionMatrix, normText, mean } from '../lib/metrics.mjs';
+import { verdictAccuracy, confusionMatrix, normText, mean, percentile } from '../lib/metrics.mjs';
 
 export const meta = { id: 'verdict-accuracy', mode: 'online' };
 
@@ -58,17 +52,17 @@ function isGuardDowngrade(summary) {
     || s.includes('no explicit textual support found');
 }
 
-export async function run({ cases }) {
-  if (!onlineAvailable()) {
-    return { meta, skipped: true, reason: onlineConfigHint() };
+export async function run({ cases, adapter }) {
+  if (!adapter.onlineAvailable()) {
+    return { meta, skipped: true, reason: adapter.onlineConfigHint() };
   }
   const goldCases = cases.filter(c => (c.goldVerdicts || []).length > 0 && c.references);
   if (goldCases.length === 0) {
     return { meta, skipped: true, reason: 'No cases include goldVerdicts + references.' };
   }
 
-  resetTiming(); // start latency capture for the verify calls below
-  resetTokens();  // start token-usage capture for real cost/claim
+  adapter.resetTiming(); // start latency capture for the verify calls below
+  adapter.resetTokens();  // start token-usage capture for real cost/claim
 
   const pairs = [];
   const consistencyShares = [];
@@ -86,7 +80,7 @@ export async function run({ cases }) {
       for (let run = 0; run < REPEATS; run++) {
         let resp;
         try {
-          resp = await analyzeBatch(payload);
+          resp = await adapter.analyzeBatch(payload);
         } catch (err) {
           failures.push(`${c.id} "${g.claimText.slice(0, 30)}…" run ${run + 1}: ${err.message}`);
           break;
@@ -137,9 +131,9 @@ export async function run({ cases }) {
   // Per-verify-call latency (one call verifies one claim against its reference,
   // so this is p50/p95 latency per claim). Counts as info in the snapshot — not
   // a pass/fail gate.
-  const verifyMs = callLatencies('/api/verify/batch');
-  const tok = tokenTotals('/api/verify/batch');
-  const model = runModel();
+  const verifyMs = adapter.callLatencies();
+  const tok = adapter.tokenTotals();
+  const model = adapter.runModel();
 
   const metrics = {
     n_pairs: pairs.length,

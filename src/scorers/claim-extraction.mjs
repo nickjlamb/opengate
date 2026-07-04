@@ -1,25 +1,24 @@
-// ONLINE scorer — calls POST /api/claims/split.
+// ONLINE scorer — exercises the adapter's splitClaims().
 // Measures whether the splitter extracts the right verifiable claims:
 //   • recall   — did it find the gold claims?
 //   • precision — did it avoid pulling in non-claims (background/aims)?
 //   • citation agreement on the claims it did extract
 //   • fidelity  — is each extracted claim verbatim-ish from the manuscript?
 
-import { onlineAvailable, onlineConfigHint, splitClaims } from '../adapters/refcheckr.mjs';
 import { precisionRecallF1, claimMatch, jaccard, normText, mean } from '../lib/metrics.mjs';
 
 export const meta = { id: 'claim-extraction', mode: 'online' };
 
-export async function run({ cases }) {
-  if (!onlineAvailable()) {
-    return { meta, skipped: true, reason: onlineConfigHint() };
+export async function run({ cases, adapter }) {
+  if (!adapter.onlineAvailable()) {
+    return { meta, skipped: true, reason: adapter.onlineConfigHint() };
   }
 
   const perCase = [];
   const splitErrors = [];
   for (const c of cases) {
    try {
-    const resp = await splitClaims(c.manuscript);
+    const resp = await adapter.splitClaims(c.manuscript);
     const extracted = (resp.claims || []).map(x => (typeof x === 'string' ? { text: x, citations: [] } : x));
     const goldTexts = (c.goldClaims || []).map(g => g.text);
 

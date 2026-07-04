@@ -1,7 +1,7 @@
-// RefCheckr adapter — the system-under-test boundary for OpenGATE's first
-// implementation. To evaluate a different system, write an adapter with the
-// same exports (splitClaims, analyzeBatch, onlineAvailable, onlineConfigHint,
-// runModel, plus the timing/token helpers) and point the scorers at it.
+// RefCheckr adapter — the reference implementation of the OpenGATE adapter
+// contract (see ADAPTERS.md). Selected by default; to evaluate a different
+// system, write an adapter with the same exports and select it with
+// OPENGATE_ADAPTER=./path/to/adapter.mjs.
 //
 // OFFLINE scorers don't touch this. ONLINE scorers call it to exercise the real
 // RefCheckr endpoints. Configure via env:
@@ -10,6 +10,8 @@
 //
 // Kept deliberately thin: each method maps to one endpoint and returns parsed
 // JSON, so scorers stay focused on measurement, not transport.
+
+export const meta = { name: 'refcheckr' };
 
 const BASE = process.env.REFCHECKR_BASE_URL;
 const TOKEN = process.env.REFCHECKR_TOKEN;

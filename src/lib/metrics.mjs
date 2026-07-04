@@ -74,6 +74,14 @@ export function confusionMatrix(pairs, labels = VERDICT_SCALE) {
 }
 
 export function mean(xs) { return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0; }
+
+/** p-th percentile (0–100) of a numeric array; null if empty. */
+export function percentile(values, p) {
+  const xs = values.filter(v => Number.isFinite(v)).sort((a, b) => a - b);
+  if (!xs.length) return null;
+  const idx = Math.min(xs.length - 1, Math.floor((p / 100) * xs.length));
+  return xs[idx];
+}
 export function stdev(xs) {
   if (xs.length < 2) return 0;
   const m = mean(xs);

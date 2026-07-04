@@ -15,6 +15,7 @@ import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { execSync } from 'node:child_process';
+import { loadAdapter } from './lib/adapter.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const EVAL_ROOT = join(__dirname, '..');
@@ -64,7 +65,17 @@ async function main() {
     process.exit(2);
   }
 
-  console.log(`\nOpenGATE — ${cases.length} case(s), online=${ONLINE}, sha=${gitSha()}\n`);
+  // Load and validate the adapter up front — fail fast on a malformed one,
+  // even for offline runs, so a broken config never produces a partial scorecard.
+  let adapter;
+  try {
+    adapter = await loadAdapter();
+  } catch (err) {
+    console.error(err.message);
+    process.exit(2);
+  }
+
+  console.log(`\nOpenGATE — ${cases.length} case(s), online=${ONLINE}, adapter=${adapter.name}, sha=${gitSha()}\n`);
 
   const results = [];
   for (const path of SCORERS) {
@@ -74,7 +85,7 @@ async function main() {
       results.push({ id: mod.meta.id, skipped: true, reason: 'online scorer (pass --online)' });
       continue;
     }
-    const r = await mod.run({ cases, fixtures });
+    const r = await mod.run({ cases, fixtures, adapter });
     results.push({ id: mod.meta.id, ...r });
   }
 
@@ -100,6 +111,7 @@ async function main() {
     timestamp: new Date().toISOString(),
     sha: gitSha(),
     online: ONLINE,
+    adapter: adapter.name,
     results: results.map(({ detail, ...rest }) => rest), // drop bulky detail from snapshot
   };
   await writeFile(join(RESULTS_DIR, `${stamp}.json`), JSON.stringify({ ...snapshot, results }, null, 2));

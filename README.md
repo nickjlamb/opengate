@@ -103,15 +103,13 @@ Offline scorers run with no API key — fast enough for every commit. Online sco
 
 ## Adapters: evaluating your own system
 
-Scorers never talk to a system directly — they go through an adapter (`src/adapters/`). The bundled `refcheckr.mjs` is the reference implementation. To evaluate a different system, implement the same surface:
+Scorers never talk to a system directly — they go through an adapter, injected by the runner. The bundled `src/adapters/refcheckr.mjs` is the reference implementation; select your own with:
 
-- `splitClaims(text)` — extract candidate claims from a document
-- `analyzeBatch(payload)` — verify claims against reference documents
-- `onlineAvailable()` / `onlineConfigHint()` — config detection
-- `runModel()` — label which model the system ran
-- timing/token helpers (`resetTiming`, `callLatencies`, `percentile`, `resetTokens`, `tokenTotals`)
+```bash
+OPENGATE_ADAPTER=./adapters/my-system.mjs npm run eval:online
+```
 
-Then point the online scorers at your adapter. The offline scorers and all metric logic are system-agnostic.
+An adapter is one file with four required exports — `splitClaims(text)`, `analyzeBatch(payload)`, `onlineAvailable()`, `onlineConfigHint()` — plus optional timing/token/model-label hooks that unlock latency and cost columns in the scorecard. Adapters are validated at load: a malformed one fails fast with a message listing every missing export. Full contract, minimal skeleton, and verdict-mapping notes: **[ADAPTERS.md](ADAPTERS.md)**.
 
 **The methodology travels; only the gold set changes.**
 
@@ -145,6 +143,7 @@ opengate/
 
 ## Roadmap
 
+- **Generic HTTP adapter** — config-driven endpoint mapping, covering most REST-backed RAG systems without code
 - **Second adapter** — Patiently AI (faithfulness evaluation for patient-language simplification)
 - **Author-year citation styles** — currently a tracked known gap (numbered styles are fully supported)
 - **Growing gold set** — more domains, all six verdict types, real-world reference material
