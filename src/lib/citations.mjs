@@ -58,7 +58,57 @@ export function parseClaimCitations(claim) {
   return [...citations].sort((a, b) => a - b);
 }
 
-/** Convenience: detect citations directly from raw claim text (normalise then parse). */
+// ── Author-year detection ───────────────────────────────────────────────
+// Framework capability, additive to the numeric passes above. The numeric
+// functions (normalizeCitations / parseClaimCitations) still mirror RefCheckr
+// production (routes/verify.js) exactly; author-year keys are not yet consumed
+// by RefCheckr's downstream citation mapping, which is numeric-keyed.
+//
+// A detected author-year citation is keyed "Surname YYYY" (first author only),
+// e.g. "(Smith et al., 2020)" → "Smith 2020".
+
+const NAME = String.raw`[A-Z][A-Za-z'’\-]+`;
+const YEAR = String.raw`(?:1[89]|20)\d{2}`;
+const ETAL = String.raw`(?:et al\.?|and colleagues|and coworkers)`;
+
+/** Detect author-year citations in raw text; returns sorted unique keys. */
+export function detectAuthorYear(text) {
+  const found = new Set();
+  const add = (name, year) => found.add(`${name} ${year.slice(0, 4)}`);
+
+  // 1. Narrative with parenthetical year: "Smith et al. (2020)",
+  //    "Smith and Jones (2019)", "Smith (2020)".
+  const narrative = new RegExp(
+    String.raw`\b(${NAME})(?:\s+(?:${ETAL}|(?:and|&)\s+${NAME}))?\s*\((${YEAR}[a-z]?)\)`, 'g');
+  for (const m of text.matchAll(narrative)) add(m[1], m[2]);
+
+  // 2. Parenthetical: "(Smith et al., 2020)", "(Smith & Jones, 2019)",
+  //    "(Kim, 2023)", multiples split on ";": "(Brown 2018; Lee et al., 2022)".
+  const inner = new RegExp(
+    String.raw`^\s*(${NAME})(?:\s+${ETAL}|,?\s+(?:and|&)\s+${NAME})?,?\s+(${YEAR}[a-z]?)\s*$`);
+  for (const m of text.matchAll(/\(([^()]+)\)/g)) {
+    for (const part of m[1].split(';')) {
+      const hit = part.match(inner);
+      if (hit) add(hit[1], hit[2]);
+    }
+  }
+
+  // 3. Narrative prose year: "Jones and colleagues in 2019". Requires an
+  //    et-al-style marker so plain prose years ("began in 2019") never match.
+  const prose = new RegExp(
+    String.raw`\b(${NAME})\s+${ETAL}[^.;()]*?\bin\s+(${YEAR})\b`, 'g');
+  for (const m of text.matchAll(prose)) add(m[1], m[2]);
+
+  return [...found].sort();
+}
+
+/**
+ * Convenience: detect citations directly from raw claim text.
+ * Returns numeric citations (numbers) followed by author-year keys (strings).
+ */
 export function detectCitations(rawClaim) {
-  return parseClaimCitations(normalizeCitations(rawClaim + ' '));
+  return [
+    ...parseClaimCitations(normalizeCitations(rawClaim + ' ')),
+    ...detectAuthorYear(rawClaim),
+  ];
 }

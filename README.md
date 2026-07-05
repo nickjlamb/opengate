@@ -168,7 +168,8 @@ opengate/
 ## Roadmap
 
 - **Second adapter** — Patiently AI (faithfulness evaluation for patient-language simplification)
-- **Author-year citation styles** — currently a tracked known gap (numbered styles are fully supported)
+- **Author-year in RefCheckr production** — `detectAuthorYear()` now lands "Smith 2020"-style keys in the reference implementation; adopting them in RefCheckr's numeric-keyed citation mapping is tracked separately
+- **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
 - **Growing gold set** — more domains, all six verdict types, real-world reference material
 - **npm packaging** — publish as `@pharmatools/opengate` once the adapter surface stabilises (the unscoped `opengate` npm name is taken by an unrelated project)
 
