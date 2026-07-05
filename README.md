@@ -81,7 +81,7 @@ npm run eval:ci         # exit non-zero on any failure or metric regression
                  ┌──────────────┬───────┴──────┬──────────────┐
                  ▼              ▼              ▼              ▼
              RefCheckr       Redacta      Patiently AI   your system
-          (first impl., QA) (redaction)    (planned)    (write an adapter)
+          (first impl., QA) (redaction)   (simplify)   (write an adapter)
 ```
 
 Where it sits in the development loop:
@@ -109,6 +109,7 @@ change a prompt, model, or pipeline
 | `claim-extraction` | online | precision / recall / F1 vs gold; non-claim leakage; citation agreement; **fidelity** (extracted claim is verbatim from source) |
 | `verdict-accuracy` | online | exact & adjacency accuracy on a six-point support scale; confusion matrix; **passage hallucination rate**; consistency across repeats; per-claim latency (p50/p95) and token usage for real cost/claim |
 | `redaction` | online | recall on gold identifiers with **leaks as named failures** (verbatim, and word-level for names); over-redaction count; known-gap tracking for documented engine gaps |
+| `simplification` | online | faithfulness of rewritten text: **anchor recall** (critical facts like doses must survive), **fabricated numbers** (nothing invented), length-contract gates, readability grade (info) |
 
 Offline scorers run with no API key — fast enough for every commit. Online scorers exercise a live system through an adapter.
 
@@ -192,7 +193,7 @@ opengate/
 ## Roadmap
 
 
-- **Third adapter** — Patiently AI (faithfulness evaluation for patient-language simplification)
+- **Patiently AI live baseline** — the simplify capability, scorer, and adapter are implemented with synthetic gold cases; first production run and baseline pending
 - **Author-year in RefCheckr production** — `detectAuthorYear()` now lands "Smith 2020"-style keys in the reference implementation; adopting them in RefCheckr's numeric-keyed citation mapping is tracked separately
 - **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
 - **Growing gold set** — more domains, all six verdict types, real-world reference material

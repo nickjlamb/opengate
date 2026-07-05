@@ -24,6 +24,7 @@ const REQUIRED_BASE = ['onlineAvailable', 'onlineConfigHint'];
 const CAPABILITIES = {
   qa: ['splitClaims', 'analyzeBatch'],       // claim extraction + verdicts against references
   redaction: ['redact'],                      // identifier removal from text
+  simplify: ['simplify'],                     // faithful simplification of source text
 };
 
 // Optional: validated if present; no-op defaults are supplied if absent, so

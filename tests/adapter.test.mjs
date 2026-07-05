@@ -63,13 +63,19 @@ test('loadAdapter: default is the bundled RefCheckr reference adapter', async ()
   delete process.env.OPENGATE_ADAPTER;
   const a = await loadAdapter();
   assert.equal(a.name, 'refcheckr');
-  assert.deepEqual(a.capabilities, { qa: true, redaction: false });
+  assert.deepEqual(a.capabilities, { qa: true, redaction: false, simplify: false });
 });
 
 test('loadAdapter: bundled Redacta adapter exposes the redaction capability', async () => {
   const a = await loadAdapter(new URL('../src/adapters/redacta.mjs', import.meta.url).pathname);
   assert.equal(a.name, 'redacta');
-  assert.deepEqual(a.capabilities, { qa: false, redaction: true });
+  assert.deepEqual(a.capabilities, { qa: false, redaction: true, simplify: false });
+});
+
+test('loadAdapter: bundled Patiently adapter exposes the simplify capability', async () => {
+  const a = await loadAdapter(new URL('../src/adapters/patiently.mjs', import.meta.url).pathname);
+  assert.equal(a.name, 'patiently');
+  assert.deepEqual(a.capabilities, { qa: false, redaction: false, simplify: true });
 });
 
 test('loadAdapter: explicit spec wins and meta.name is used', async () => {

@@ -1,0 +1,41 @@
+{
+  "id": "simplify-lab-results",
+  "kind": "simplification",
+  "description": "SYNTHETIC lab letter. Standard length, Reassuring tone. Values and the new medication must survive; no invented numbers.",
+  "audience": "Adult",
+  "tone": "Reassuring",
+  "length": "Standard",
+  "text": "Blood test results: your haemoglobin was 9.8 g/dL (below the normal range) and your ferritin was 8 micrograms/L (low), consistent with iron-deficiency anaemia. We recommend starting ferrous sulfate 200 mg twice daily. We will repeat the blood count in 8 weeks.",
+  "anchors": [
+    {
+      "value": "9.8"
+    },
+    {
+      "value": "ferritin"
+    },
+    {
+      "value": "ferrous sulfate",
+      "aliases": [
+        "ferrous sulphate",
+        "iron tablets",
+        "iron supplement"
+      ]
+    },
+    {
+      "value": "200 mg",
+      "aliases": [
+        "200mg",
+        "200 milligrams"
+      ]
+    },
+    {
+      "value": "8 weeks",
+      "aliases": [
+        "eight weeks"
+      ]
+    }
+  ],
+  "allowedNewNumbers": [
+    "2"
+  ]
+}

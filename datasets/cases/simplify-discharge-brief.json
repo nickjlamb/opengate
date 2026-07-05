@@ -1,0 +1,45 @@
+{
+  "id": "simplify-discharge-brief",
+  "kind": "simplification",
+  "description": "SYNTHETIC discharge note. Brief mode exercises Patiently's documented contract: 2-3 bullets, under 20 words each. Anchors are the clinically critical facts a patient must not lose.",
+  "audience": "Adult",
+  "tone": "Informative",
+  "length": "Brief",
+  "text": "Discharge summary: You were admitted with community-acquired pneumonia. You have been started on amoxicillin 500 mg three times daily for 5 days. Please see your GP in 2 weeks for review. Return to hospital if you develop worsening breathlessness or a fever above 38 degrees.",
+  "anchors": [
+    {
+      "value": "amoxicillin"
+    },
+    {
+      "value": "500 mg",
+      "aliases": [
+        "500mg",
+        "500 milligrams"
+      ]
+    },
+    {
+      "value": "5 days",
+      "aliases": [
+        "five days"
+      ]
+    },
+    {
+      "value": "2 weeks",
+      "aliases": [
+        "two weeks"
+      ]
+    },
+    {
+      "value": "38",
+      "aliases": [
+        "38C",
+        "38 degrees"
+      ]
+    }
+  ],
+  "allowedNewNumbers": [
+    "3"
+  ],
+  "maxBullets": 3,
+  "maxWordsPerBullet": 20
+}

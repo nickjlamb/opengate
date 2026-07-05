@@ -28,3 +28,16 @@ Cases for the `redaction` scorer, exercising an adapter's `redact()` capability.
 | `text` | yes | The source clinical note. |
 | `goldEntities[]` | yes | `{ type, value }` — identifiers that MUST be removed. Any that survive (verbatim, or word-level for `*_NAME` types) are **leaks** and fail the run. |
 | `knownGapEntities[]` | no | `{ type, value, comment }` — identifiers the system does not yet catch. Reported as tracked targets (`knownGap_open` / `knownGap_closed`), not failures. Use `comment` to document the reproduction. When a gap closes, promote the entity to `goldEntities`. |
+
+## Simplification cases (`kind: "simplification"`)
+
+Cases for the `simplification` scorer, exercising an adapter's `simplify()` capability. Simplified text is paraphrase by design, so the scorer checks what is deterministic and clinically dangerous to get wrong, not verbatim prose.
+
+| Field | Required | Meaning |
+|---|---|---|
+| `id` / `kind` | yes | `kind` must be `"simplification"`. |
+| `text` | yes | The source clinical text (synthetic). |
+| `audience` / `tone` / `length` | no | Passed to the adapter (defaults: Adult / Informative / Standard). |
+| `anchors[]` | yes | `{ value, aliases? }` — critical facts that MUST survive simplification (drug names, doses, key values, timeframes). Matched case-insensitively, whitespace-tolerant. A missing anchor is a **dropped fact** and fails the run. |
+| `allowedNewNumbers[]` | no | Numbers legitimately introduced by rephrasing (e.g. "twice daily" → "2 times a day"). Any other output number absent from the source is a **fabricated number** and fails the run. |
+| `maxBullets` / `maxWordsPerBullet` | no | Length-contract gates (e.g. Patiently Brief: 3 / 20). Only checked when present. |
