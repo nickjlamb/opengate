@@ -49,7 +49,14 @@ const RESULTS_SPEC = argVal('--results', 'OPENGATE_RESULTS');
 const DATA_ROOT = DATASETS_SPEC ? resolve(process.cwd(), DATASETS_SPEC) : join(EVAL_ROOT, 'datasets');
 const CASES_DIR = join(DATA_ROOT, 'cases');
 const FIX_DIR = join(DATA_ROOT, 'fixtures');
-const RESULTS_DIR = RESULTS_SPEC ? resolve(process.cwd(), RESULTS_SPEC) : join(EVAL_ROOT, 'results');
+// When OpenGATE runs from an installed package (npx / node_modules), snapshots
+// must not be written inside the package — default to ./opengate-results in
+// the caller's working directory instead.
+const RESULTS_DIR = RESULTS_SPEC
+  ? resolve(process.cwd(), RESULTS_SPEC)
+  : (EVAL_ROOT.includes('node_modules')
+      ? join(process.cwd(), 'opengate-results')
+      : join(EVAL_ROOT, 'results'));
 
 if (args.has('--help') || args.has('-h')) {
   console.log(`OpenGATE — Open-source evaluation for evidence-grounded AI

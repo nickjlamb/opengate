@@ -25,9 +25,21 @@ If your system's core promise is *grounded* answers, these aren't plugins — th
 No API key needed — the offline suite tests deterministic logic against the bundled gold set:
 
 ```bash
+npx @pharmatools/opengate
+```
+
+Or from a clone:
+
+```bash
 git clone https://github.com/nickjlamb/opengate.git
 cd opengate
 npm run eval
+```
+
+For programmatic use, the metric and citation primitives are importable directly:
+
+```js
+import { detectCitations, verdictAccuracy, precisionRecallF1 } from '@pharmatools/opengate';
 ```
 
 ```
@@ -171,7 +183,7 @@ opengate/
 - **Author-year in RefCheckr production** — `detectAuthorYear()` now lands "Smith 2020"-style keys in the reference implementation; adopting them in RefCheckr's numeric-keyed citation mapping is tracked separately
 - **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
 - **Growing gold set** — more domains, all six verdict types, real-world reference material
-- **npm packaging** — publish as `@pharmatools/opengate` once the adapter surface stabilises (the unscoped `opengate` npm name is taken by an unrelated project)
+- **Stable adapter surface** — the contract may still shift pre-1.0; semver will signal breaking changes
 
 ## Contributing
 

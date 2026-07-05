@@ -1,17 +1,39 @@
 {
   "name": "@pharmatools/opengate",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "description": "OpenGATE — Open Grounded AI Testing & Evaluation. An open-source framework for evaluating evidence-grounded AI systems.",
   "license": "MIT",
   "author": "Nick Lamb (https://www.pharmatools.ai)",
+  "homepage": "https://www.pharmatools.ai/opengate",
   "repository": {
     "type": "git",
     "url": "https://github.com/nickjlamb/opengate.git"
   },
+  "bugs": {
+    "url": "https://github.com/nickjlamb/opengate/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "bin": {
     "opengate": "./src/runner.mjs"
+  },
+  "main": "./src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs",
+    "./metrics": "./src/lib/metrics.mjs",
+    "./citations": "./src/lib/citations.mjs",
+    "./adapter": "./src/lib/adapter.mjs"
+  },
+  "files": [
+    "src/",
+    "datasets/",
+    "ADAPTERS.md",
+    "opengate.http.example.json"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "evaluation",
@@ -24,6 +46,7 @@
   ],
   "scripts": {
     "test": "node --test tests/*.test.mjs",
+    "prepublishOnly": "npm test && npm run eval:ci",
     "eval": "node src/runner.mjs",
     "eval:online": "node src/runner.mjs --online",
     "eval:ci": "node src/runner.mjs --ci",
