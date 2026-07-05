@@ -137,7 +137,7 @@ Full contract, minimal skeleton, and verdict-mapping notes: **[ADAPTERS.md](ADAP
 Use OpenGATE as a drop-in regression gate in any repository. Keep your gold set and committed `baseline.json` in your own tree; any metric that drops fails the build:
 
 ```yaml
-- uses: nickjlamb/opengate@main
+- uses: nickjlamb/opengate@v0
   with:
     datasets: ./evals/datasets      # your cases/ + fixtures/
     results: ./evals/results        # where baseline.json lives
