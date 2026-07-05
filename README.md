@@ -215,7 +215,7 @@ opengate/
 
 
 - **Per-adapter baselines** — `results/baseline.json` is a single reference; runs against different adapters (RefCheckr QA vs Patiently simplification) should baseline separately (workable today via `--results <dir>`, first-class support planned)
-- **Author-year in RefCheckr production** — `detectAuthorYear()` now lands "Smith 2020"-style keys in the reference implementation; adopting them in RefCheckr's numeric-keyed citation mapping is tracked separately
+- **Retrieval coverage** — the retrieval gold set is one case; add a single-author paper (the exact array-collapse risk the capability exists to catch), a trial (NCT) record, and a full-text/citation case across PubCrawl's other tools
 - **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
 - **Growing gold set** — more domains, all six verdict types, real-world reference material
 - **Stable adapter surface** — the contract may still shift pre-1.0; semver will signal breaking changes
