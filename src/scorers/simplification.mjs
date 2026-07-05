@@ -131,6 +131,9 @@ export async function run({ cases, adapter }) {
       grade: round(fleschKincaidGrade(out) ?? -1),
       outputChars: out.length,
       bullets: bullets.length,
+      // The output itself, so a dropped-fact failure can be diagnosed from the
+      // snapshot (was it omitted, reworded past the aliases, or replaced?).
+      output: out.slice(0, 600),
     });
   }
 
