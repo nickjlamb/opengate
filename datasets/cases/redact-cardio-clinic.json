@@ -1,7 +1,7 @@
 {
   "id": "redact-cardio-clinic",
   "kind": "redaction",
-  "description": "Cardiology clinic letter — titled patient name, NHS number, DOB, phone, email, postcode. SYNTHETIC: all identifiers are test-range values; no real persons.",
+  "description": "Cardiology clinic letter — titled patient name, NHS number, DOB, phone, email, postcode. SYNTHETIC: all identifiers are test-range values; no real persons. The street address was a tracked engine gap; street-line detection landed in @pharmatools/redacta 1.3.0 and the entity was promoted to gold.",
   "text": "Mr John Smith (NHS 999 000 0018, DOB 12/03/1958) attended cardiology clinic today. He was seen by Dr Patel for review of atrial fibrillation. Blood pressure was 132/84 mmHg and apixaban was continued at 5 mg BD. Contact him on 07700 900123 or john.smith58@example.com. Address on file: 42 Maple Road, Oxford OX2 6JX. Follow-up in 12 weeks.",
   "goldEntities": [
     {
@@ -27,12 +27,11 @@
     {
       "type": "POSTCODE",
       "value": "OX2 6JX"
-    }
-  ],
-  "knownGapEntities": [
+    },
     {
       "type": "STREET_ADDRESS",
       "value": "42 Maple Road"
     }
-  ]
+  ],
+  "knownGapEntities": []
 }

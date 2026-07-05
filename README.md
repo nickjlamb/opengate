@@ -169,7 +169,7 @@ npm install --no-save @pharmatools/redacta
 node src/runner.mjs --online --adapter ./src/adapters/redacta.mjs
 ```
 
-On its first run against the new gold set, the eval found two real engine bugs — relation phrases like "Next of kin:" swallowed nested name matches, and apostrophe surnames (O'Brien) were dropped from name capture. Both were fixed in `@pharmatools/redacta` 1.2.1 and confirmed by the eval (`knownGap_closed: 2`), then promoted to gold. Current scorecard: **100% recall on 24 gold identifiers, 0 leaks, 1 tracked gap** (street addresses).
+On its first run against the new gold set, the eval found two real engine bugs — relation phrases like "Next of kin:" swallowed nested name matches, and apostrophe surnames (O'Brien) were dropped from name capture. Both were fixed in `@pharmatools/redacta` 1.2.1 and confirmed by the eval (`knownGap_closed: 2`), then promoted to gold. Street-line address detection followed in 1.3.0, closing the last tracked gap. Current scorecard: **100% recall on 25 gold identifiers, 0 leaks, no open gaps**.
 
 ## Layout
 
@@ -191,7 +191,7 @@ opengate/
 
 ## Roadmap
 
-- **Street addresses in Redacta** — the one remaining tracked gap in the redaction gold set (postcodes are caught; street lines are not)
+
 - **Third adapter** — Patiently AI (faithfulness evaluation for patient-language simplification)
 - **Author-year in RefCheckr production** — `detectAuthorYear()` now lands "Smith 2020"-style keys in the reference implementation; adopting them in RefCheckr's numeric-keyed citation mapping is tracked separately
 - **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
