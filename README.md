@@ -10,6 +10,8 @@ As AI moves into high-stakes domains — healthcare, scientific publishing, regu
 
 Originally developed to power [RefCheckr](https://www.pharmatools.ai/refcheckr). Designed to evaluate any AI system built on retrieved documents or reference material.
 
+**Evaluating your own RAG, doc-QA, or legal/scientific assistant?** Start with the **[Getting Started guide](docs/GETTING-STARTED.md)** — pick a capability, connect your system (no code for HTTP endpoints), write gold cases, gate CI.
+
 ## Why not DeepEval?
 
 Use both. General-purpose frameworks such as DeepEval and OpenAI Evals evaluate AI systems in general. OpenGATE specialises in systems that must justify every answer from evidence:
@@ -131,7 +133,7 @@ An adapter is one file: two base exports — `onlineAvailable()`, `onlineConfigH
 
 For REST-backed systems there's a no-code path: the bundled **generic HTTP adapter** (`src/adapters/http.mjs`) reads endpoint paths and headers from `opengate.http.json` (see `opengate.http.example.json`), with `${ENV}` interpolation and built-in latency/token capture.
 
-Full contract, minimal skeleton, and verdict-mapping notes: **[ADAPTERS.md](ADAPTERS.md)**.
+Full contract, minimal skeleton, and verdict-mapping notes: **[ADAPTERS.md](ADAPTERS.md)**. New to OpenGATE? The **[Getting Started guide](docs/GETTING-STARTED.md)** walks a generic RAG system from zero to a CI gate.
 
 **The methodology travels; only the gold set changes.**
 
@@ -215,6 +217,7 @@ opengate/
 ## Roadmap
 
 
+- **Grounding depth** — the grounding scorer checks anchor recall, fabrication, and abstention deterministically; contextual-precision/recall of the retrieved passages themselves is a natural next metric
 - **Retrieval breadth** — retrieval currently scores one PubMed record type; extend to full-text, citation formatting, and trial detail across PubCrawl's other tools
 - **Retrieval coverage** — the retrieval gold set is one case; add a single-author paper (the exact array-collapse risk the capability exists to catch), a trial (NCT) record, and a full-text/citation case across PubCrawl's other tools
 - **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
