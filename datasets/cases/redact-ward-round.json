@@ -1,7 +1,7 @@
 {
   "id": "redact-ward-round",
   "kind": "redaction",
-  "description": "Ward round entry — apostrophe surname, NHS number without spaces, carer mention. SYNTHETIC.",
+  "description": "Ward round entry — apostrophe surname, NHS number without spaces, carer mention. SYNTHETIC. The apostrophe surname was a tracked engine gap (NAME pattern required a lowercase letter after the initial capital); fixed in @pharmatools/redacta >1.2.0.",
   "text": "Ward round: Mrs Eileen O'Brien, NHS 9990000034, remains stable post hip hemiarthroplasty. Mobilising with frame. Her son Daniel visited and raised concerns about home support; referred to social work. Plan: continue enoxaparin, orthogeriatric review tomorrow. Contact for family updates: 07700 900321.",
   "goldEntities": [
     {
@@ -21,11 +21,5 @@
       "value": "07700 900321"
     }
   ],
-  "knownGapEntities": [
-    {
-      "type": "PATIENT_SURNAME",
-      "value": "O'Brien",
-      "comment": "Engine bug (tracked): apostrophe surnames are dropped from titled-name capture — 'Mrs Eileen O'Brien' tokenises as 'Mrs Eileen' only, leaving the surname in the text."
-    }
-  ]
+  "knownGapEntities": []
 }

@@ -124,7 +124,7 @@ Scorers never talk to a system directly — they go through an adapter, injected
 OPENGATE_ADAPTER=./adapters/my-system.mjs npm run eval:online
 ```
 
-An adapter is one file with four required exports — `splitClaims(text)`, `analyzeBatch(payload)`, `onlineAvailable()`, `onlineConfigHint()` — plus optional timing/token/model-label hooks that unlock latency and cost columns in the scorecard. Adapters are validated at load: a malformed one fails fast with a message listing every missing export.
+An adapter is one file: two base exports — `onlineAvailable()`, `onlineConfigHint()` — plus at least one complete **capability**: `qa` (`splitClaims` + `analyzeBatch`) or `redaction` (`redact`). Scorers check `adapter.capabilities` and skip cleanly across the boundary. Optional timing/token/model-label hooks unlock latency and cost columns in the scorecard. Adapters are validated at load: a malformed one fails fast with a message naming every missing export and incomplete capability.
 
 For REST-backed systems there's a no-code path: the bundled **generic HTTP adapter** (`src/adapters/http.mjs`) reads endpoint paths and headers from `opengate.http.json` (see `opengate.http.example.json`), with `${ENV}` interpolation and built-in latency/token capture.
 
@@ -169,7 +169,7 @@ npm install --no-save @pharmatools/redacta
 node src/runner.mjs --online --adapter ./src/adapters/redacta.mjs
 ```
 
-On its first run against the new gold set, the eval found two real engine bugs — a relative name directly followed by a parenthesis escapes the name pattern, and apostrophe surnames are dropped from titled-name capture — both now documented as tracked known gaps in the case files. Current scorecard: **100% recall on 23 gold identifiers, 0 leaks, 3 tracked gaps**.
+On its first run against the new gold set, the eval found two real engine bugs — relation phrases like "Next of kin:" swallowed nested name matches, and apostrophe surnames (O'Brien) were dropped from name capture. Both were fixed in `@pharmatools/redacta` 1.2.1 and confirmed by the eval (`knownGap_closed: 2`), then promoted to gold. Current scorecard: **100% recall on 24 gold identifiers, 0 leaks, 1 tracked gap** (street addresses).
 
 ## Layout
 
@@ -191,7 +191,7 @@ opengate/
 
 ## Roadmap
 
-- **Redacta engine fixes** — two bugs found by the redaction eval (paren-adjacent relative names; apostrophe surnames in titled-name capture) are tracked as known gaps; fixing them in `@pharmatools/redacta` flips `knownGap_closed` and promotes the cases to gold
+- **Street addresses in Redacta** — the one remaining tracked gap in the redaction gold set (postcodes are caught; street lines are not)
 - **Third adapter** — Patiently AI (faithfulness evaluation for patient-language simplification)
 - **Author-year in RefCheckr production** — `detectAuthorYear()` now lands "Smith 2020"-style keys in the reference implementation; adopting them in RefCheckr's numeric-keyed citation mapping is tracked separately
 - **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap

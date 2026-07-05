@@ -1,7 +1,7 @@
 {
   "id": "redact-discharge-summary",
   "kind": "redaction",
-  "description": "Discharge summary with a relative as next of kin. SYNTHETIC.",
+  "description": "Discharge summary with a relative as next of kin. SYNTHETIC. The relative name was a tracked engine gap (a 'Next of kin:' phrase swallowed the inner 'daughter Anita' match — not the parenthesis, as first suspected); fixed in @pharmatools/redacta >1.2.0 and promoted to gold.",
   "text": "Discharge summary for Mrs Priya Sharma, NHS 999 000 0026, DOB 04/11/1947. Admitted with community-acquired pneumonia; completed 5 days of co-amoxiclav and improved steadily. Next of kin: her daughter Anita (07700 900456) was updated by phone. Discharged to home address, postcode LS8 2QT, with district nurse follow-up.",
   "goldEntities": [
     {
@@ -23,13 +23,11 @@
     {
       "type": "POSTCODE",
       "value": "LS8 2QT"
-    }
-  ],
-  "knownGapEntities": [
+    },
     {
       "type": "RELATIVE_NAME",
-      "value": "Anita",
-      "comment": "Engine bug (tracked): a relative name directly followed by an opening parenthesis escapes the relative-name pattern — 'her daughter Anita (07700...' leaks, while 'her daughter Anita was' is caught. The phone match also consumes the opening paren, leaving an orphan ')'."
+      "value": "Anita"
     }
-  ]
+  ],
+  "knownGapEntities": []
 }
