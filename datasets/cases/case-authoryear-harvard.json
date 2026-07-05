@@ -1,0 +1,56 @@
+{
+  "id": "case-authoryear-harvard",
+  "title": "Author-year (Harvard) citation style — thyroid eye disease",
+  "notes": "SYNTHETIC manuscript exercising pure author-year citations. Unlike numeric [N] markers, author-year mentions are grammatical prose and are never stripped: text === originalText.",
+  "manuscript": "Teprotumumab reduced proptosis by 2.82 mm versus placebo (Douglas et al., 2020). Smith and Jones (2019) reported durable responses at 52 weeks in an open-label extension. The safety profile was consistent with earlier findings (Kim, 2023). This study aimed to characterise long-term outcomes in routine practice.",
+  "goldClaims": [
+    {
+      "originalText": "Teprotumumab reduced proptosis by 2.82 mm versus placebo (Douglas et al., 2020).",
+      "text": "Teprotumumab reduced proptosis by 2.82 mm versus placebo (Douglas et al., 2020).",
+      "citations": [
+        "Douglas 2020"
+      ]
+    },
+    {
+      "originalText": "Smith and Jones (2019) reported durable responses at 52 weeks in an open-label extension.",
+      "text": "Smith and Jones (2019) reported durable responses at 52 weeks in an open-label extension.",
+      "citations": [
+        "Smith 2019"
+      ]
+    },
+    {
+      "originalText": "The safety profile was consistent with earlier findings (Kim, 2023).",
+      "text": "The safety profile was consistent with earlier findings (Kim, 2023).",
+      "citations": [
+        "Kim 2023"
+      ]
+    }
+  ],
+  "goldNonClaims": [
+    "This study aimed to characterise long-term outcomes in routine practice."
+  ],
+  "references": {
+    "Douglas 2020": {
+      "name": "douglas-2020-nejm.txt",
+      "text": "In this randomised trial of teprotumumab for thyroid eye disease, the least-squares mean reduction in proptosis was 2.82 mm greater with teprotumumab than with placebo at week 24."
+    },
+    "Smith 2019": {
+      "name": "smith-2019-extension.txt",
+      "text": "In the 52-week open-label extension, proptosis responses were maintained in the majority of participants, indicating durable treatment effect."
+    }
+  },
+  "goldVerdicts": [
+    {
+      "_requires": "online",
+      "claimText": "Teprotumumab reduced proptosis by 2.82 mm versus placebo (Douglas et al., 2020).",
+      "citation": "Douglas 2020",
+      "verdict": "strong_support"
+    },
+    {
+      "_requires": "online",
+      "claimText": "Smith and Jones (2019) reported durable responses at 52 weeks in an open-label extension.",
+      "citation": "Smith 2019",
+      "verdict": "strong_support"
+    }
+  ]
+}

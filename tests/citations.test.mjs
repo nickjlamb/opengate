@@ -63,8 +63,11 @@ test('author-year: narrative two-author "Smith and Jones (2019)"', () => {
   assert.deepEqual(detectAuthorYear('Smith and Jones (2019) reported improvement.'), ['Smith 2019']);
 });
 
-test('author-year: year suffix letters are stripped ("2020a")', () => {
-  assert.deepEqual(detectAuthorYear('Smith et al. (2020a) reported improvement.'), ['Smith 2020']);
+test('author-year: year suffixes stay distinct ("2020a" vs "2020b")', () => {
+  assert.deepEqual(detectAuthorYear('Smith et al. (2020a) reported improvement.'), ['Smith 2020a']);
+  assert.deepEqual(
+    detectAuthorYear('Smith et al. (2020a) and later work (Smith et al., 2020b) agree.'),
+    ['Smith 2020a', 'Smith 2020b']);
 });
 
 test('author-year: duplicate mentions dedupe', () => {

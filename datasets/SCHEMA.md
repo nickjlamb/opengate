@@ -7,7 +7,7 @@ One JSON file per case in `datasets/cases/` (files starting with `_` are ignored
 | `id` | yes | all | Unique slug. |
 | `title` / `notes` | no | — | Human context / provenance. |
 | `manuscript` | yes | claim-extraction | The pasted section, with citation markers exactly as authored. |
-| `goldClaims[]` | yes | citation-detection, claim-extraction | The verifiable claims a reviewer should extract. Each has `originalText` (with markers), `text` (clean), and `citations` (number array). |
+| `goldClaims[]` | yes | citation-detection, claim-extraction | The verifiable claims a reviewer should extract. Each has `originalText` (with markers), `text` (clean), and `citations` — an array of numbers and/or author-year string keys (e.g. "Smith 2020", "Meyer 2020a"). Numeric [N] markers are stripped from `text`; author-year mentions are grammatical prose and are never stripped, so for pure author-year claims `text === originalText`. |
 | `goldNonClaims[]` | no | claim-extraction | Sentences that should **not** be extracted (background, aims, transitions). Drives precision/leakage. |
 | `references{}` | online only | verdict-accuracy | Map of citation-number → `{ name, text }`. |
 | `goldVerdicts[]` | online only | verdict-accuracy | `{ claimText, citation, verdict }` where `verdict` ∈ the six-point scale. Mark `_requires: "online"`. |

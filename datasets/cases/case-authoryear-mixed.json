@@ -1,0 +1,48 @@
+{
+  "id": "case-authoryear-mixed",
+  "title": "Mixed numeric + author-year citations in one manuscript",
+  "notes": "SYNTHETIC. Exercises numeric superscript and author-year styles side by side, an apostrophe surname (O'Connor), and a 2020a/2020b suffix pair that must stay distinct.",
+  "manuscript": "Adalimumab improved ACR20 response rates versus placebo.1,2 O'Connor et al. (2021) confirmed the effect in a real-world cohort. Retention was higher with combination therapy (Meyer 2020a; Meyer 2020b). Baseline characteristics are summarised in Table 1.",
+  "goldClaims": [
+    {
+      "originalText": "Adalimumab improved ACR20 response rates versus placebo.1,2",
+      "text": "Adalimumab improved ACR20 response rates versus placebo.",
+      "citations": [
+        1,
+        2
+      ]
+    },
+    {
+      "originalText": "O'Connor et al. (2021) confirmed the effect in a real-world cohort.",
+      "text": "O'Connor et al. (2021) confirmed the effect in a real-world cohort.",
+      "citations": [
+        "O'Connor 2021"
+      ]
+    },
+    {
+      "originalText": "Retention was higher with combination therapy (Meyer 2020a; Meyer 2020b).",
+      "text": "Retention was higher with combination therapy (Meyer 2020a; Meyer 2020b).",
+      "citations": [
+        "Meyer 2020a",
+        "Meyer 2020b"
+      ]
+    }
+  ],
+  "goldNonClaims": [
+    "Baseline characteristics are summarised in Table 1."
+  ],
+  "references": {
+    "O'Connor 2021": {
+      "name": "oconnor-2021-cohort.txt",
+      "text": "In this prospective real-world cohort of 412 patients with rheumatoid arthritis, adalimumab was associated with significantly improved ACR20 response rates compared with historical placebo controls."
+    }
+  },
+  "goldVerdicts": [
+    {
+      "_requires": "online",
+      "claimText": "O'Connor et al. (2021) confirmed the effect in a real-world cohort.",
+      "citation": "O'Connor 2021",
+      "verdict": "strong_support"
+    }
+  ]
+}

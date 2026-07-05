@@ -69,7 +69,9 @@ const ETAL = String.raw`(?:et al\.?|and colleagues|and coworkers)`;
 /** Detect author-year citations in raw text; returns sorted unique keys. */
 export function detectAuthorYear(text) {
   const found = new Set();
-  const add = (name, year) => found.add(`${name} ${year.slice(0, 4)}`);
+  // Year suffixes are kept: "Smith 2020a" and "Smith 2020b" are distinct
+  // references in author-year styles.
+  const add = (name, year) => found.add(`${name} ${year}`);
 
   // 1. Narrative with parenthetical year: "Smith et al. (2020)",
   //    "Smith and Jones (2019)", "Smith (2020)".
