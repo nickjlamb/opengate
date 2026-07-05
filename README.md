@@ -1,6 +1,6 @@
 # OpenGATE
 
-[![CI](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml/badge.svg)](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml)
+[![CI](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml/badge.svg)](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/%40pharmatools%2Fopengate)](https://www.npmjs.com/package/@pharmatools/opengate)
 
 **Evidence over plausibility.**
 
