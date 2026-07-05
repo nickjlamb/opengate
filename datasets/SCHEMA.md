@@ -55,3 +55,17 @@ Cases for the `retrieval` scorer, exercising an adapter's `fetchRecord()` capabi
 | `anchors[]` | no | Per-field ground-truth checks, one of: `{ field, contains }` (verbatim substring survived), `{ field, equals }` (exact value), `{ field, minCount }` (array didn't collapse). At least one of `requireFields`/`anchors` is needed. |
 
 The scorer also always applies structural invariants: `authors` must be a non-empty array of strings (not a collapsed single-author object), `title` a non-empty string, and no field may serialise to `"[object Object]"`.
+
+## Grounding cases (`kind: "grounding"`)
+
+Cases for the `grounding` scorer — the generic path for RAG, document QA, and legal AI. The system answers a question from provided context; the scorer checks the answer is correct and faithful, deterministically against gold (no LLM judge).
+
+| Field | Required | Meaning |
+|---|---|---|
+| `id` / `kind` | yes | `kind` must be `"grounding"`. |
+| `question` | yes | The question posed to the system. |
+| `context` | yes | The retrieved passage(s) the answer must be grounded in — a string or an array of strings. |
+| `answerAnchors[]` | when answerable | `{ value, aliases? }` — the facts a correct answer must contain (from the context). A missing anchor is a wrong/incomplete answer and fails the run. Omit when `answerable: false`. |
+| `allowedNewNumbers[]` | no | Numbers the answer may introduce that aren't in the context (e.g. from the question). Any other number in the answer is an **ungrounded number** and fails the run. |
+| `answerable` | no | Default `true`. When `false`, the context does not contain the answer and the system must **abstain** rather than fabricate. |
+| `abstainMarkers[]` | no | Phrases that count as a valid refusal (defaults cover common ones; negating contractions like "isn't" are matched). Set these to match your system's refusal style. |

@@ -5,6 +5,8 @@
     "Authorization": "Bearer ${MY_SYSTEM_TOKEN}"
   },
   "endpoints": {
+    "_comment": "Configure the endpoints for the capability your gold cases exercise. QA needs splitClaims + analyzeBatch; grounding (RAG / document QA) needs answer. You can define one or both.",
+    "answer": "/api/answer",
     "splitClaims": "/api/claims/split",
     "analyzeBatch": "/api/verify/batch"
   },

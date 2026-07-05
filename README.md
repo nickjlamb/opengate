@@ -111,6 +111,7 @@ change a prompt, model, or pipeline
 | `redaction` | online | recall on gold identifiers with **leaks as named failures** (verbatim, and word-level for names); over-redaction count; known-gap tracking for documented engine gaps |
 | `simplification` | online | faithfulness of rewritten text: **anchor recall** (critical facts like doses must survive), **fabricated numbers** (nothing invented), length-contract gates, readability grade (info) |
 | `retrieval` | online | fidelity of retrieved records vs the authority: field presence, hand-verified **anchor fields** (author surnames, year, distinctive abstract phrases), and structural invariants that catch parser regressions (collapsed author arrays, `[object Object]` leakage) |
+| `grounding` | online | generic RAG / document QA: **answer-anchor recall** (did it answer correctly from context), **fabrication** against the retrieved context (no invented numbers), and **abstention** (declines when the context lacks the answer). No verdict scale or citation mapping — the turnkey path for non-RefCheckr-shaped systems |
 
 Offline scorers run with no API key — fast enough for every commit. Online scorers exercise a live system through an adapter.
 

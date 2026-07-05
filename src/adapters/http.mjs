@@ -53,9 +53,12 @@ const missingEnv = new Set();
 try {
   const raw = JSON.parse(readFileSync(CONFIG_PATH, 'utf8'));
   config = interpolate(raw, missingEnv);
+  const ep = config.endpoints || {};
+  const hasQA = Boolean(ep.splitClaims && ep.analyzeBatch);
+  const hasGrounding = Boolean(ep.answer);
   if (!config.baseUrl) configError = 'config has no baseUrl';
-  else if (!config.endpoints?.splitClaims || !config.endpoints?.analyzeBatch) {
-    configError = 'config.endpoints must define splitClaims and analyzeBatch paths';
+  else if (!hasQA && !hasGrounding) {
+    configError = 'config.endpoints must define either splitClaims + analyzeBatch (QA) or answer (grounding)';
   }
 } catch (err) {
   configError = err.code === 'ENOENT'
@@ -123,10 +126,23 @@ async function post(path, body) {
   }
 }
 
-export function splitClaims(text) {
-  return post(config.endpoints.splitClaims, { text });
+function requireEndpoint(name) {
+  const path = config?.endpoints?.[name];
+  if (!path) throw new Error(`HTTP adapter: no "${name}" endpoint configured in ${CONFIG_PATH}`);
+  return path;
 }
 
+// QA capability.
+export function splitClaims(text) {
+  return post(requireEndpoint('splitClaims'), { text });
+}
 export function analyzeBatch(payload) {
-  return post(config.endpoints.analyzeBatch, payload);
+  return post(requireEndpoint('analyzeBatch'), payload);
+}
+
+// Grounding capability. The system answers a question from provided context;
+// map your API's response to { text } here if it differs.
+export async function answer({ question, context }) {
+  const data = await post(requireEndpoint('answer'), { question, context });
+  return { text: data.text ?? data.answer ?? data.optimisedText ?? '' };
 }

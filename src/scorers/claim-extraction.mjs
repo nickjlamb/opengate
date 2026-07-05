@@ -17,9 +17,14 @@ export async function run({ cases, adapter }) {
     return { meta, skipped: true, reason: adapter.onlineConfigHint() };
   }
 
+  const qaCases = cases.filter(x => x.manuscript && (x.goldClaims || []).length);
+  if (qaCases.length === 0) {
+    return { meta, skipped: true, reason: 'No cases with manuscript + goldClaims.' };
+  }
+
   const perCase = [];
   const splitErrors = [];
-  for (const c of cases.filter(x => x.manuscript && (x.goldClaims || []).length)) {
+  for (const c of qaCases) {
    try {
     const resp = await adapter.splitClaims(c.manuscript);
     const extracted = (resp.claims || []).map(x => (typeof x === 'string' ? { text: x, citations: [] } : x));

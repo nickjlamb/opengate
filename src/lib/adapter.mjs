@@ -26,6 +26,7 @@ const CAPABILITIES = {
   redaction: ['redact'],                      // identifier removal from text
   simplify: ['simplify'],                     // faithful simplification of source text
   retrieval: ['fetchRecord'],                 // fidelity of retrieved records vs the authority
+  grounding: ['answer'],                      // answer faithfully grounded in provided context (generic RAG)
 };
 
 // Optional: validated if present; no-op defaults are supplied if absent, so

@@ -103,6 +103,7 @@ const SCORERS = [
   './scorers/redaction.mjs',
   './scorers/simplification.mjs',
   './scorers/retrieval.mjs',
+  './scorers/grounding.mjs',
 ];
 
 async function loadJsonDir(dir, { skipPrefix } = {}) {

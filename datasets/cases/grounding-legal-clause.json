@@ -1,0 +1,28 @@
+{
+  "id": "grounding-legal-clause",
+  "kind": "grounding",
+  "description": "Legal-AI flavour: answer a question about a contract clause strictly from the clause text.",
+  "question": "What notice period is required to terminate the agreement for convenience?",
+  "context": "Section 8.2 Termination for Convenience. Either party may terminate this Agreement for convenience upon ninety (90) days' prior written notice to the other party. Termination for cause under Section 8.1 requires thirty (30) days to cure.",
+  "answerAnchors": [
+    {
+      "value": "90 days",
+      "aliases": [
+        "ninety (90) days",
+        "ninety days",
+        "90 days'"
+      ]
+    },
+    {
+      "value": "written notice",
+      "aliases": [
+        "prior written notice"
+      ]
+    }
+  ],
+  "allowedNewNumbers": [
+    "8",
+    "2"
+  ],
+  "answerable": true
+}

@@ -1,0 +1,8 @@
+{
+  "id": "grounding-unanswerable",
+  "kind": "grounding",
+  "description": "The context does not contain the answer — a faithful system must abstain rather than fabricate.",
+  "question": "What is the annual price of the Enterprise plan?",
+  "context": "Our Pro plan includes unlimited projects, priority support, and a 30-day free trial. Contact sales for volume discounts. All plans are billed monthly or annually.",
+  "answerable": false
+}
