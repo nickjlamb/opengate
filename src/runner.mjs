@@ -4,11 +4,12 @@
 //   node src/runner.mjs            # offline scorers only
 //   node src/runner.mjs --online   # also run scorers that hit the API
 //   node src/runner.mjs --ci       # exit non-zero on failure or regression
-//   node src/runner.mjs --baseline # save this run as results/baseline.json
+//   node src/runner.mjs --baseline # save this run as results/baseline.<adapter>.json
 //
 // Discovers gold cases (datasets/cases/*.json) and fixtures (datasets/fixtures/*.json),
 // runs each scorer, prints a summary, writes a timestamped results file, and
-// compares headline metrics against results/baseline.json to catch regressions.
+// compares headline metrics against the per-adapter baseline
+// (results/baseline.<adapter>.json) to catch regressions.
 
 import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -16,6 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { execSync } from 'node:child_process';
 import { loadAdapter } from './lib/adapter.mjs';
+import { baselineFileName, resolveBaseline } from './lib/baseline.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const EVAL_ROOT = join(__dirname, '..');
@@ -185,31 +187,49 @@ async function main() {
   };
   await writeFile(join(RESULTS_DIR, `${stamp}.json`), JSON.stringify({ ...snapshot, results }, null, 2));
   if (SAVE_BASELINE) {
-    await writeFile(join(RESULTS_DIR, 'baseline.json'), JSON.stringify(snapshot, null, 2));
-    console.log('\n  saved baseline.json');
+    // Baselines are per-adapter — a PubCrawl scorecard must not overwrite a
+    // RefCheckr one (they share no metrics).
+    const fname = baselineFileName(adapter.name);
+    await writeFile(join(RESULTS_DIR, fname), JSON.stringify(snapshot, null, 2));
+    console.log(`\n  saved ${fname}`);
   }
 
-  // ── Regression check vs baseline ──
+  // ── Regression check vs the baseline for THIS adapter ──
   let regressed = false;
-  const baselinePath = join(RESULTS_DIR, 'baseline.json');
-  if (existsSync(baselinePath) && !SAVE_BASELINE) {
-    const base = JSON.parse(await readFile(baselinePath, 'utf8'));
-    const baseById = Object.fromEntries(base.results.map(r => [r.id, r]));
-    console.log('\n  vs baseline:');
-    for (const r of results) {
-      const b = baseById[r.id];
-      if (!b || !r.metrics || !b.metrics) continue;
-      for (const [k, v] of Object.entries(r.metrics)) {
-        if (typeof v !== 'number' || typeof b.metrics[k] !== 'number') continue;
-        const delta = v - b.metrics[k];
-        if (Math.abs(delta) < 1e-9) continue;
-        const arrow = delta > 0 ? '▲' : '▼';
-        // Only rate metrics gate regressions (higher = better); counts shown for info.
-        if (isRateKey(k)) {
-          if (delta < -1e-9) regressed = true;
-          console.log(`      ${r.id}.${k}: ${arrow} ${delta > 0 ? '+' : ''}${(delta * 100).toFixed(1)}pp`);
-        } else {
-          console.log(`      ${r.id}.${k}: ${arrow} ${delta > 0 ? '+' : ''}${delta}`);
+  if (!SAVE_BASELINE) {
+    const legacyPath = join(RESULTS_DIR, 'baseline.json');
+    const perAdapterPath = join(RESULTS_DIR, baselineFileName(adapter.name));
+    let legacyAdapter = null;
+    if (existsSync(legacyPath)) {
+      try { legacyAdapter = JSON.parse(await readFile(legacyPath, 'utf8')).adapter ?? null; } catch { /* ignore */ }
+    }
+    const chosen = resolveBaseline(adapter.name, {
+      perAdapter: existsSync(perAdapterPath),
+      legacy: existsSync(legacyPath),
+      legacyAdapter,
+    });
+    if (chosen) {
+      const base = JSON.parse(await readFile(join(RESULTS_DIR, chosen.file), 'utf8'));
+      const baseById = Object.fromEntries(base.results.map(r => [r.id, r]));
+      console.log(`\n  vs baseline (${chosen.file}):`);
+      if (chosen.source === 'legacy') {
+        console.log(`      note: using legacy baseline.json — re-run --baseline to migrate to ${baselineFileName(adapter.name)}`);
+      }
+      for (const r of results) {
+        const b = baseById[r.id];
+        if (!b || !r.metrics || !b.metrics) continue;
+        for (const [k, v] of Object.entries(r.metrics)) {
+          if (typeof v !== 'number' || typeof b.metrics[k] !== 'number') continue;
+          const delta = v - b.metrics[k];
+          if (Math.abs(delta) < 1e-9) continue;
+          const arrow = delta > 0 ? '▲' : '▼';
+          // Only rate metrics gate regressions (higher = better); counts shown for info.
+          if (isRateKey(k)) {
+            if (delta < -1e-9) regressed = true;
+            console.log(`      ${r.id}.${k}: ${arrow} ${delta > 0 ? '+' : ''}${(delta * 100).toFixed(1)}pp`);
+          } else {
+            console.log(`      ${r.id}.${k}: ${arrow} ${delta > 0 ? '+' : ''}${delta}`);
+          }
         }
       }
     }

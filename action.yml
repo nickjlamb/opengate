@@ -13,7 +13,7 @@ inputs:
     required: false
     default: ''
   results:
-    description: 'Directory in your repo for scorecards and baseline.json (commit baseline.json to gate regressions).'
+    description: 'Directory in your repo for scorecards and per-adapter baselines (commit baseline.<adapter>.json to gate regressions).'
     required: false
     default: ''
   adapter:

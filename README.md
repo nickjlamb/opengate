@@ -116,7 +116,7 @@ Offline scorers run with no API key — fast enough for every commit. Online sco
 
 **Scorecards** — every run writes `results/<timestamp>.json` stamped with the git SHA, so any result is reproducible and auditable. Per-model runs carry a `run_model` label, turning the results directory into a measured model comparison (accuracy × hallucination × latency × cost).
 
-**Regression gate** — `--baseline` saves a reference; subsequent runs print per-metric deltas (▲/▼ in percentage points) and `--ci` fails the build on any drop. No change ships without proving it didn't make the system less reliable.
+**Regression gate** — `--baseline` saves a reference; subsequent runs print per-metric deltas (▲/▼ in percentage points) and `--ci` fails the build on any drop. Baselines are **per-adapter** (`baseline.<adapter>.json`), so a PubCrawl retrieval scorecard can't clobber a RefCheckr QA one — each adapter keeps its own reference. No change ships without proving it didn't make the system less reliable.
 
 ## Adapters: evaluating your own system
 
@@ -136,13 +136,13 @@ Full contract, minimal skeleton, and verdict-mapping notes: **[ADAPTERS.md](ADAP
 
 ## CI: the GitHub Action
 
-Use OpenGATE as a drop-in regression gate in any repository. Keep your gold set and committed `baseline.json` in your own tree; any metric that drops fails the build:
+Use OpenGATE as a drop-in regression gate in any repository. Keep your gold set and committed baseline (`baseline.<adapter>.json`) in your own tree; any metric that drops fails the build:
 
 ```yaml
 - uses: nickjlamb/opengate@v0
   with:
     datasets: ./evals/datasets      # your cases/ + fixtures/
-    results: ./evals/results        # where baseline.json lives
+    results: ./evals/results        # where baseline.<adapter>.json lives
     adapter: ./evals/my-adapter.mjs # or the bundled HTTP adapter
     online: 'true'
   env:
@@ -208,13 +208,13 @@ opengate/
     scorers/      one file per metric family
     adapters/     system-under-test boundary (refcheckr.mjs is the reference)
     runner.mjs    CLI: discover cases → run scorers → report → snapshot → regression-check
-  results/        timestamped run snapshots + baseline.json
+  results/        timestamped run snapshots + baseline.<adapter>.json
 ```
 
 ## Roadmap
 
 
-- **Per-adapter baselines** — `results/baseline.json` is a single reference; runs against different adapters (RefCheckr QA vs Patiently simplification) should baseline separately (workable today via `--results <dir>`, first-class support planned)
+- **Retrieval breadth** — retrieval currently scores one PubMed record type; extend to full-text, citation formatting, and trial detail across PubCrawl's other tools
 - **Retrieval coverage** — the retrieval gold set is one case; add a single-author paper (the exact array-collapse risk the capability exists to catch), a trial (NCT) record, and a full-text/citation case across PubCrawl's other tools
 - **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
 - **Growing gold set** — more domains, all six verdict types, real-world reference material

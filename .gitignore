@@ -6,3 +6,4 @@ node_modules/
 # want a shared regression reference.
 results/*.json
 !results/baseline.json
+!results/baseline.*.json
