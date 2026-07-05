@@ -172,6 +172,14 @@ node src/runner.mjs --online --adapter ./src/adapters/redacta.mjs
 
 On its first run against the new gold set, the eval found two real engine bugs — relation phrases like "Next of kin:" swallowed nested name matches, and apostrophe surnames (O'Brien) were dropped from name capture. Both were fixed in `@pharmatools/redacta` 1.2.1 and confirmed by the eval (`knownGap_closed: 2`), then promoted to gold. Street-line address detection followed in 1.3.0, closing the last tracked gap. Current scorecard: **100% recall on 25 gold identifiers, 0 leaks, no open gaps**.
 
+## Third implementation: Patiently AI
+
+[Patiently AI](https://www.pharmatools.ai/patiently-ai) exercises the **simplify capability** — faithfulness scoring for text that is paraphrase by design. On its first production run, the eval found the simplifier **dropping safety-critical specifics**: an antibiotic dose vanished from a Brief discharge summary and a haemoglobin value from a lab letter (anchor recall 86%). Root cause: the composed prompt had no faithfulness rule. A preservation rule added to Patiently's tone prompts (additively — the backend is shared with another product) took the next run to **100% anchor recall, 0 dropped facts, 0 fabricated numbers, 0 contract violations** — with the readability grade slightly *better* than before the fix.
+
+```bash
+node src/runner.mjs --online --adapter ./src/adapters/patiently.mjs
+```
+
 ## Layout
 
 ```
@@ -193,7 +201,7 @@ opengate/
 ## Roadmap
 
 
-- **Patiently AI live baseline** — the simplify capability, scorer, and adapter are implemented with synthetic gold cases; first production run and baseline pending
+- **Per-adapter baselines** — `results/baseline.json` is a single reference; runs against different adapters (RefCheckr QA vs Patiently simplification) should baseline separately (workable today via `--results <dir>`, first-class support planned)
 - **Author-year in RefCheckr production** — `detectAuthorYear()` now lands "Smith 2020"-style keys in the reference implementation; adopting them in RefCheckr's numeric-keyed citation mapping is tracked separately
 - **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
 - **Growing gold set** — more domains, all six verdict types, real-world reference material
