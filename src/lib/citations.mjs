@@ -1,17 +1,12 @@
 // Reference implementation of the deterministic citation-detection logic
 // (originally developed for RefCheckr, OpenGATE's first implementation).
 //
-// This MIRRORS the pure functions currently inlined in routes/verify.js
-// (normalizeCitations + the per-claim citation parser). It is duplicated here
-// only so the eval harness can exercise the algorithm offline with zero API
-// cost.
-//
-// FOLLOW-UP (recommended first "make-it-evaluable" task): promote this module
-// to the app's lib/ (e.g. lib/citations.js) and have routes/verify.js import
-// from it, so production and the eval share a single source of truth. The
-// citation-detection scorer then becomes a true regression test of prod code.
-// Until then, keep this in sync with verify.js — the scorer's style fixture
-// will catch most drift.
+// This MIRRORS RefCheckr production's lib/citations.js, which routes/verify.js
+// imports — the inline duplication in verify.js was promoted to a shared
+// module, so the citation-detection scorer is a true regression test of the
+// production algorithm. If you change behaviour in either copy, port it to the
+// other; the citation-styles fixture catches drift (verified: 104 inputs,
+// byte-identical outputs across both modules).
 
 export function normalizeCitations(text) {
   // Pass 1: "word.1,2" / "word1,2" → "word.[1,2]" (letter/period/paren/quote + digits)
