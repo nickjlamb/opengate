@@ -31,8 +31,10 @@ if (!adapter.onlineAvailable()) {
 
 const { record } = await adapter.fetchRecord({ id, type });
 
+// PubCrawl formats authors as "Surname ForeName Initials" (e.g. "Haurani
+// Mounir J"), so the surname is the FIRST token, not the last.
 const firstAuthorSurname = Array.isArray(record.authors) && record.authors[0]
-  ? String(record.authors[0]).split(/\s+/).pop() : null;
+  ? String(record.authors[0]).split(/\s+/)[0] : null;
 const abstractText = Array.isArray(record.abstract_sections)
   ? record.abstract_sections.map(s => s.text).join(' ') : (record.abstract || '');
 const phrase = abstractText.split(/\s+/).slice(0, 6).join(' '); // suggest; pick a DISTINCTIVE one

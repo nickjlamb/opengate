@@ -1,0 +1,15 @@
+{
+  "id": "retrieval-macra-vascular",
+  "kind": "retrieval",
+  "notes": "PMID 31904519 — Ann Vasc Surg 2020. A four-author paper: anchors are chosen to fail exactly where PubCrawl's known-risky XML paths would regress — author-array collapse (minCount), surname parsing (contains, first token of PubCrawl's 'Surname ForeName' format), and abstract-section truncation (distinctive opening phrase). Verified against the PubMed record.",
+  "recordId": "31904519",
+  "recordType": "pubmed",
+  "requireFields": ["title", "authors", "year"],
+  "anchors": [
+    { "field": "authors", "contains": "Haurani" },
+    { "field": "authors", "contains": "Satiani" },
+    { "field": "authors", "minCount": 4 },
+    { "field": "year", "equals": "2020" },
+    { "field": "abstract_sections", "contains": "The Medicare Access and CHIP Reauthorization Act" }
+  ]
+}
