@@ -63,19 +63,25 @@ test('loadAdapter: default is the bundled RefCheckr reference adapter', async ()
   delete process.env.OPENGATE_ADAPTER;
   const a = await loadAdapter();
   assert.equal(a.name, 'refcheckr');
-  assert.deepEqual(a.capabilities, { qa: true, redaction: false, simplify: false });
+  assert.deepEqual(a.capabilities, { qa: true, redaction: false, simplify: false, retrieval: false });
 });
 
 test('loadAdapter: bundled Redacta adapter exposes the redaction capability', async () => {
   const a = await loadAdapter(new URL('../src/adapters/redacta.mjs', import.meta.url).pathname);
   assert.equal(a.name, 'redacta');
-  assert.deepEqual(a.capabilities, { qa: false, redaction: true, simplify: false });
+  assert.deepEqual(a.capabilities, { qa: false, redaction: true, simplify: false, retrieval: false });
 });
 
 test('loadAdapter: bundled Patiently adapter exposes the simplify capability', async () => {
   const a = await loadAdapter(new URL('../src/adapters/patiently.mjs', import.meta.url).pathname);
   assert.equal(a.name, 'patiently');
-  assert.deepEqual(a.capabilities, { qa: false, redaction: false, simplify: true });
+  assert.deepEqual(a.capabilities, { qa: false, redaction: false, simplify: true, retrieval: false });
+});
+
+test('loadAdapter: bundled PubCrawl adapter exposes the retrieval capability', async () => {
+  const a = await loadAdapter(new URL('../src/adapters/pubcrawl.mjs', import.meta.url).pathname);
+  assert.equal(a.name, 'pubcrawl');
+  assert.deepEqual(a.capabilities, { qa: false, redaction: false, simplify: false, retrieval: true });
 });
 
 test('loadAdapter: explicit spec wins and meta.name is used', async () => {

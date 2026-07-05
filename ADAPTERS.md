@@ -48,8 +48,9 @@ Every adapter provides two base exports, plus at least one complete **capability
 - **`qa`** — `splitClaims(text)` + `analyzeBatch(payload)`: systems that extract claims and verify them against references (scorers: claim-extraction, verdict-accuracy).
 - **`redaction`** — `redact(text)`: systems that remove identifiers from text (scorer: redaction). Returns `{ text, entities: [{ value, type }] }`, where `entities` are the identifiers the system removed.
 - **`simplify`** — `simplify({ text, audience?, tone?, length?, language? })`: systems that rewrite source text for a different audience (scorer: simplification). Returns `{ text }`. Scored on anchor recall (critical facts survive), fabricated numbers (nothing invented), and length contracts — paraphrase is expected, so prose is never checked verbatim.
+- **`retrieval`** — `fetchRecord({ id, type? })`: systems that retrieve records from an authority (scorer: retrieval). Returns `{ record }`. Scored on retrieval fidelity — field presence, hand-verified anchor fields, and structural invariants — catching parser regressions that would silently poison downstream grounding. For deterministic systems (no model), not just AI ones.
 
-Scorers check `adapter.capabilities.<name>` and skip with a reason when a capability is absent — the bundled Redacta adapter (`src/adapters/redacta.mjs`) runs only the redaction scorer, the RefCheckr adapter only the QA scorers, and the Patiently adapter (`src/adapters/patiently.mjs`) only the simplification scorer.
+Scorers check `adapter.capabilities.<name>` and skip with a reason when a capability is absent — the bundled Redacta adapter runs only redaction, RefCheckr only QA, Patiently only simplification, and PubCrawl (`src/adapters/pubcrawl.mjs`) only retrieval.
 
 ### Base exports (always required)
 

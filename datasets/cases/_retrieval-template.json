@@ -1,0 +1,14 @@
+{
+  "id": "retrieval-EXAMPLE",
+  "kind": "retrieval",
+  "_note": "Template (ignored by the runner — filename starts with _). Copy to a real filename and populate from scripts/capture-retrieval-case.mjs, then VERIFY every anchor against the source paper. Anchors are independent ground truth — copied from the paper, never from PubCrawl's own output.",
+  "recordId": "PMID or NCT id here",
+  "recordType": "pubmed",
+  "requireFields": ["title", "authors", "year"],
+  "anchors": [
+    { "field": "authors", "contains": "FirstAuthorSurname" },
+    { "field": "authors", "minCount": 5 },
+    { "field": "year", "equals": "2020" },
+    { "field": "abstract_sections", "contains": "a distinctive verbatim phrase from the abstract" }
+  ]
+}

@@ -80,8 +80,8 @@ npm run eval:ci         # exit non-zero on any failure or metric regression
                                         │ adapters
                  ┌──────────────┬───────┴──────┬──────────────┐
                  ▼              ▼              ▼              ▼
-             RefCheckr       Redacta      Patiently AI   your system
-          (first impl., QA) (redaction)   (simplify)   (write an adapter)
+          RefCheckr    Redacta    Patiently AI   PubCrawl    your system
+         (QA, first) (redaction)  (simplify)   (retrieval)  (write one)
 ```
 
 Where it sits in the development loop:
@@ -110,6 +110,7 @@ change a prompt, model, or pipeline
 | `verdict-accuracy` | online | exact & adjacency accuracy on a six-point support scale; confusion matrix; **passage hallucination rate**; consistency across repeats; per-claim latency (p50/p95) and token usage for real cost/claim |
 | `redaction` | online | recall on gold identifiers with **leaks as named failures** (verbatim, and word-level for names); over-redaction count; known-gap tracking for documented engine gaps |
 | `simplification` | online | faithfulness of rewritten text: **anchor recall** (critical facts like doses must survive), **fabricated numbers** (nothing invented), length-contract gates, readability grade (info) |
+| `retrieval` | online | fidelity of retrieved records vs the authority: field presence, hand-verified **anchor fields** (author surnames, year, distinctive abstract phrases), and structural invariants that catch parser regressions (collapsed author arrays, `[object Object]` leakage) |
 
 Offline scorers run with no API key — fast enough for every commit. Online scorers exercise a live system through an adapter.
 
@@ -179,6 +180,18 @@ On its first run against the new gold set, the eval found two real engine bugs �
 ```bash
 node src/runner.mjs --online --adapter ./src/adapters/patiently.mjs
 ```
+
+## Fourth implementation: PubCrawl
+
+[PubCrawl](https://www.pharmatools.ai/pubcrawl) is the odd one out — an MCP server wrapping PubMed and ClinicalTrials.gov, with **no model**. It exercises the **retrieval capability**: the deterministic layer everything else grounds on. A silent XML-parser regression (a collapsed author array, a merged abstract) would poison every citation built on the record, so the scorer checks retrieval fidelity against hand-verified anchors and structural invariants. The adapter drives PubCrawl through its real MCP interface, so the full production parse path is under test — and `scripts/capture-retrieval-case.mjs` bootstraps gold cases from live records for you to verify against the source.
+
+```bash
+npm install --no-save @modelcontextprotocol/sdk
+node scripts/capture-retrieval-case.mjs 31904519 > datasets/cases/retrieval-example.json  # then verify anchors
+node src/runner.mjs --online --adapter ./src/adapters/pubcrawl.mjs
+```
+
+That OpenGATE scores a non-AI system at all is the point: **evidence-grounded AI is only as trustworthy as the retrieval beneath it**, so the retrieval belongs in the same regression gate.
 
 ## Layout
 

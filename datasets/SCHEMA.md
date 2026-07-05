@@ -41,3 +41,17 @@ Cases for the `simplification` scorer, exercising an adapter's `simplify()` capa
 | `anchors[]` | yes | `{ value, aliases? }` — critical facts that MUST survive simplification (drug names, doses, key values, timeframes). Matched case-insensitively, whitespace-tolerant. A missing anchor is a **dropped fact** and fails the run. |
 | `allowedNewNumbers[]` | no | Numbers legitimately introduced by rephrasing (e.g. "twice daily" → "2 times a day"). Any other output number absent from the source is a **fabricated number** and fails the run. |
 | `maxBullets` / `maxWordsPerBullet` | no | Length-contract gates (e.g. Patiently Brief: 3 / 20). Only checked when present. |
+
+## Retrieval cases (`kind: "retrieval"`)
+
+Cases for the `retrieval` scorer, exercising an adapter's `fetchRecord()` capability against a deterministic retrieval system (e.g. PubCrawl). The failure that matters is a parser regression: a field dropped, collapsed, or garbled. Anchors are **independent ground truth** — copied from the source record (the PubMed page, the paper), never from the system's own output. Bootstrap with `scripts/capture-retrieval-case.mjs`, then verify.
+
+| Field | Required | Meaning |
+|---|---|---|
+| `id` / `kind` | yes | `kind` must be `"retrieval"`. |
+| `recordId` | yes | The stable identifier to fetch (PMID, NCT id). |
+| `recordType` | no | `pubmed` (default) or `trial`. |
+| `requireFields[]` | no | Field names that must be present and non-empty in the record (e.g. `title`, `authors`, `year`). |
+| `anchors[]` | no | Per-field ground-truth checks, one of: `{ field, contains }` (verbatim substring survived), `{ field, equals }` (exact value), `{ field, minCount }` (array didn't collapse). At least one of `requireFields`/`anchors` is needed. |
+
+The scorer also always applies structural invariants: `authors` must be a non-empty array of strings (not a collapsed single-author object), `title` a non-empty string, and no field may serialise to `"[object Object]"`.

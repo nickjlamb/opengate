@@ -100,6 +100,7 @@ const SCORERS = [
   './scorers/verdict-accuracy.mjs',
   './scorers/redaction.mjs',
   './scorers/simplification.mjs',
+  './scorers/retrieval.mjs',
 ];
 
 async function loadJsonDir(dir, { skipPrefix } = {}) {
