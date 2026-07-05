@@ -10,13 +10,16 @@ import { precisionRecallF1, claimMatch, jaccard, normText, mean } from '../lib/m
 export const meta = { id: 'claim-extraction', mode: 'online' };
 
 export async function run({ cases, adapter }) {
+  if (!adapter.capabilities.qa) {
+    return { meta, skipped: true, reason: `adapter "${adapter.name}" has no QA capability` };
+  }
   if (!adapter.onlineAvailable()) {
     return { meta, skipped: true, reason: adapter.onlineConfigHint() };
   }
 
   const perCase = [];
   const splitErrors = [];
-  for (const c of cases) {
+  for (const c of cases.filter(x => x.manuscript && (x.goldClaims || []).length)) {
    try {
     const resp = await adapter.splitClaims(c.manuscript);
     const extracted = (resp.claims || []).map(x => (typeof x === 'string' ? { text: x, citations: [] } : x));

@@ -98,6 +98,7 @@ const SCORERS = [
   './scorers/citation-detection.mjs',
   './scorers/claim-extraction.mjs',
   './scorers/verdict-accuracy.mjs',
+  './scorers/redaction.mjs',
 ];
 
 async function loadJsonDir(dir, { skipPrefix } = {}) {

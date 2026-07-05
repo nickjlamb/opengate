@@ -80,8 +80,8 @@ npm run eval:ci         # exit non-zero on any failure or metric regression
                                         │ adapters
                  ┌──────────────┬───────┴──────┬──────────────┐
                  ▼              ▼              ▼              ▼
-             RefCheckr     Patiently AI     Redacta      your system
-          (first impl.)     (planned)      (planned)    (write an adapter)
+             RefCheckr       Redacta      Patiently AI   your system
+          (first impl., QA) (redaction)    (planned)    (write an adapter)
 ```
 
 Where it sits in the development loop:
@@ -108,6 +108,7 @@ change a prompt, model, or pipeline
 | `citation-detection` | offline | per-claim citation set exact-match & Jaccard; supported-style accuracy; tracked known-gap styles |
 | `claim-extraction` | online | precision / recall / F1 vs gold; non-claim leakage; citation agreement; **fidelity** (extracted claim is verbatim from source) |
 | `verdict-accuracy` | online | exact & adjacency accuracy on a six-point support scale; confusion matrix; **passage hallucination rate**; consistency across repeats; per-claim latency (p50/p95) and token usage for real cost/claim |
+| `redaction` | online | recall on gold identifiers with **leaks as named failures** (verbatim, and word-level for names); over-redaction count; known-gap tracking for documented engine gaps |
 
 Offline scorers run with no API key — fast enough for every commit. Online scorers exercise a live system through an adapter.
 
@@ -159,6 +160,17 @@ Run against RefCheckr's gold set, OpenGATE:
 
 Full methodology and the model comparison: [how RefCheckr is evaluated](https://www.pharmatools.ai/refcheckr-eval).
 
+## Second implementation: Redacta
+
+[Redacta](https://www.pharmatools.ai/redacta) exercises the framework's **redaction capability** — proof the methodology isn't QA-shaped. The bundled adapter wraps the `@pharmatools/redacta` engine, scored against synthetic UK clinical notes with gold-labelled identifiers:
+
+```bash
+npm install --no-save @pharmatools/redacta
+node src/runner.mjs --online --adapter ./src/adapters/redacta.mjs
+```
+
+On its first run against the new gold set, the eval found two real engine bugs — a relative name directly followed by a parenthesis escapes the name pattern, and apostrophe surnames are dropped from titled-name capture — both now documented as tracked known gaps in the case files. Current scorecard: **100% recall on 23 gold identifiers, 0 leaks, 3 tracked gaps**.
+
 ## Layout
 
 ```
@@ -179,7 +191,8 @@ opengate/
 
 ## Roadmap
 
-- **Second adapter** — Patiently AI (faithfulness evaluation for patient-language simplification)
+- **Redacta engine fixes** — two bugs found by the redaction eval (paren-adjacent relative names; apostrophe surnames in titled-name capture) are tracked as known gaps; fixing them in `@pharmatools/redacta` flips `knownGap_closed` and promotes the cases to gold
+- **Third adapter** — Patiently AI (faithfulness evaluation for patient-language simplification)
 - **Author-year in RefCheckr production** — `detectAuthorYear()` now lands "Smith 2020"-style keys in the reference implementation; adopting them in RefCheckr's numeric-keyed citation mapping is tracked separately
 - **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
 - **Growing gold set** — more domains, all six verdict types, real-world reference material

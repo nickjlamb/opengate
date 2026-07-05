@@ -1,0 +1,24 @@
+{
+  "id": "redact-gp-referral",
+  "kind": "redaction",
+  "description": "GP referral letter — patient with title, contact details, clinician names preserved by design. SYNTHETIC.",
+  "text": "Dear colleague, I would be grateful if you could see Miss Chloe Davies (DOB 22/07/1996) regarding persistent iron-deficiency anaemia despite oral replacement. Ferritin 8 ug/L last month. She works night shifts and prefers contact by email at chloe.davies96@example.com or on 07700 900789. Kind regards, Dr Okafor, Riverside Surgery.",
+  "goldEntities": [
+    {
+      "type": "PATIENT_NAME",
+      "value": "Miss Chloe Davies"
+    },
+    {
+      "type": "DATE_OF_BIRTH",
+      "value": "22/07/1996"
+    },
+    {
+      "type": "EMAIL",
+      "value": "chloe.davies96@example.com"
+    },
+    {
+      "type": "PHONE",
+      "value": "07700 900789"
+    }
+  ]
+}

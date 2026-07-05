@@ -53,6 +53,9 @@ function isGuardDowngrade(summary) {
 }
 
 export async function run({ cases, adapter }) {
+  if (!adapter.capabilities.qa) {
+    return { meta, skipped: true, reason: `adapter "${adapter.name}" has no QA capability` };
+  }
   if (!adapter.onlineAvailable()) {
     return { meta, skipped: true, reason: adapter.onlineConfigHint() };
   }

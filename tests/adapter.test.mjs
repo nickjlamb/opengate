@@ -24,12 +24,25 @@ export async function analyzeBatch() { return { claims: [] }; }
 `;
 
 // ── validateAdapter ──
-test('validateAdapter: lists every missing required export', () => {
+test('validateAdapter: empty module → base exports and capability requirement listed', () => {
   assert.throws(
     () => validateAdapter({}, 'empty'),
-    (err) => ['splitClaims', 'analyzeBatch', 'onlineAvailable', 'onlineConfigHint']
-      .every(fn => err.message.includes(`missing required export: ${fn}()`))
+    (err) =>
+      ['onlineAvailable', 'onlineConfigHint']
+        .every(fn => err.message.includes(`missing required export: ${fn}()`))
+      && /no complete capability/.test(err.message)
   );
+});
+
+test('validateAdapter: partial QA capability names what is missing', () => {
+  const mod = { onlineAvailable() {}, onlineConfigHint() {}, splitClaims() {} };
+  assert.throws(() => validateAdapter(mod),
+    /capability "qa" is incomplete — missing analyzeBatch\(\)/);
+});
+
+test('validateAdapter: redaction-only adapter is valid', () => {
+  const mod = { onlineAvailable() {}, onlineConfigHint() {}, redact() {} };
+  validateAdapter(mod); // must not throw
 });
 
 test('validateAdapter: flags a non-function optional export', () => {
@@ -50,6 +63,13 @@ test('loadAdapter: default is the bundled RefCheckr reference adapter', async ()
   delete process.env.OPENGATE_ADAPTER;
   const a = await loadAdapter();
   assert.equal(a.name, 'refcheckr');
+  assert.deepEqual(a.capabilities, { qa: true, redaction: false });
+});
+
+test('loadAdapter: bundled Redacta adapter exposes the redaction capability', async () => {
+  const a = await loadAdapter(new URL('../src/adapters/redacta.mjs', import.meta.url).pathname);
+  assert.equal(a.name, 'redacta');
+  assert.deepEqual(a.capabilities, { qa: false, redaction: true });
 });
 
 test('loadAdapter: explicit spec wins and meta.name is used', async () => {

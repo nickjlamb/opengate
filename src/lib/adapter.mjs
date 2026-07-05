@@ -16,8 +16,15 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DEFAULT_ADAPTER = join(__dirname, '..', 'adapters', 'refcheckr.mjs');
 
-// Required: online scorers cannot run without these.
-const REQUIRED = ['splitClaims', 'analyzeBatch', 'onlineAvailable', 'onlineConfigHint'];
+// Base exports every adapter must provide.
+const REQUIRED_BASE = ['onlineAvailable', 'onlineConfigHint'];
+
+// Capabilities: an adapter implements at least one, completely. Scorers check
+// `adapter.capabilities.<name>` and skip (with a reason) when absent.
+const CAPABILITIES = {
+  qa: ['splitClaims', 'analyzeBatch'],       // claim extraction + verdicts against references
+  redaction: ['redact'],                      // identifier removal from text
+};
 
 // Optional: validated if present; no-op defaults are supplied if absent, so
 // scorers can call them unconditionally.
@@ -33,11 +40,34 @@ const DEFAULTS = {
   }),
 };
 
+/** Which capabilities does a module fully implement? */
+export function detectCapabilities(mod) {
+  return Object.fromEntries(
+    Object.entries(CAPABILITIES).map(([name, fns]) =>
+      [name, fns.every(fn => typeof mod[fn] === 'function')])
+  );
+}
+
 /** Throws with a readable message listing every problem, or returns silently. */
 export function validateAdapter(mod, source = 'adapter') {
   const problems = [];
-  for (const fn of REQUIRED) {
+  for (const fn of REQUIRED_BASE) {
     if (typeof mod[fn] !== 'function') problems.push(`missing required export: ${fn}()`);
+  }
+  const caps = detectCapabilities(mod);
+  if (!Object.values(caps).some(Boolean)) {
+    problems.push(
+      'no complete capability implemented — provide ' +
+      Object.entries(CAPABILITIES).map(([n, fns]) => `${fns.map(f => `${f}()`).join(' + ')} (${n})`).join(' or ')
+    );
+    // Name partially implemented capabilities to make the fix obvious.
+    for (const [name, fns] of Object.entries(CAPABILITIES)) {
+      const present = fns.filter(fn => typeof mod[fn] === 'function');
+      if (present.length && present.length < fns.length) {
+        const missing = fns.filter(fn => typeof mod[fn] !== 'function');
+        problems.push(`capability "${name}" is incomplete — missing ${missing.map(f => `${f}()`).join(', ')}`);
+      }
+    }
   }
   for (const fn of OPTIONAL) {
     if (fn in mod && typeof mod[fn] !== 'function') problems.push(`optional export ${fn} is not a function`);
@@ -65,13 +95,13 @@ export async function loadAdapter(specOverride) {
     throw new Error(`Could not load adapter from ${path}: ${err.message}`);
   }
   validateAdapter(mod, path);
+  const allFns = [...REQUIRED_BASE, ...Object.values(CAPABILITIES).flat(), ...OPTIONAL];
   const methods = Object.fromEntries(
-    [...REQUIRED, ...OPTIONAL]
-      .filter(f => typeof mod[f] === 'function')
-      .map(f => [f, mod[f]])
+    allFns.filter(f => typeof mod[f] === 'function').map(f => [f, mod[f]])
   );
   return {
     name: mod.meta?.name || basename(path, '.mjs'),
+    capabilities: detectCapabilities(mod),
     ...DEFAULTS,
     ...methods,
   };

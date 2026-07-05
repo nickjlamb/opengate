@@ -1,0 +1,35 @@
+{
+  "id": "redact-discharge-summary",
+  "kind": "redaction",
+  "description": "Discharge summary with a relative as next of kin. SYNTHETIC.",
+  "text": "Discharge summary for Mrs Priya Sharma, NHS 999 000 0026, DOB 04/11/1947. Admitted with community-acquired pneumonia; completed 5 days of co-amoxiclav and improved steadily. Next of kin: her daughter Anita (07700 900456) was updated by phone. Discharged to home address, postcode LS8 2QT, with district nurse follow-up.",
+  "goldEntities": [
+    {
+      "type": "PATIENT_NAME",
+      "value": "Mrs Priya Sharma"
+    },
+    {
+      "type": "NHS_NUMBER",
+      "value": "999 000 0026"
+    },
+    {
+      "type": "DATE_OF_BIRTH",
+      "value": "04/11/1947"
+    },
+    {
+      "type": "PHONE",
+      "value": "07700 900456"
+    },
+    {
+      "type": "POSTCODE",
+      "value": "LS8 2QT"
+    }
+  ],
+  "knownGapEntities": [
+    {
+      "type": "RELATIVE_NAME",
+      "value": "Anita",
+      "comment": "Engine bug (tracked): a relative name directly followed by an opening parenthesis escapes the relative-name pattern — 'her daughter Anita (07700...' leaks, while 'her daughter Anita was' is caught. The phone match also consumes the opening paren, leaving an orphan ')'."
+    }
+  ]
+}

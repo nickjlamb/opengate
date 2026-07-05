@@ -43,7 +43,24 @@ node src/runner.mjs --online --adapter ./src/adapters/http.mjs
 
 ## The contract
 
-### Required exports
+Every adapter provides two base exports, plus at least one complete **capability**:
+
+- **`qa`** — `splitClaims(text)` + `analyzeBatch(payload)`: systems that extract claims and verify them against references (scorers: claim-extraction, verdict-accuracy).
+- **`redaction`** — `redact(text)`: systems that remove identifiers from text (scorer: redaction). Returns `{ text, entities: [{ value, type }] }`, where `entities` are the identifiers the system removed.
+
+Scorers check `adapter.capabilities.<name>` and skip with a reason when a capability is absent — the bundled Redacta adapter (`src/adapters/redacta.mjs`) runs only the redaction scorer, the RefCheckr adapter only the QA scorers.
+
+### Base exports (always required)
+
+```js
+/** True when the adapter has the config it needs (URLs, tokens, …). */
+export function onlineAvailable() {}
+
+/** Human-readable hint shown when onlineAvailable() is false. */
+export function onlineConfigHint() {}
+```
+
+### QA capability exports
 
 ```js
 /**
@@ -67,13 +84,25 @@ export function splitClaims(text) {}
  *   strong_support · partial_support · implied_by_data · overclaim · not_supported · contradicted
  */
 export function analyzeBatch(payload) {}
-
-/** True when the adapter has the config it needs (URLs, tokens, …). */
-export function onlineAvailable() {}
-
-/** Human-readable hint shown when onlineAvailable() is false. */
-export function onlineConfigHint() {}
 ```
+
+### Redaction capability exports
+
+```js
+/**
+ * Remove identifiers from text.
+ * @param {string} text — the source document (e.g. a clinical note)
+ * @returns {Promise<{ text: string, entities?: [{ value, type }] }>}
+ *   `text` is the redacted output; `entities` are the identifiers the system
+ *   removed (used to measure over-redaction).
+ */
+export function redact(text) {}
+```
+
+The bundled `src/adapters/redacta.mjs` is the reference: it wraps the
+`@pharmatools/redacta` engine via a dynamic import (install with
+`npm install --no-save @pharmatools/redacta`), so OpenGATE itself stays
+dependency-free.
 
 ### Optional exports
 

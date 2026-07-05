@@ -1,0 +1,24 @@
+{
+  "id": "redact-mdt-note",
+  "kind": "redaction",
+  "description": "MDT oncology note — hyphenated surname, DOB keyword variant, postcode. SYNTHETIC.",
+  "text": "MDT discussion: Mr Tomasz Kowalski-Nowak, date of birth 30/01/1969, NHS 999 000 0042, new diagnosis of stage II colorectal adenocarcinoma. Fit for laparoscopic resection; anaesthetic review booked. Patient lives alone, postcode M14 5RB; holistic needs assessment arranged. Histology to be reviewed at next meeting.",
+  "goldEntities": [
+    {
+      "type": "PATIENT_NAME",
+      "value": "Mr Tomasz Kowalski-Nowak"
+    },
+    {
+      "type": "DATE_OF_BIRTH",
+      "value": "30/01/1969"
+    },
+    {
+      "type": "NHS_NUMBER",
+      "value": "999 000 0042"
+    },
+    {
+      "type": "POSTCODE",
+      "value": "M14 5RB"
+    }
+  ]
+}
