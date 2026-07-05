@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-07-05T14:50:34.056Z",
+  "sha": "c681ef8",
+  "online": false,
+  "adapter": "refcheckr",
+  "results": [
+    {
+      "id": "citation-detection",
+      "meta": {
+        "id": "citation-detection",
+        "mode": "offline"
+      },
+      "metrics": {
+        "perClaim_exactSetRate": 1,
+        "perClaim_jaccardMean": 1,
+        "supportedStyle_accuracy": 1,
+        "knownGap_styles": [
+          "number-adjacent-superscript"
+        ]
+      },
+      "failures": [],
+      "passed": true
+    },
+    {
+      "id": "claim-extraction",
+      "skipped": true,
+      "reason": "online scorer (pass --online)"
+    },
+    {
+      "id": "verdict-accuracy",
+      "skipped": true,
+      "reason": "online scorer (pass --online)"
+    },
+    {
+      "id": "redaction",
+      "skipped": true,
+      "reason": "online scorer (pass --online)"
+    }
+  ]
+}
