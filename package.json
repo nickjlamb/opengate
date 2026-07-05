@@ -23,6 +23,7 @@
     "regression-testing"
   ],
   "scripts": {
+    "test": "node --test tests/*.test.mjs",
     "eval": "node src/runner.mjs",
     "eval:online": "node src/runner.mjs --online",
     "eval:ci": "node src/runner.mjs --ci",

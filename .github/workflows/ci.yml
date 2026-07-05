@@ -13,5 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      # Unit tests: metrics, citation detection, adapter loader, HTTP adapter.
+      - run: npm test
       # Offline suite: deterministic scorers + regression gate, no API keys.
       - run: npm run eval:ci
