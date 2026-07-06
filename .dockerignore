@@ -1,0 +1,4 @@
+# The image installs @pharmatools/opengate from npm and copies nothing from the
+# build context, so keep the context tiny.
+**
+!Dockerfile

@@ -157,6 +157,30 @@ Beyond CI, OpenGATE's grounding check is available as an [MCP](https://modelcont
 
 The same check is importable programmatically: `import { checkGrounding } from '@pharmatools/opengate/grounding'`.
 
+## Python package
+
+For the Python ecosystem, the grounding check ships as a standalone, zero-dependency package ([`opengate-grounding`](https://pypi.org/project/opengate-grounding/)) — a faithful port of the same deterministic logic:
+
+```bash
+pip install opengate-grounding
+```
+
+```python
+from opengate_grounding import check_grounding, assert_grounded
+
+result = check_grounding(
+    answer="You have 30 days, with no restocking fee.",
+    context="Refund within 30 days. No restocking fee.",
+    anchors=["30 days", "no restocking fee"],
+)
+result.grounded    # True
+
+# gate it in pytest
+assert_grounded(answer, context, anchors=["30 days"])
+```
+
+It also plugs into [DeepEval](https://deepeval.com) as a deterministic metric (`pip install "opengate-grounding[deepeval]"`): drop `GroundingMetric` alongside your model-graded metrics to gate the grounding with no judge model. See [`python/`](python/).
+
 ## CI: the GitHub Action
 
 Use OpenGATE as a drop-in regression gate in any repository. Keep your gold set and committed baseline (`baseline.<adapter>.json`) in your own tree; any metric that drops fails the build:
@@ -174,6 +198,24 @@ Use OpenGATE as a drop-in regression gate in any repository. Keep your gold set 
 ```
 
 All inputs are optional — with none, it runs the offline suite against the bundled gold set. The same overrides work locally: `--datasets <dir>` and `--results <dir>` (or `OPENGATE_DATASETS` / `OPENGATE_RESULTS`).
+
+## Docker
+
+For enterprise pipelines that standardise on containers, OpenGATE ships as a small CPU-only image ([`pharmatools/opengate`](https://hub.docker.com/r/pharmatools/opengate)) — no CUDA, no GPU, no LLM judge. A bare run executes the bundled offline suite as a self-test:
+
+```bash
+docker run --rm pharmatools/opengate
+```
+
+Mount your repo and bring your own gold sets and baseline; the same flags and env vars as the CLI apply:
+
+```bash
+docker run --rm -v "$PWD:/work" \
+  -e MY_SYSTEM_URL -e MY_SYSTEM_TOKEN \
+  pharmatools/opengate --datasets ./evals/datasets --results ./evals/results --adapter ./evals/my-adapter.mjs --online --ci
+```
+
+Results are written under `./opengate-results` (or `--results <dir>`) in the mounted directory. The image runs as a non-root user; to have result files owned by you rather than the container, add `--user "$(id -u):$(id -g)"`. Pin a version with a tag: `pharmatools/opengate:0.9.0`.
 
 ## Proven in production
 
