@@ -217,6 +217,10 @@ docker run --rm -v "$PWD:/work" \
 
 Results are written under `./opengate-results` (or `--results <dir>`) in the mounted directory. The image runs as a non-root user; to have result files owned by you rather than the container, add `--user "$(id -u):$(id -g)"`. Pin a version with a tag: `pharmatools/opengate:0.9.0`.
 
+## Examples
+
+- [**Evaluating a NIM-powered RAG agent**](examples/nim-rag) — a worked example that builds a RAG agent on an [NVIDIA NIM](https://build.nvidia.com) model and gates its answers' grounding with OpenGATE, deterministically and with no LLM judge. Includes a runnable Python notebook (using [`opengate-grounding`](https://pypi.org/project/opengate-grounding/)) and a Node adapter for the CI regression gate.
+
 ## Proven in production
 
 Run against RefCheckr's gold set, OpenGATE:
