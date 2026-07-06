@@ -96,10 +96,9 @@ export function renderReport(snapshot, { baseline } = {}) {
   .summary{color:var(--muted);font-size:.85rem;margin-bottom:.9rem}
   .meta{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;color:var(--muted);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:.6rem 0;margin-bottom:1.4rem}
   .meta b{color:var(--ink);font-weight:600}
-  .card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1.1rem 1.25rem;margin-bottom:1rem;border-left:4px solid var(--rule)}
-  .card.pass{border-left-color:var(--teal)}
-  .card.fail{border-left-color:var(--red)}
-  .card.skip{opacity:.7}
+  .card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1rem 1.25rem;margin-bottom:.8rem}
+  .card.fail{background:#fffbfa;border-color:#f0dcd9}
+  .card.skip{opacity:.62}
   .card header{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem}
   .card h2{font-size:1rem;font-weight:600}
   .badge{font-size:.6rem;font-weight:700;letter-spacing:.08em;padding:.15rem .45rem;border-radius:4px}

@@ -1,6 +1,6 @@
 {
   "name": "@pharmatools/opengate",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "type": "module",
   "description": "OpenGATE — Open Grounded AI Testing & Evaluation. An open-source framework for evaluating evidence-grounded AI systems.",
   "license": "MIT",
