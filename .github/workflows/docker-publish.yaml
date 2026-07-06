@@ -38,12 +38,6 @@ jobs:
           TAG="${{ github.ref_type == 'tag' && github.ref_name || github.event.inputs.tag }}"
           echo "version=${TAG#opengate-docker-}" >> "$GITHUB_OUTPUT"
 
-      - name: Check credentials are present
-        env:
-          T: ${{ secrets.DOCKERHUB_PHARMATOOLS }}
-        run: |
-          [ -n "$T" ] && echo "DOCKERHUB_PHARMATOOLS: set (${#T} chars)" || echo "DOCKERHUB_PHARMATOOLS: EMPTY / not visible to this run"
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
