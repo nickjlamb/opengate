@@ -5,9 +5,10 @@ name: Publish Docker image
 # image is built with that version of @pharmatools/opengate baked in, then
 # tagged both :0.9.0 and :latest.
 #
-# One-time setup — add two repository secrets (Settings → Secrets → Actions):
-#   DOCKERHUB_USERNAME  a Docker Hub account with push access to `pharmatools`
-#   DOCKERHUB_TOKEN     a Docker Hub access token (Account → Security)
+# One-time setup — add one repository secret (Settings → Secrets → Actions):
+#   DOCKERHUB_PHARMATOOLS  a Docker Hub Read & Write access token for the
+#                          `pharmatools` account (Account → Security → New token).
+# The username is public, so it's hardcoded below rather than stored as a secret.
 #
 # The version in the tag should match a published npm version of
 # @pharmatools/opengate, since the image installs it from npm at build time.
@@ -39,11 +40,9 @@ jobs:
 
       - name: Check credentials are present
         env:
-          U: ${{ secrets.DOCKERHUB_USERNAME }}
-          T: ${{ secrets.DOCKERHUB_TOKEN }}
+          T: ${{ secrets.DOCKERHUB_PHARMATOOLS }}
         run: |
-          [ -n "$U" ] && echo "DOCKERHUB_USERNAME: set (${#U} chars)" || echo "DOCKERHUB_USERNAME: EMPTY / not visible to this run"
-          [ -n "$T" ] && echo "DOCKERHUB_TOKEN: set (${#T} chars)" || echo "DOCKERHUB_TOKEN: EMPTY / not visible to this run"
+          [ -n "$T" ] && echo "DOCKERHUB_PHARMATOOLS: set (${#T} chars)" || echo "DOCKERHUB_PHARMATOOLS: EMPTY / not visible to this run"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -54,8 +53,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: pharmatools
+          password: ${{ secrets.DOCKERHUB_PHARMATOOLS }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
