@@ -27,3 +27,13 @@ export {
 } from './lib/citations.mjs';
 
 export { loadAdapter, validateAdapter } from './lib/adapter.mjs';
+
+// Deterministic grounding check — the core behind the grounding scorer and the
+// OpenGATE MCP server. Usable directly: checkGrounding({ answer, context, … }).
+export {
+  checkGrounding,
+  DEFAULT_ABSTAIN,
+  contains,
+  numbersIn,
+  flattenContext,
+} from './lib/grounding-check.mjs';

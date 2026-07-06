@@ -24,29 +24,9 @@
 //     "abstainMarkers": ["not in the provided context"] // optional override }
 
 import { mean } from '../lib/metrics.mjs';
+import { checkGrounding, flattenContext } from '../lib/grounding-check.mjs';
 
 export const meta = { id: 'grounding', mode: 'online' };
-
-const DEFAULT_ABSTAIN = [
-  'not in the provided context', 'not in the context', 'no information',
-  "don't know", 'do not know', 'cannot answer', "can't answer",
-  'unable to answer', 'not enough information', 'not stated', 'not mentioned',
-  'no answer', 'not available', 'insufficient information',
-];
-
-const norm = (s) => String(s).toLowerCase().replace(/\s+/g, ' ');
-// Expand negating contractions so "isn't in the context" matches a marker
-// phrased with "not" — abstention phrasing varies, and this closes the most
-// common gap without a brittle marker per contraction.
-const normNeg = (s) => norm(s).replace(/n['’]t\b/g, ' not').replace(/\s+/g, ' ');
-const flat = (v) => (Array.isArray(v) ? v.join('\n') : String(v ?? ''));
-function contains(haystack, needle) {
-  const h = norm(haystack).replace(/\s/g, '');
-  const n = norm(needle).replace(/\s/g, '');
-  return n.length > 0 && h.includes(n);
-}
-const NUM_RE = /\d+(?:\.\d+)?/g;
-const numbersIn = (s) => new Set((String(s).match(NUM_RE) || []).map(n => n.replace(/^0+(?=\d)/, '')));
 
 export async function run({ cases, adapter }) {
   if (!adapter.capabilities.grounding) {
@@ -66,7 +46,7 @@ export async function run({ cases, adapter }) {
   const failures = [];
 
   for (const c of goldCases) {
-    const context = flat(c.context);
+    const context = flattenContext(c.context);
     let out;
     try {
       const res = await adapter.answer({ question: c.question, context });
@@ -76,31 +56,13 @@ export async function run({ cases, adapter }) {
       continue;
     }
 
-    const caseFailures = [];
-
-    if (c.answerable === false) {
-      // Must decline, not fabricate.
-      const markers = c.abstainMarkers || DEFAULT_ABSTAIN;
-      const outNeg = normNeg(out);
-      const abstained = markers.some(m => outNeg.includes(normNeg(m)));
-      if (!abstained) caseFailures.push('unanswerable case — system did not abstain (risk of fabrication)');
-    } else {
-      // Answer-anchor recall.
-      const missed = (c.answerAnchors || []).filter(a =>
-        ![a.value, ...(a.aliases || [])].some(v => contains(out, v)));
-      for (const a of missed) caseFailures.push(`missing answer fact "${a.value}"`);
-
-      // Grounding: numbers in the answer must be legitimate.
-      const legit = new Set([
-        ...numbersIn(context),
-        ...numbersIn(c.question),
-        ...(c.answerAnchors || []).flatMap(a => [...numbersIn(a.value), ...(a.aliases || []).flatMap(x => [...numbersIn(x)])]),
-        ...(c.allowedNewNumbers || []).map(String),
-      ]);
-      const fabricated = [...numbersIn(out)].filter(n => !legit.has(n));
-      for (const n of fabricated) caseFailures.push(`ungrounded number "${n}" — not in the retrieved context`);
-    }
-
+    // Shared, deterministic check (same core as the MCP server).
+    const chk = checkGrounding({
+      answer: out, context, question: c.question,
+      anchors: c.answerAnchors, allowedNewNumbers: c.allowedNewNumbers,
+      answerable: c.answerable, abstainMarkers: c.abstainMarkers,
+    });
+    const caseFailures = chk.issues;
     for (const cf of caseFailures) failures.push(`GROUNDING ${c.id}: ${cf}`);
     perCase.push({
       case: c.id,

@@ -147,6 +147,16 @@ Full contract, minimal skeleton, and verdict-mapping notes: **[ADAPTERS.md](ADAP
 
 **The methodology travels; only the gold set changes.**
 
+## MCP server: agents that check their own grounding
+
+Beyond CI, OpenGATE's grounding check is available as an [MCP](https://modelcontextprotocol.io) server ([`@pharmatools/opengate-mcp`](mcp/)), so an AI agent can verify its own answers before returning them — "here's my answer and the context I based it on, is it grounded?" One tool, `check_grounding`; deterministic, no judge model. Add it to Claude Desktop or any MCP client:
+
+```json
+{ "mcpServers": { "opengate": { "command": "npx", "args": ["-y", "@pharmatools/opengate-mcp"] } } }
+```
+
+The same check is importable programmatically: `import { checkGrounding } from '@pharmatools/opengate/grounding'`.
+
 ## CI: the GitHub Action
 
 Use OpenGATE as a drop-in regression gate in any repository. Keep your gold set and committed baseline (`baseline.<adapter>.json`) in your own tree; any metric that drops fails the build:
