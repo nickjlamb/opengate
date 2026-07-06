@@ -37,10 +37,10 @@ jobs:
         working-directory: mcp
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Use Node.js 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '22'
           cache: 'npm'
@@ -98,10 +98,10 @@ jobs:
         working-directory: mcp
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Use Node.js 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
@@ -131,6 +131,9 @@ jobs:
     needs: publish-npm
     if: needs.publish-npm.result == 'success'
     runs-on: ubuntu-latest
+    # Non-blocking: the .mcpb (Anthropic Directory) and npm publish are the
+    # release; a community MCP Registry hiccup must not fail the whole run.
+    continue-on-error: true
     permissions:
       id-token: write
       contents: read
@@ -139,7 +142,7 @@ jobs:
         working-directory: mcp
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Resolve version
         id: meta
