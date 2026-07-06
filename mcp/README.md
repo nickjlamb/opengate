@@ -46,6 +46,13 @@ Then, in a conversation, the agent can self-check:
 
 Returns a `GROUNDED` / `NOT GROUNDED` verdict with named issues, plus structured output (`grounded`, `issues`, `anchorsMissed`, `ungroundedNumbers`, `abstained`).
 
+## Privacy
+
+Runs entirely on your machine. `check_grounding` is a deterministic, local text
+comparison — the answer and context you pass are processed in memory and never
+transmitted or stored. No accounts, no analytics, no external network calls, no
+third-party model. Full policy: https://www.pharmatools.ai/privacy
+
 ## Related
 
 - OpenGATE (the framework): https://github.com/nickjlamb/opengate

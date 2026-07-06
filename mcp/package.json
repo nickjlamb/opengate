@@ -1,8 +1,8 @@
 {
   "name": "@pharmatools/opengate-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
-  "description": "MCP server for OpenGATE — let an AI agent check whether its answers are grounded in the provided context. Deterministic, no LLM judge.",
+  "description": "MCP server for OpenGATE \u2014 let an AI agent check whether its answers are grounded in the provided context. Deterministic, no LLM judge.",
   "license": "MIT",
   "author": "Nick Lamb (https://www.pharmatools.ai)",
   "homepage": "https://www.pharmatools.ai/opengate",
@@ -11,16 +11,31 @@
     "url": "https://github.com/nickjlamb/opengate.git",
     "directory": "mcp"
   },
-  "keywords": ["mcp", "modelcontextprotocol", "evaluation", "grounding", "rag", "hallucination", "llm"],
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "evaluation",
+    "grounding",
+    "rag",
+    "hallucination",
+    "llm"
+  ],
   "bin": {
     "opengate-mcp": "./server.mjs"
   },
-  "files": ["server.mjs", "README.md"],
-  "engines": { "node": ">=18" },
+  "files": [
+    "server.mjs",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "@pharmatools/opengate": "^0.9.0",
     "zod": "^3.25.0 || ^4.0.0"
   },
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }
