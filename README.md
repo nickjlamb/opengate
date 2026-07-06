@@ -10,7 +10,13 @@ As AI moves into high-stakes domains — healthcare, scientific publishing, regu
 
 Originally developed to power [RefCheckr](https://www.pharmatools.ai/refcheckr). Designed to evaluate any AI system built on retrieved documents or reference material.
 
-**Evaluating your own RAG, doc-QA, or legal/scientific assistant?** Start with the **[Getting Started guide](docs/GETTING-STARTED.md)** — pick a capability, connect your system (no code for HTTP endpoints), write gold cases, gate CI.
+**Evaluating your own RAG, doc-QA, or legal/scientific assistant?** Scaffold a working setup in one command:
+
+```bash
+npx @pharmatools/opengate init      # gold cases + HTTP config + GitHub Action
+```
+
+Then point `opengate.http.json` at your endpoint and run. Full walkthrough in the **[Getting Started guide](docs/GETTING-STARTED.md)**.
 
 ## Why not DeepEval?
 
@@ -131,6 +137,8 @@ Scorers never talk to a system directly — they go through an adapter, injected
 OPENGATE_ADAPTER=./adapters/my-system.mjs npm run eval:online
 ```
 
+`--adapter` (and `OPENGATE_ADAPTER`) accept a path, or a bare bundled-adapter name — `http`, `refcheckr`, `redacta`, `patiently`, `pubcrawl` — which resolves regardless of the current directory. That's what lets the GitHub Action reference the bundled HTTP adapter with just `adapter: http`.
+
 An adapter is one file: two base exports — `onlineAvailable()`, `onlineConfigHint()` — plus at least one complete **capability**: `qa` (`splitClaims` + `analyzeBatch`) or `redaction` (`redact`). Scorers check `adapter.capabilities` and skip cleanly across the boundary. Optional timing/token/model-label hooks unlock latency and cost columns in the scorecard. Adapters are validated at load: a malformed one fails fast with a message naming every missing export and incomplete capability.
 
 For REST-backed systems there's a no-code path: the bundled **generic HTTP adapter** (`src/adapters/http.mjs`) reads endpoint paths and headers from `opengate.http.json` (see `opengate.http.example.json`), with `${ENV}` interpolation and built-in latency/token capture.
@@ -219,7 +227,6 @@ opengate/
 ## Roadmap
 
 
-- **`opengate init`** — scaffold a starter gold case, an `opengate.http.json`, and a ready `.github/workflows/opengate.yml` into a repo, so a working CI gate is one command
 - **Grounding depth** — the grounding scorer checks anchor recall, fabrication, and abstention deterministically; contextual-precision/recall of the retrieved passages themselves is a natural next metric
 - **Retrieval breadth** — retrieval currently scores one PubMed record type; extend to full-text, citation formatting, and trial detail across PubCrawl's other tools
 - **Retrieval coverage** — the retrieval gold set is one case; add a single-author paper (the exact array-collapse risk the capability exists to catch), a trial (NCT) record, and a full-text/citation case across PubCrawl's other tools

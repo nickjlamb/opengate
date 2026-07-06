@@ -66,6 +66,17 @@ test('loadAdapter: default is the bundled RefCheckr reference adapter', async ()
   assert.deepEqual(a.capabilities, { qa: true, redaction: false, simplify: false, retrieval: false, grounding: false });
 });
 
+test('loadAdapter: bare built-in names resolve to bundled adapters (cwd-independent)', async () => {
+  delete process.env.OPENGATE_ADAPTER;
+  assert.equal((await loadAdapter('http')).name, 'http');
+  assert.equal((await loadAdapter('pubcrawl')).name, 'pubcrawl');
+  assert.equal((await loadAdapter('refcheckr')).name, 'refcheckr');
+});
+
+test('loadAdapter: an unknown bare name is treated as a path and fails clearly', async () => {
+  await assert.rejects(loadAdapter('definitely-not-an-adapter'), /Could not load adapter/);
+});
+
 test('loadAdapter: bundled Redacta adapter exposes the redaction capability', async () => {
   const a = await loadAdapter(new URL('../src/adapters/redacta.mjs', import.meta.url).pathname);
   assert.equal(a.name, 'redacta');

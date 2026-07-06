@@ -20,6 +20,7 @@ import { readdirSync } from 'node:fs';
 import { loadAdapter } from './lib/adapter.mjs';
 import { baselineFileName, resolveBaseline } from './lib/baseline.mjs';
 import { renderReport } from './lib/report.mjs';
+import { initFiles } from './lib/init.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const EVAL_ROOT = join(__dirname, '..');
@@ -83,6 +84,9 @@ Options:
   -v, --version      show version
 
 Commands:
+  init [dir]         scaffold a starter gold set, HTTP config, and a GitHub
+                     Action into dir (default: current directory). --force
+                     overwrites existing files.
   report [snapshot]  render an existing run snapshot to HTML (latest if omitted);
                      --out <file> sets the destination (default results/report.html)
 
@@ -105,6 +109,34 @@ if (args.has('--version') || args.has('-v')) {
 }
 
 const OUT_SPEC = argVal('--out', 'OPENGATE_REPORT_OUT');
+const FORCE = args.has('--force');
+
+// `init [dir]` — scaffold a working setup into a repo.
+if (argv[0] === 'init') {
+  const given = argv.slice(1).find(a => !a.startsWith('-'));
+  const targetDir = given ? resolve(process.cwd(), given) : process.cwd();
+  const created = [];
+  const skipped = [];
+  for (const { path: rel, content } of initFiles()) {
+    const dest = join(targetDir, rel);
+    if (existsSync(dest) && !FORCE) { skipped.push(rel); continue; }
+    await mkdir(dirname(dest), { recursive: true });
+    await writeFile(dest, content);
+    created.push(rel);
+  }
+  console.log(`\nOpenGATE scaffolded into ${targetDir}\n`);
+  for (const f of created) console.log(`  + ${f}`);
+  for (const f of skipped) console.log(`  · ${f} (exists — skipped; use --force to overwrite)`);
+  console.log(`\nNext:
+  1. Point opengate.http.json at your system's answer endpoint.
+  2. export MY_SYSTEM_URL=… MY_SYSTEM_TOKEN=… OPENGATE_HTTP_CONFIG=./opengate.http.json
+  3. Edit datasets/cases/ with questions + context from your domain.
+  4. npx @pharmatools/opengate --online --adapter http --datasets ./datasets --results ./results --report
+
+See OPENGATE.md (just created) or the guide:
+  https://github.com/nickjlamb/opengate/blob/main/docs/GETTING-STARTED.md\n`);
+  process.exit(0);
+}
 
 /** Latest timestamped snapshot in a results dir (excludes baseline.* files). */
 function latestSnapshot(dir) {

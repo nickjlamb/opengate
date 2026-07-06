@@ -11,6 +11,8 @@ The whole model is four steps:
 
 You never send OpenGATE your model. It calls your system, compares the output to hand-labelled gold, and fails the build if a metric drops.
 
+> **Fastest start:** `npx @pharmatools/opengate init` scaffolds a starter gold set, an `opengate.http.json`, and a ready GitHub Action into your repo — then jump to step 2 to point it at your endpoint. The steps below explain what each piece does.
+
 ---
 
 ## 1. Pick your capability

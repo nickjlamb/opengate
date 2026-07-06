@@ -11,10 +11,26 @@
 // is unset, the bundled RefCheckr adapter is used.
 
 import { resolve, basename, dirname, join } from 'node:path';
+import { existsSync } from 'node:fs';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DEFAULT_ADAPTER = join(__dirname, '..', 'adapters', 'refcheckr.mjs');
+const ADAPTERS_DIR = join(__dirname, '..', 'adapters');
+const DEFAULT_ADAPTER = join(ADAPTERS_DIR, 'refcheckr.mjs');
+
+// Resolve an adapter spec to a file path. A bare name (no slash, no .mjs) that
+// matches a bundled adapter — "http", "refcheckr", "pubcrawl", … — resolves to
+// that bundled file regardless of the current directory. This is what lets the
+// GitHub Action reference the bundled HTTP adapter (`adapter: http`) from a
+// consumer's repo. Anything else resolves as a path from the cwd.
+function resolveSpec(spec) {
+  if (!spec) return DEFAULT_ADAPTER;
+  if (/^[a-z0-9_-]+$/i.test(spec)) {
+    const builtin = join(ADAPTERS_DIR, `${spec}.mjs`);
+    if (existsSync(builtin)) return builtin;
+  }
+  return resolve(process.cwd(), spec);
+}
 
 // Base exports every adapter must provide.
 const REQUIRED_BASE = ['onlineAvailable', 'onlineConfigHint'];
@@ -90,7 +106,7 @@ export function validateAdapter(mod, source = 'adapter') {
  */
 export async function loadAdapter(specOverride) {
   const spec = specOverride || process.env.OPENGATE_ADAPTER;
-  const path = spec ? resolve(process.cwd(), spec) : DEFAULT_ADAPTER;
+  const path = resolveSpec(spec);
   let mod;
   try {
     mod = await import(pathToFileURL(path).href);
