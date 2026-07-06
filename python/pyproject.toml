@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opengate-grounding"
+version = "0.1.0"
+description = "Deterministic grounding check for evidence-grounded AI — required facts present, every number traceable, abstention when unanswerable. No LLM judge."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Nick Lamb", email = "info@pharmatools.ai" }]
+keywords = [
+    "evaluation", "grounding", "faithfulness", "hallucination",
+    "rag", "document-qa", "deterministic", "llm", "deepeval", "ragas",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = []
+
+[project.optional-dependencies]
+deepeval = ["deepeval>=0.20"]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://www.pharmatools.ai/opengate"
+Repository = "https://github.com/nickjlamb/opengate"
+Issues = "https://github.com/nickjlamb/opengate/issues"
+
+[tool.setuptools]
+packages = ["opengate_grounding"]
+
+[tool.setuptools.package-data]
+opengate_grounding = ["py.typed"]

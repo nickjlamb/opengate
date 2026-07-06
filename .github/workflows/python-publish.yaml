@@ -1,0 +1,80 @@
+name: Publish Python package
+
+# Publishes opengate-grounding to PyPI via Trusted Publishing (OIDC — no token).
+# Push a tag like `opengate-py-0.1.0` and this builds the sdist + wheel from the
+# python/ subfolder and uploads them to PyPI.
+#
+# One-time setup on PyPI (https://pypi.org/manage/account/publishing/):
+#   Add a "pending publisher" for project `opengate-grounding`:
+#     Owner:            nickjlamb
+#     Repository:       opengate
+#     Workflow name:    python-publish.yaml
+#     Environment:      pypi
+# After the first successful run PyPI links the project to this workflow.
+
+on:
+  push:
+    tags:
+      - 'opengate-py-*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Version to publish, e.g. opengate-py-0.1.0'
+        required: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write       # required for Trusted Publishing
+      contents: read
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Resolve version from tag
+        id: meta
+        run: |
+          TAG="${{ github.ref_type == 'tag' && github.ref_name || github.event.inputs.tag }}"
+          echo "version=${TAG#opengate-py-}" >> "$GITHUB_OUTPUT"
+
+      - name: Sync package version to the tag
+        run: |
+          V="${{ steps.meta.outputs.version }}"
+          python - "$V" <<'PY'
+          import re, sys
+          v = sys.argv[1]
+          p = "pyproject.toml"
+          s = open(p).read()
+          s = re.sub(r'(?m)^version = ".*"$', f'version = "{v}"', s, count=1)
+          open(p, "w").write(s)
+          init = "opengate_grounding/__init__.py"
+          t = open(init).read()
+          t = re.sub(r'(?m)^__version__ = ".*"$', f'__version__ = "{v}"', t, count=1)
+          open(init, "w").write(t)
+          print(f"synced version -> {v}")
+          PY
+
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install --upgrade build
+          python -m build
+
+      - name: Check the artifacts
+        run: |
+          python -m pip install --upgrade twine
+          twine check dist/*
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: python/dist/
