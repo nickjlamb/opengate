@@ -128,6 +128,12 @@ node src/runner.mjs --online \
 
 You'll get a scorecard: answer recall, ungrounded-number count, abstention rate, and a **PASS/FAIL**. Every failure is named ("missing answer fact …", "ungrounded number …", "did not abstain"), so you know exactly what broke.
 
+Add `--report` for a shareable HTML dashboard (`results/report.html`) — pass/fail per scorer, deltas vs baseline, and the named failures, in one self-contained file you can open or attach to a CI run:
+
+```bash
+node src/runner.mjs --online --adapter ./src/adapters/http.mjs --datasets ./datasets --results ./results --report
+```
+
 Save a baseline once you're happy, then gate every change against it:
 
 ```bash

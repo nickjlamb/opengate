@@ -16,8 +16,10 @@ import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import { execSync } from 'node:child_process';
+import { readdirSync } from 'node:fs';
 import { loadAdapter } from './lib/adapter.mjs';
 import { baselineFileName, resolveBaseline } from './lib/baseline.mjs';
+import { renderReport } from './lib/report.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const EVAL_ROOT = join(__dirname, '..');
@@ -27,6 +29,7 @@ const args = new Set(argv.filter(a => a.startsWith('-')));
 const ONLINE = args.has('--online');
 const CI = args.has('--ci');
 const SAVE_BASELINE = args.has('--baseline');
+const REPORT = args.has('--report');
 
 // Value-taking flag: `--name <value>`, falling back to an env var.
 function argVal(flag, envName) {
@@ -75,8 +78,13 @@ Options:
                      (overrides OPENGATE_DATASETS; default: bundled datasets/)
   --results <dir>    where to write snapshots and baseline.json
                      (overrides OPENGATE_RESULTS; default: bundled results/)
+  --report           also write an HTML dashboard (results/report.html)
   -h, --help         show this help
   -v, --version      show version
+
+Commands:
+  report [snapshot]  render an existing run snapshot to HTML (latest if omitted);
+                     --out <file> sets the destination (default results/report.html)
 
 Environment:
   OPENGATE_ADAPTER        adapter module path
@@ -93,6 +101,51 @@ Docs: README.md · ADAPTERS.md`);
 if (args.has('--version') || args.has('-v')) {
   const pkg = JSON.parse(await readFile(join(dirname(fileURLToPath(import.meta.url)), '..', 'package.json'), 'utf8'));
   console.log(pkg.version);
+  process.exit(0);
+}
+
+const OUT_SPEC = argVal('--out', 'OPENGATE_REPORT_OUT');
+
+/** Latest timestamped snapshot in a results dir (excludes baseline.* files). */
+function latestSnapshot(dir) {
+  if (!existsSync(dir)) return null;
+  const files = readdirSync(dir)
+    .filter(f => f.endsWith('.json') && !f.startsWith('baseline'))
+    .sort();
+  return files.length ? join(dir, files[files.length - 1]) : null;
+}
+
+/** Load the per-adapter baseline for a snapshot (for delta columns). */
+async function baselineFor(dir, adapterName) {
+  if (!adapterName) return null;
+  const legacyPath = join(dir, 'baseline.json');
+  let legacyAdapter = null;
+  if (existsSync(legacyPath)) {
+    try { legacyAdapter = JSON.parse(await readFile(legacyPath, 'utf8')).adapter ?? null; } catch { /* ignore */ }
+  }
+  const chosen = resolveBaseline(adapterName, {
+    perAdapter: existsSync(join(dir, baselineFileName(adapterName))),
+    legacy: existsSync(legacyPath),
+    legacyAdapter,
+  });
+  if (!chosen) return null;
+  try { return JSON.parse(await readFile(join(dir, chosen.file), 'utf8')); } catch { return null; }
+}
+
+// `report [snapshot]` — render an existing snapshot to HTML without re-running.
+if (argv[0] === 'report') {
+  const given = argv.slice(1).find(a => !a.startsWith('-'));
+  const snapPath = given ? resolve(process.cwd(), given) : latestSnapshot(RESULTS_DIR);
+  if (!snapPath || !existsSync(snapPath)) {
+    console.error(`No snapshot to report. Run an eval first, or pass a path: opengate report <snapshot.json>`);
+    process.exit(2);
+  }
+  const snapshot = JSON.parse(await readFile(snapPath, 'utf8'));
+  const baseline = await baselineFor(RESULTS_DIR, snapshot.adapter);
+  const outPath = OUT_SPEC ? resolve(process.cwd(), OUT_SPEC) : join(RESULTS_DIR, 'report.html');
+  await mkdir(dirname(outPath), { recursive: true });
+  await writeFile(outPath, renderReport(snapshot, { baseline }));
+  console.log(`report written: ${outPath}`);
   process.exit(0);
 }
 
@@ -187,6 +240,12 @@ async function main() {
     results: results.map(({ detail, ...rest }) => rest), // drop bulky detail from snapshot
   };
   await writeFile(join(RESULTS_DIR, `${stamp}.json`), JSON.stringify({ ...snapshot, results }, null, 2));
+  if (REPORT) {
+    const baselineForReport = SAVE_BASELINE ? null : await baselineFor(RESULTS_DIR, adapter.name);
+    const outPath = OUT_SPEC ? resolve(process.cwd(), OUT_SPEC) : join(RESULTS_DIR, 'report.html');
+    await writeFile(outPath, renderReport({ ...snapshot, results }, { baseline: baselineForReport }));
+    console.log(`  HTML report: ${outPath}`);
+  }
   if (SAVE_BASELINE) {
     // Baselines are per-adapter — a PubCrawl scorecard must not overwrite a
     // RefCheckr one (they share no metrics).

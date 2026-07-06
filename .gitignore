@@ -5,5 +5,6 @@ node_modules/
 # Run snapshots are local artifacts; commit baseline.json deliberately if you
 # want a shared regression reference.
 results/*.json
+results/*.html
 !results/baseline.json
 !results/baseline.*.json

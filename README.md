@@ -121,6 +121,8 @@ Offline scorers run with no API key — fast enough for every commit. Online sco
 
 **Regression gate** — `--baseline` saves a reference; subsequent runs print per-metric deltas (▲/▼ in percentage points) and `--ci` fails the build on any drop. Baselines are **per-adapter** (`baseline.<adapter>.json`), so a PubCrawl retrieval scorecard can't clobber a RefCheckr QA one — each adapter keeps its own reference. No change ships without proving it didn't make the system less reliable.
 
+**HTML report** — add `--report` to any run (or `opengate report` to render the latest snapshot) for a self-contained HTML dashboard: pass/fail per scorer, metric deltas vs baseline, and every named failure. One file — open it, email it, or attach it to a CI run. No dependencies, no server.
+
 ## Adapters: evaluating your own system
 
 Scorers never talk to a system directly — they go through an adapter, injected by the runner. The bundled `src/adapters/refcheckr.mjs` is the reference implementation; select your own with:
@@ -217,6 +219,7 @@ opengate/
 ## Roadmap
 
 
+- **`opengate init`** — scaffold a starter gold case, an `opengate.http.json`, and a ready `.github/workflows/opengate.yml` into a repo, so a working CI gate is one command
 - **Grounding depth** — the grounding scorer checks anchor recall, fabrication, and abstention deterministically; contextual-precision/recall of the retrieved passages themselves is a natural next metric
 - **Retrieval breadth** — retrieval currently scores one PubMed record type; extend to full-text, citation formatting, and trial detail across PubCrawl's other tools
 - **Retrieval coverage** — the retrieval gold set is one case; add a single-author paper (the exact array-collapse risk the capability exists to catch), a trial (NCT) record, and a full-text/citation case across PubCrawl's other tools
