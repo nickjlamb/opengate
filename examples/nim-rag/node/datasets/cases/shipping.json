@@ -1,0 +1,13 @@
+{
+  "id": "nim-shipping",
+  "kind": "grounding",
+  "description": "Product-docs RAG: delivery times and free-shipping threshold, strictly from context.",
+  "question": "Is standard shipping free, and how long does delivery usually take?",
+  "context": "Shipping. Standard shipping is free on orders over $50; orders under $50 incur a flat $4.99 fee. Standard delivery takes 3 to 5 business days. Expedited shipping (next business day) is available at checkout for an additional charge.",
+  "answerAnchors": [
+    { "value": "free", "aliases": ["free shipping", "no charge"] },
+    { "value": "3 to 5 business days", "aliases": ["3-5 business days", "3–5 business days", "three to five business days"] }
+  ],
+  "allowedNewNumbers": ["50", "4.99"],
+  "answerable": true
+}

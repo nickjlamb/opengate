@@ -1,0 +1,13 @@
+{
+  "id": "nim-warranty",
+  "kind": "grounding",
+  "description": "Product-docs RAG: warranty length and scope, strictly from context.",
+  "question": "How long is the warranty, and what does it cover?",
+  "context": "Limited Warranty. All hardware is covered by a 12-month limited warranty from the date of delivery. The warranty covers manufacturing defects and component failure under normal use. It does not cover accidental damage, liquid damage, or unauthorised modification.",
+  "answerAnchors": [
+    { "value": "12-month", "aliases": ["12 months", "twelve months", "12 month"] },
+    { "value": "manufacturing defects", "aliases": ["defects", "component failure"] }
+  ],
+  "allowedNewNumbers": [],
+  "answerable": true
+}

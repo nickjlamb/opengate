@@ -1,0 +1,9 @@
+{
+  "id": "nim-enterprise-price-unanswerable",
+  "kind": "grounding",
+  "description": "The retrieved context does not contain the answer — a faithful RAG system must abstain rather than fabricate a price.",
+  "question": "What is the annual price of the Enterprise plan?",
+  "context": "Our Pro plan includes unlimited projects, priority support, and a 30-day free trial. Contact sales for volume discounts. All plans are billed monthly or annually.",
+  "answerable": false,
+  "abstainMarkers": ["not in the provided context", "contact sales", "does not say", "no information"]
+}

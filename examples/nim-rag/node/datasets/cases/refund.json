@@ -1,0 +1,13 @@
+{
+  "id": "nim-refund",
+  "kind": "grounding",
+  "description": "Product-docs RAG: answer must come from the retrieved refund policy; no invented figures.",
+  "question": "How many days do customers have to request a refund, and is there a restocking fee?",
+  "context": "Refund Policy. Customers may request a full refund within 30 days of purchase for any reason. Refunds are processed to the original payment method within 5 business days. There is no restocking fee for standard plans. Enterprise hardware returns are subject to a 15% restocking fee.",
+  "answerAnchors": [
+    { "value": "30 days", "aliases": ["30-day", "thirty days"] },
+    { "value": "no restocking fee", "aliases": ["without a restocking fee", "no fee"] }
+  ],
+  "allowedNewNumbers": [],
+  "answerable": true
+}

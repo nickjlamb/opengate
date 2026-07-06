@@ -1,0 +1,2 @@
+openai>=1.0
+opengate-grounding>=0.1.0
