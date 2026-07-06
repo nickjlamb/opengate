@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "type": "module",
   "description": "MCP server for OpenGATE \u2014 let an AI agent check whether its answers are grounded in the provided context. Deterministic, no LLM judge.",
+  "mcpName": "io.github.nickjlamb/opengate-mcp",
   "license": "MIT",
   "author": "Nick Lamb (https://www.pharmatools.ai)",
   "homepage": "https://www.pharmatools.ai/opengate",
@@ -29,6 +30,12 @@
   ],
   "engines": {
     "node": ">=18"
+  },
+  "scripts": {
+    "build:mcpb": "node mcpb-build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

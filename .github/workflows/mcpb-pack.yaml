@@ -1,0 +1,174 @@
+name: Release MCPB
+
+# Pull-based publishing for the Anthropic MCP Directory.
+# Push a tag like `opengate-mcp-0.1.2` (or publish a GitHub Release on that tag)
+# and this workflow builds the bundle, packs a versioned .mcpb, attaches it to
+# the Release, publishes the npm package, and publishes to the official MCP
+# Registry. The directory review cycle picks the new tag up from there.
+#
+# Tag convention: opengate-mcp-<version>  ->  asset opengate-mcp-<version>.mcpb
+# The MCP server lives in the mcp/ subfolder of this repo.
+#
+# One-time setup required for the npm + registry jobs:
+#   - Configure a Trusted Publisher on npmjs.com for @pharmatools/opengate-mcp
+#     pointing at this repo + this workflow (tokenless OIDC; no NPM_TOKEN needed).
+#   - The io.github.nickjlamb registry namespace is granted automatically because
+#     the workflow runs in a repo owned by that user.
+# The build-and-release (.mcpb) job needs no setup and is the one Anthropic pulls.
+
+on:
+  push:
+    tags:
+      - 'opengate-mcp-*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to (re)build, e.g. opengate-mcp-0.1.2'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mcp
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: mcp/package-lock.json
+
+      - name: Resolve tag and version
+        id: meta
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            TAG="${{ github.ref_name }}"
+          else
+            TAG="${{ github.event.inputs.tag }}"
+          fi
+          VERSION="${TAG#opengate-mcp-}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Building $TAG (version $VERSION)"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync versions to the release tag
+        run: |
+          V="${{ steps.meta.outputs.version }}"
+          jq --arg v "$V" '.version = $v' package.json > package.tmp.json && mv package.tmp.json package.json
+          jq --arg v "$V" '.version = $v' mcpb/manifest.json > manifest.tmp.json && mv manifest.tmp.json mcpb/manifest.json
+
+      - name: Build MCPB bundle
+        run: npm run build:mcpb
+
+      - name: Pack extension
+        run: npx @anthropic-ai/mcpb pack mcpb "${{ steps.meta.outputs.tag }}.mcpb"
+
+      - name: List bundle contents
+        run: unzip -l "${{ steps.meta.outputs.tag }}.mcpb"
+
+      - name: Attach .mcpb to the GitHub Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: mcp/${{ steps.meta.outputs.tag }}.mcpb
+          asset_name: ${{ steps.meta.outputs.tag }}.mcpb
+          tag: ${{ steps.meta.outputs.tag }}
+          overwrite: true
+
+  publish-npm:
+    needs: build-and-release
+    if: needs.build-and-release.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    defaults:
+      run:
+        working-directory: mcp
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+          cache-dependency-path: mcp/package-lock.json
+
+      - name: Upgrade npm (Trusted Publishing needs >= 11.5.1)
+        run: npm install -g npm@latest
+
+      - name: Resolve version
+        id: meta
+        run: |
+          TAG="${{ github.ref_type == 'tag' && github.ref_name || github.event.inputs.tag }}"
+          echo "version=${TAG#opengate-mcp-}" >> "$GITHUB_OUTPUT"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync package version to the tag
+        run: |
+          jq --arg v "${{ steps.meta.outputs.version }}" '.version = $v' package.json > package.tmp.json && mv package.tmp.json package.json
+
+      - name: Publish to npm (Trusted Publishing)
+        run: npm publish --access public
+
+  publish-registry:
+    needs: publish-npm
+    if: needs.publish-npm.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    defaults:
+      run:
+        working-directory: mcp
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: meta
+        run: |
+          TAG="${{ github.ref_type == 'tag' && github.ref_name || github.event.inputs.tag }}"
+          echo "version=${TAG#opengate-mcp-}" >> "$GITHUB_OUTPUT"
+
+      - name: Sync server.json to the tag version
+        run: |
+          V="${{ steps.meta.outputs.version }}"
+          jq --arg v "$V" '.version = $v | .packages[].version = $v' server.json > server.tmp.json && mv server.tmp.json server.json
+
+      - name: Wait for npm to index the new version
+        run: |
+          for i in $(seq 1 20); do
+            if npm view "@pharmatools/opengate-mcp@${{ steps.meta.outputs.version }}" version >/dev/null 2>&1; then
+              echo "@pharmatools/opengate-mcp@${{ steps.meta.outputs.version }} is live on npm"; exit 0
+            fi
+            echo "waiting for npm... ($i)"; sleep 15
+          done
+          echo "npm version not visible yet" >&2; exit 1
+
+      - name: Install mcp-publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz
+          chmod +x mcp-publisher
+
+      - name: Login via GitHub OIDC
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish to the MCP Registry
+        run: ./mcp-publisher publish

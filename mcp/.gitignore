@@ -1,0 +1,5 @@
+node_modules/
+# Build artifacts (produced by `npm run build:mcpb` and `mcpb pack`)
+mcpb/server.mjs
+mcpb/icon.png
+*.mcpb

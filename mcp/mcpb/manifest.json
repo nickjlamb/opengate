@@ -1,0 +1,46 @@
+{
+  "manifest_version": "0.2",
+  "name": "opengate",
+  "display_name": "OpenGATE — Grounding Check",
+  "version": "0.1.1",
+  "description": "Let an AI agent check whether its own answers are grounded in the provided context — deterministically, with no LLM judge.",
+  "long_description": "OpenGATE's grounding check gives RAG, document-QA, and retrieval agents a way to self-check before they reply. Unlike LLM-as-judge evaluators, the check is pure logic — reproducible, free, and fast enough to run on every answer. It catches the three grounding failures that matter in production: dropped facts (the specific facts a correct answer must contain actually appear), fabricated numbers (every figure traces back to the retrieved context or the question), and failure to abstain (when the context does not contain the answer, the agent must decline rather than make something up). It returns a clear grounded / not-grounded verdict with named issues. All processing happens locally in the server process — no network calls, no third-party model, nothing stored. It is the same deterministic check that powers the open-source OpenGATE evaluation framework's CI gate.",
+  "author": {
+    "name": "Nick Lamb",
+    "email": "info@pharmatools.ai",
+    "url": "https://www.pharmatools.ai"
+  },
+  "homepage": "https://www.pharmatools.ai/opengate",
+  "documentation": "https://github.com/nickjlamb/opengate/tree/main/mcp",
+  "support": "mailto:info@pharmatools.ai",
+  "icon": "icon.png",
+  "license": "MIT",
+  "keywords": [
+    "evaluation",
+    "grounding",
+    "faithfulness",
+    "hallucination",
+    "rag",
+    "document-qa",
+    "deterministic",
+    "agent-self-check"
+  ],
+  "privacy_policies": [
+    "https://www.pharmatools.ai/privacy"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "server.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server.mjs"]
+    }
+  },
+  "tools": [
+    {
+      "name": "check_grounding",
+      "description": "Check whether an answer is grounded in the provided context: required facts present, every number traceable to the source, and abstention when the context cannot answer. Deterministic, no LLM judge."
+    }
+  ],
+  "tools_generated": false
+}
