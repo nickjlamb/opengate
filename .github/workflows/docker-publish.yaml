@@ -37,6 +37,14 @@ jobs:
           TAG="${{ github.ref_type == 'tag' && github.ref_name || github.event.inputs.tag }}"
           echo "version=${TAG#opengate-docker-}" >> "$GITHUB_OUTPUT"
 
+      - name: Check credentials are present
+        env:
+          U: ${{ secrets.DOCKERHUB_USERNAME }}
+          T: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          [ -n "$U" ] && echo "DOCKERHUB_USERNAME: set (${#U} chars)" || echo "DOCKERHUB_USERNAME: EMPTY / not visible to this run"
+          [ -n "$T" ] && echo "DOCKERHUB_TOKEN: set (${#T} chars)" || echo "DOCKERHUB_TOKEN: EMPTY / not visible to this run"
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
