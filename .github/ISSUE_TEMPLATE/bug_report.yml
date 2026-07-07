@@ -1,0 +1,44 @@
+name: Bug report
+description: Something isn't working as documented
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting. Please include enough detail to reproduce.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what actually occurred?
+      placeholder: The grounding scorer flagged an ungrounded number that is in the context…
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: A command, adapter/config, or minimal gold case that triggers it.
+      render: shell
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Which surface?
+      options:
+        - CLI / framework (npx @pharmatools/opengate)
+        - GitHub Action
+        - Python package (opengate-grounding)
+        - MCP server (@pharmatools/opengate-mcp)
+        - Docker image
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Package/image version and Node version (`node -v`).
+      placeholder: "opengate 0.9.0, node v20.11.0"
+    validations:
+      required: true

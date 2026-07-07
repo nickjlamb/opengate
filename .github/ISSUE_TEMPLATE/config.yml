@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Getting Started guide
+    url: https://github.com/nickjlamb/opengate/blob/main/docs/GETTING-STARTED.md
+    about: Zero to a CI gate for your own system — check here before filing.
+  - name: OpenGATE overview
+    url: https://www.pharmatools.ai/opengate
+    about: What OpenGATE is and where it fits.

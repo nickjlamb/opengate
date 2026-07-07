@@ -1,0 +1,39 @@
+# Configuration for GitHub's auto-generated release notes.
+# Categorises merged PRs by label so every release reads cleanly.
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+      - duplicate
+    authors:
+      - dependabot
+  categories:
+    - title: ✨ Features
+      labels:
+        - feature
+        - enhancement
+    - title: 🐛 Fixes
+      labels:
+        - bug
+        - fix
+    - title: 🧪 Scorers & gold cases
+      labels:
+        - scorer
+        - gold-case
+        - dataset
+    - title: 🔌 Adapters & integrations
+      labels:
+        - adapter
+        - integration
+    - title: 📚 Documentation
+      labels:
+        - documentation
+        - docs
+    - title: 🔧 Maintenance
+      labels:
+        - chore
+        - refactor
+        - ci
+    - title: Other changes
+      labels:
+        - "*"

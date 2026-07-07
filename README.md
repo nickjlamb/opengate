@@ -1,305 +1,223 @@
+<div align="center">
+
 # OpenGATE
 
-[![CI](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml/badge.svg)](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/%40pharmatools%2Fopengate)](https://www.npmjs.com/package/@pharmatools/opengate)
+### Open Grounded AI Testing & Evaluation
 
-**Evidence over plausibility.**
+**Deterministic, gold-anchored evaluation for evidence-grounded AI — no LLM judge.**
 
-OpenGATE is an open-source framework for evaluating evidence-grounded AI systems — systems that must justify every answer from underlying source documents. It measures one thing above all: **can the system prove its answer from the source material?**
+[![CI](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml/badge.svg)](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/%40pharmatools%2Fopengate?label=npm&logo=npm&color=cb3837)](https://www.npmjs.com/package/@pharmatools/opengate)
+[![PyPI](https://img.shields.io/pypi/v/opengate-grounding?label=PyPI&logo=pypi&logoColor=white&color=3775A9)](https://pypi.org/project/opengate-grounding/)
+[![Docker](https://img.shields.io/docker/v/pharmatools/opengate?label=Docker&logo=docker&logoColor=white&color=2496ED&sort=semver)](https://hub.docker.com/r/pharmatools/opengate)
+[![node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-As AI moves into high-stakes domains — healthcare, scientific publishing, regulatory, legal, finance — evaluation is becoming as fundamental as automated testing is in traditional software engineering. OpenGATE turns grounding failures into numbers you can track, and gates every prompt, model, or workflow change against a baseline so reliability can't quietly regress.
+[Quick start](#quick-start-60-seconds) · [Architecture](#architecture) · [Surfaces](#one-check-many-surfaces) · [Examples](examples/) · [Roadmap](docs/ROADMAP.md) · [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md)
 
-Originally developed to power [RefCheckr](https://www.pharmatools.ai/refcheckr). Designed to evaluate any AI system built on retrieved documents or reference material.
+</div>
 
-**Evaluating your own RAG, doc-QA, or legal/scientific assistant?** Scaffold a working setup in one command:
+---
 
-```bash
-npx @pharmatools/opengate init      # gold cases + HTTP config + GitHub Action
-```
+**Evidence over plausibility.** OpenGATE evaluates AI systems that must justify every answer from source material — RAG pipelines, document-QA tools, legal and scientific assistants. It measures one thing above all: **can the system prove its answer from the evidence it was given?**
 
-Then point `opengate.http.json` at your endpoint and run. Full walkthrough in the **[Getting Started guide](docs/GETTING-STARTED.md)**.
+The check is **deterministic** — no LLM-as-judge, no grader model, no six-point verdict scale. Required facts must be present, every number must trace back to the source, and when the context can't answer, the system must abstain rather than fabricate. Because it's pure logic, it's reproducible, free, and fast enough to run on every answer or gate on every commit.
 
-## Why not DeepEval?
+> As AI moves into high-stakes domains, evaluation is becoming as fundamental as automated testing is in traditional software. OpenGATE turns grounding failures into numbers you can track, and gates every prompt, model, or workflow change against a baseline — so reliability can't quietly regress.
 
-Use both. General-purpose frameworks such as DeepEval and OpenAI Evals evaluate AI systems in general. OpenGATE specialises in systems that must justify every answer from evidence:
+## Quick start (60 seconds)
 
-- **Provenance is first-class** — does the cited passage actually exist, verbatim, in the source?
-- **Citation fidelity is first-class** — are the right citations detected and mapped to the right references?
-- **Regression detection is first-class** — every run is diffed against a baseline; drops fail the build.
-
-If your system's core promise is *grounded* answers, these aren't plugins — they're the whole evaluation. That's the niche OpenGATE fills.
-
-## First evaluation in 60 seconds
-
-No API key needed — the offline suite tests deterministic logic against the bundled gold set:
+No API key needed — the offline suite runs deterministic scorers against the bundled gold set:
 
 ```bash
-npx @pharmatools/opengate
-```
-
-Or from a clone:
-
-```bash
-git clone https://github.com/nickjlamb/opengate.git
-cd opengate
-npm run eval
-```
-
-For programmatic use, the metric and citation primitives are importable directly:
-
-```js
-import { detectCitations, verdictAccuracy, precisionRecallF1 } from '@pharmatools/opengate';
+npx @pharmatools/opengate           # run the offline evaluation suite
+npx @pharmatools/opengate init      # scaffold gold cases + HTTP config + a GitHub Action
 ```
 
 ```
-OpenGATE — 25 case(s), online=false, sha=eff971b
+OpenGATE — 39 case(s), online=false, adapter=refcheckr
 
   ✓ citation-detection   PASS
       perClaim_exactSetRate      100.0%
       perClaim_jaccardMean       100.0%
       supportedStyle_accuracy    100.0%
-  ⊘ claim-extraction     SKIPPED — online scorer (pass --online)
-  ⊘ verdict-accuracy     SKIPPED — online scorer (pass --online)
+  ⊘ grounding            SKIPPED — online scorer (pass --online)
 ```
 
-To run the online scorers against a live system (bundled RefCheckr adapter):
+Point `opengate.http.json` at your endpoint and add `--online --ci` to gate your own system. Full walkthrough: **[Getting Started](docs/GETTING-STARTED.md)**.
 
-```bash
-export REFCHECKR_BASE_URL=http://localhost:3848
-export REFCHECKR_TOKEN=<a valid auth token>
-export OPENGATE_EVAL_REPEATS=3        # optional: measure verdict consistency
-export OPENGATE_EVAL_MODEL=sonar-pro  # optional: label the model in the scorecard
+## One check, many surfaces
 
-npm run eval:online
-npm run eval:baseline   # save current run as the regression reference
-npm run eval:ci         # exit non-zero on any failure or metric regression
-```
+The same deterministic grounding logic ships wherever your stack lives:
+
+| Surface | Install | Use it for |
+|---|---|---|
+| **CLI + framework** | `npx @pharmatools/opengate` | Full eval suite, adapters, regression gate |
+| **GitHub Action** | `uses: nickjlamb/opengate@v0` | Drop-in CI gate in any repo |
+| **Python package** | `pip install opengate-grounding` | `check_grounding()`, pytest gate, [DeepEval](https://deepeval.com) metric |
+| **MCP server** | `npx @pharmatools/opengate-mcp` | Agents that verify their own answers inline |
+| **Docker image** | `docker run pharmatools/opengate` | CPU-only, containerised pipelines |
 
 ## Architecture
 
-```
-                        ┌─────────────────────────────────┐
-                        │            OpenGATE             │
-                        │                                 │
-                        │  benchmark datasets (gold sets) │
-                        │  scorers (one per metric family)│
-                        │  scorecards (versioned, on disk)│
-                        │  regression gate (CI)           │
-                        └───────────────┬─────────────────┘
-                                        │ adapters
-                 ┌──────────────┬───────┴──────┬──────────────┐
-                 ▼              ▼              ▼              ▼
-          RefCheckr    Redacta    Patiently AI   PubCrawl    your system
-         (QA, first) (redaction)  (simplify)   (retrieval)  (write one)
+```mermaid
+flowchart TB
+    subgraph CORE["OpenGATE core"]
+        direction TB
+        G["Gold datasets — hand-labelled cases"]
+        S["Scorers — one per metric family"]
+        R["Scorecards — versioned JSON + HTML"]
+        C["Regression gate — baseline diff, CI"]
+        G --> S --> R
+        S --> C
+    end
+    CORE -->|"adapter (one file)"| SUT
+    subgraph SUT["Systems under test"]
+        direction TB
+        A["RefCheckr — QA / citations"]
+        B["Redacta — redaction"]
+        D["Patiently AI — simplification"]
+        E["PubCrawl — retrieval"]
+        Y["Your system — write one adapter"]
+    end
 ```
 
-Where it sits in the development loop:
+Scorers never talk to a system directly — they reach it through a small **adapter**, so the methodology travels and only the gold set changes. Where it sits in the development loop:
 
+```mermaid
+flowchart LR
+    CH["Change a prompt, model,<br/>or pipeline"] --> RUN["Run OpenGATE"]
+    RUN --> Q{"Metrics vs<br/>baseline?"}
+    Q -->|"improved / held"| DEP["Deploy"]
+    Q -->|"regressed"| INV["Build fails —<br/>investigate"]
 ```
-change a prompt, model, or pipeline
-              ↓
-        run OpenGATE
-              ↓
-     metrics vs baseline?
-        ↙          ↘
-  ▲ improved      ▼ regressed
-    deploy         investigate (build fails in CI)
-```
+
+## Why not DeepEval?
+
+Use both. General-purpose frameworks like DeepEval and OpenAI Evals evaluate AI systems broadly. OpenGATE specialises in systems whose core promise is *grounded* answers:
+
+- **Provenance is first-class** — does the cited passage actually exist, verbatim, in the source?
+- **No LLM judge** — scores are deterministic checks against hand-labelled gold, so they're reproducible and free to run in CI; your judgment lives in the gold set, not a grader model's.
+- **Regression detection is first-class** — every run is diffed against a per-adapter baseline; a drop fails the build.
+
+Pair a general framework for broad quality metrics with OpenGATE to gate the grounding.
 
 ## Core concepts
 
-**Gold cases** — hand-labelled benchmark cases (`datasets/cases/`): source text, the claims that should be extracted, the sentences that should *not* be, and reference snippets with known-correct verdicts. Copy `_template.json` to add one; format spec in `datasets/SCHEMA.md`, labelling rules in `datasets/LABELING-GUIDE.md`.
+**Gold cases** — hand-labelled benchmark cases (`datasets/cases/`): source text, the claims that should be extracted, the sentences that should *not* be, and reference snippets with known-correct verdicts. Copy `_template.json` to add one; format in [`datasets/SCHEMA.md`](datasets/SCHEMA.md), labelling rules in [`datasets/LABELING-GUIDE.md`](datasets/LABELING-GUIDE.md).
 
 **Scorers** — one module per metric family (`src/scorers/`):
 
-| Scorer | Mode | Metrics |
+| Scorer | Mode | Measures |
 |---|---|---|
-| `citation-detection` | offline | per-claim citation set exact-match & Jaccard; supported-style accuracy; tracked known-gap styles |
-| `claim-extraction` | online | precision / recall / F1 vs gold; non-claim leakage; citation agreement; **fidelity** (extracted claim is verbatim from source) |
-| `verdict-accuracy` | online | exact & adjacency accuracy on a six-point support scale; confusion matrix; **passage hallucination rate**; consistency across repeats; per-claim latency (p50/p95) and token usage for real cost/claim |
-| `redaction` | online | recall on gold identifiers with **leaks as named failures** (verbatim, and word-level for names); over-redaction count; known-gap tracking for documented engine gaps |
-| `simplification` | online | faithfulness of rewritten text: **anchor recall** (critical facts like doses must survive), **fabricated numbers** (nothing invented), length-contract gates, readability grade (info) |
-| `retrieval` | online | fidelity of retrieved records vs the authority: field presence, hand-verified **anchor fields** (author surnames, year, distinctive abstract phrases), and structural invariants that catch parser regressions (collapsed author arrays, `[object Object]` leakage) |
-| `grounding` | online | generic RAG / document QA: **answer-anchor recall** (did it answer correctly from context), **fabrication** against the retrieved context (no invented numbers), and **abstention** (declines when the context lacks the answer). No verdict scale or citation mapping — the turnkey path for non-RefCheckr-shaped systems |
+| `citation-detection` | offline | per-claim citation set exact-match & Jaccard; supported-style accuracy |
+| `claim-extraction` | online | precision / recall / F1 vs gold; non-claim leakage; **fidelity** (claim is verbatim from source) |
+| `verdict-accuracy` | online | exact & adjacency accuracy on a six-point scale; **passage hallucination rate**; consistency; latency & token cost |
+| `redaction` | online | recall on gold identifiers with **leaks as named failures**; over-redaction; known-gap tracking |
+| `simplification` | online | faithfulness of rewrites: **anchor recall** (critical facts survive), **fabricated numbers**, length gates |
+| `retrieval` | online | fidelity of retrieved records vs the authority: **anchor fields** + structural invariants |
+| `grounding` | online | generic RAG: **answer-anchor recall**, **fabrication** vs context, and **abstention**. The turnkey path |
 
 Offline scorers run with no API key — fast enough for every commit. Online scorers exercise a live system through an adapter.
 
-**Scorecards** — every run writes `results/<timestamp>.json` stamped with the git SHA, so any result is reproducible and auditable. Per-model runs carry a `run_model` label, turning the results directory into a measured model comparison (accuracy × hallucination × latency × cost).
+**Scorecards** — every run writes `results/<timestamp>.json` stamped with the git SHA, so any result is reproducible and auditable. Per-model runs carry a `run_model` label, turning the results directory into a measured comparison (accuracy × hallucination × latency × cost).
 
-**Regression gate** — `--baseline` saves a reference; subsequent runs print per-metric deltas (▲/▼ in percentage points) and `--ci` fails the build on any drop. Baselines are **per-adapter** (`baseline.<adapter>.json`), so a PubCrawl retrieval scorecard can't clobber a RefCheckr QA one — each adapter keeps its own reference. No change ships without proving it didn't make the system less reliable.
+**Regression gate** — `--baseline` saves a reference; later runs print per-metric deltas (▲/▼ in percentage points) and `--ci` fails the build on any drop. Baselines are **per-adapter**, so one system's scorecard can't clobber another's.
 
-**HTML report** — add `--report` to any run (or `opengate report` to render the latest snapshot) for a self-contained HTML dashboard: pass/fail per scorer, metric deltas vs baseline, and every named failure. One file — open it, email it, or attach it to a CI run. No dependencies, no server.
+**HTML report** — add `--report` (or `opengate report`) for a self-contained dashboard: pass/fail per scorer, deltas vs baseline, every named failure. One file, no server, no dependencies.
 
-## Adapters: evaluating your own system
+## Evaluating your own system
 
-Scorers never talk to a system directly — they go through an adapter, injected by the runner. The bundled `src/adapters/refcheckr.mjs` is the reference implementation; select your own with:
+An adapter is one file: two base exports — `onlineAvailable()`, `onlineConfigHint()` — plus at least one complete **capability** (e.g. `grounding` → `answer()`). Scorers check `adapter.capabilities` and skip cleanly across the boundary; adapters are validated at load with messages naming every missing export.
 
 ```bash
 OPENGATE_ADAPTER=./adapters/my-system.mjs npm run eval:online
 ```
 
-`--adapter` (and `OPENGATE_ADAPTER`) accept a path, or a bare bundled-adapter name — `http`, `refcheckr`, `redacta`, `patiently`, `pubcrawl` — which resolves regardless of the current directory. That's what lets the GitHub Action reference the bundled HTTP adapter with just `adapter: http`.
-
-An adapter is one file: two base exports — `onlineAvailable()`, `onlineConfigHint()` — plus at least one complete **capability**: `qa` (`splitClaims` + `analyzeBatch`) or `redaction` (`redact`). Scorers check `adapter.capabilities` and skip cleanly across the boundary. Optional timing/token/model-label hooks unlock latency and cost columns in the scorecard. Adapters are validated at load: a malformed one fails fast with a message naming every missing export and incomplete capability.
-
-For REST-backed systems there's a no-code path: the bundled **generic HTTP adapter** (`src/adapters/http.mjs`) reads endpoint paths and headers from `opengate.http.json` (see `opengate.http.example.json`), with `${ENV}` interpolation and built-in latency/token capture.
-
-Full contract, minimal skeleton, and verdict-mapping notes: **[ADAPTERS.md](ADAPTERS.md)**. New to OpenGATE? The **[Getting Started guide](docs/GETTING-STARTED.md)** walks a generic RAG system from zero to a CI gate.
-
-**The methodology travels; only the gold set changes.**
-
-## MCP server: agents that check their own grounding
-
-Beyond CI, OpenGATE's grounding check is available as an [MCP](https://modelcontextprotocol.io) server ([`@pharmatools/opengate-mcp`](mcp/)), so an AI agent can verify its own answers before returning them — "here's my answer and the context I based it on, is it grounded?" One tool, `check_grounding`; deterministic, no judge model. Add it to Claude Desktop or any MCP client:
-
-```json
-{ "mcpServers": { "opengate": { "command": "npx", "args": ["-y", "@pharmatools/opengate-mcp"] } } }
-```
-
-The same check is importable programmatically: `import { checkGrounding } from '@pharmatools/opengate/grounding'`.
-
-## Python package
-
-For the Python ecosystem, the grounding check ships as a standalone, zero-dependency package ([`opengate-grounding`](https://pypi.org/project/opengate-grounding/)) — a faithful port of the same deterministic logic:
-
-```bash
-pip install opengate-grounding
-```
-
-```python
-from opengate_grounding import check_grounding, assert_grounded
-
-result = check_grounding(
-    answer="You have 30 days, with no restocking fee.",
-    context="Refund within 30 days. No restocking fee.",
-    anchors=["30 days", "no restocking fee"],
-)
-result.grounded    # True
-
-# gate it in pytest
-assert_grounded(answer, context, anchors=["30 days"])
-```
-
-It also plugs into [DeepEval](https://deepeval.com) as a deterministic metric (`pip install "opengate-grounding[deepeval]"`): drop `GroundingMetric` alongside your model-graded metrics to gate the grounding with no judge model. See [`python/`](python/).
-
-## CI: the GitHub Action
-
-Use OpenGATE as a drop-in regression gate in any repository. Keep your gold set and committed baseline (`baseline.<adapter>.json`) in your own tree; any metric that drops fails the build:
-
-```yaml
-- uses: nickjlamb/opengate@v0
-  with:
-    datasets: ./evals/datasets      # your cases/ + fixtures/
-    results: ./evals/results        # where baseline.<adapter>.json lives
-    adapter: ./evals/my-adapter.mjs # or the bundled HTTP adapter
-    online: 'true'
-  env:
-    MY_SYSTEM_URL: ${{ vars.MY_SYSTEM_URL }}
-    MY_SYSTEM_TOKEN: ${{ secrets.MY_SYSTEM_TOKEN }}
-```
-
-All inputs are optional — with none, it runs the offline suite against the bundled gold set. The same overrides work locally: `--datasets <dir>` and `--results <dir>` (or `OPENGATE_DATASETS` / `OPENGATE_RESULTS`).
-
-## Docker
-
-For enterprise pipelines that standardise on containers, OpenGATE ships as a small CPU-only image ([`pharmatools/opengate`](https://hub.docker.com/r/pharmatools/opengate)) — no CUDA, no GPU, no LLM judge. A bare run executes the bundled offline suite as a self-test:
-
-```bash
-docker run --rm pharmatools/opengate
-```
-
-Mount your repo and bring your own gold sets and baseline; the same flags and env vars as the CLI apply:
-
-```bash
-docker run --rm -v "$PWD:/work" \
-  -e MY_SYSTEM_URL -e MY_SYSTEM_TOKEN \
-  pharmatools/opengate --datasets ./evals/datasets --results ./evals/results --adapter ./evals/my-adapter.mjs --online --ci
-```
-
-Results are written under `./opengate-results` (or `--results <dir>`) in the mounted directory. The image runs as a non-root user; to have result files owned by you rather than the container, add `--user "$(id -u):$(id -g)"`. Pin a version with a tag: `pharmatools/opengate:0.9.0`.
+For REST-backed systems there's a **no-code path**: the bundled generic HTTP adapter reads endpoint paths and headers from `opengate.http.json` (`${ENV}` interpolation, built-in latency/token capture). Full contract and a minimal skeleton: **[ADAPTERS.md](ADAPTERS.md)**.
 
 ## Examples
 
-- [**Evaluating a NIM-powered RAG agent**](examples/nim-rag) — a worked example that builds a RAG agent on an [NVIDIA NIM](https://build.nvidia.com) model and gates its answers' grounding with OpenGATE, deterministically and with no LLM judge. Includes a runnable Python notebook (using [`opengate-grounding`](https://pypi.org/project/opengate-grounding/)) and a Node adapter for the CI regression gate.
+- [**Evaluating a NIM-powered RAG agent**](examples/nim-rag) — builds a RAG agent on an [NVIDIA NIM](https://build.nvidia.com) model and gates its answers' grounding with OpenGATE, deterministically and with no LLM judge. Includes a runnable Python notebook (`opengate-grounding`) and a Node adapter for the CI gate.
 
 ## Proven in production
 
-Run against RefCheckr's gold set, OpenGATE:
+Four PharmaTools products run on OpenGATE in CI — four different capability shapes, one evaluation standard. Run against RefCheckr's gold set, OpenGATE:
 
 - surfaced a **silent parse-failure mode** affecting ~50% of multi-claim verdicts, eliminated with enforced structured output (→ 0);
 - **halved passage hallucination** (5.8% → 2.4%) by driving a measured production model change — a decision made on numbers, not reputation;
 - holds claim extraction at **~0.95 F1** with near-full recall.
 
-Full methodology and the model comparison: [how RefCheckr is evaluated](https://www.pharmatools.ai/refcheckr-eval).
+<details>
+<summary><b>Redacta</b> — redaction capability (proof the methodology isn't QA-shaped)</summary>
 
-## Second implementation: Redacta
-
-[Redacta](https://www.pharmatools.ai/redacta) exercises the framework's **redaction capability** — proof the methodology isn't QA-shaped. The bundled adapter wraps the `@pharmatools/redacta` engine, scored against synthetic UK clinical notes with gold-labelled identifiers:
+[Redacta](https://www.pharmatools.ai/redacta) wraps the `@pharmatools/redacta` engine, scored against synthetic UK clinical notes with gold-labelled identifiers. On its first run the eval found two real engine bugs (relation phrases swallowing nested names; apostrophe surnames dropped) — both fixed and confirmed (`knownGap_closed: 2`), then promoted to gold. Current scorecard: **100% recall on 25 gold identifiers, 0 leaks, no open gaps**.
 
 ```bash
 npm install --no-save @pharmatools/redacta
 node src/runner.mjs --online --adapter ./src/adapters/redacta.mjs
 ```
+</details>
 
-On its first run against the new gold set, the eval found two real engine bugs — relation phrases like "Next of kin:" swallowed nested name matches, and apostrophe surnames (O'Brien) were dropped from name capture. Both were fixed in `@pharmatools/redacta` 1.2.1 and confirmed by the eval (`knownGap_closed: 2`), then promoted to gold. Street-line address detection followed in 1.3.0, closing the last tracked gap. Current scorecard: **100% recall on 25 gold identifiers, 0 leaks, no open gaps**.
+<details>
+<summary><b>Patiently AI</b> — simplify capability (faithfulness of paraphrase)</summary>
 
-## Third implementation: Patiently AI
-
-[Patiently AI](https://www.pharmatools.ai/patiently-ai) exercises the **simplify capability** — faithfulness scoring for text that is paraphrase by design. On its first production run, the eval found the simplifier **dropping safety-critical specifics**: an antibiotic dose vanished from a Brief discharge summary and a haemoglobin value from a lab letter (anchor recall 86%). Root cause: the composed prompt had no faithfulness rule. A preservation rule added to Patiently's tone prompts (additively — the backend is shared with another product) took the next run to **100% anchor recall, 0 dropped facts, 0 fabricated numbers, 0 contract violations** — with the readability grade slightly *better* than before the fix.
+[Patiently AI](https://www.pharmatools.ai/patiently-ai) exercises faithfulness scoring for text that is paraphrase by design. The eval caught the simplifier **dropping safety-critical specifics** — an antibiotic dose vanished from a discharge summary (anchor recall 86%). A preservation rule took the next run to **100% anchor recall, 0 dropped facts, 0 fabricated numbers**.
 
 ```bash
 node src/runner.mjs --online --adapter ./src/adapters/patiently.mjs
 ```
+</details>
 
-## Fourth implementation: PubCrawl
+<details>
+<summary><b>PubCrawl</b> — retrieval capability (the layer everything else grounds on)</summary>
 
-[PubCrawl](https://www.pharmatools.ai/pubcrawl) is the odd one out — an MCP server wrapping PubMed and ClinicalTrials.gov, with **no model**. It exercises the **retrieval capability**: the deterministic layer everything else grounds on. A silent XML-parser regression (a collapsed author array, a merged abstract) would poison every citation built on the record, so the scorer checks retrieval fidelity against hand-verified anchors and structural invariants. The adapter drives PubCrawl through its real MCP interface, so the full production parse path is under test — and `scripts/capture-retrieval-case.mjs` bootstraps gold cases from live records for you to verify against the source.
+[PubCrawl](https://www.pharmatools.ai/pubcrawl) has **no model** — it exercises retrieval fidelity against hand-verified anchors and structural invariants, catching parser regressions (collapsed author arrays, `[object Object]` leakage) that would poison every downstream citation. That OpenGATE scores a non-AI system at all is the point: evidence-grounded AI is only as trustworthy as the retrieval beneath it.
 
 ```bash
-npm install --no-save @modelcontextprotocol/sdk
-node scripts/capture-retrieval-case.mjs 31904519 > datasets/cases/retrieval-example.json  # then verify anchors
 node src/runner.mjs --online --adapter ./src/adapters/pubcrawl.mjs
 ```
+</details>
 
-That OpenGATE scores a non-AI system at all is the point: **evidence-grounded AI is only as trustworthy as the retrieval beneath it**, so the retrieval belongs in the same regression gate.
+Full methodology and model comparison: [how RefCheckr is evaluated](https://www.pharmatools.ai/refcheckr-eval).
 
-## Layout
+## Project layout
 
 ```
 opengate/
-  datasets/
-    cases/        gold-labelled source sections (copy _template.json to add)
-    fixtures/     citation-style coverage fixture
-    SCHEMA.md     case format spec
-    LABELING-GUIDE.md
-  src/
-    lib/          metrics.mjs (PRF1, Jaccard, verdict accuracy, confusion matrix)
-                  citations.mjs (reference impl of deterministic citation logic)
-    scorers/      one file per metric family
-    adapters/     system-under-test boundary (refcheckr.mjs is the reference)
-    runner.mjs    CLI: discover cases → run scorers → report → snapshot → regression-check
-  results/        timestamped run snapshots + baseline.<adapter>.json
+├── src/
+│   ├── lib/          metrics + shared grounding core (single source of truth)
+│   ├── scorers/      one file per metric family (7 scorers)
+│   ├── adapters/     system-under-test boundary (refcheckr.mjs is the reference)
+│   └── runner.mjs    CLI: discover cases → score → report → snapshot → gate
+├── datasets/         gold-labelled cases (39) + fixtures + schema
+├── examples/         worked examples (NVIDIA NIM RAG)
+├── mcp/              MCP server (@pharmatools/opengate-mcp)
+├── python/           opengate-grounding (PyPI) + DeepEval metric
+├── Dockerfile        CPU-only image (pharmatools/opengate)
+└── action.yml        GitHub Action
 ```
 
-## Roadmap
+## Documentation
 
-
-- **Grounding depth** — the grounding scorer checks anchor recall, fabrication, and abstention deterministically; contextual-precision/recall of the retrieved passages themselves is a natural next metric
-- **Retrieval breadth** — retrieval currently scores one PubMed record type; extend to full-text, citation formatting, and trial detail across PubCrawl's other tools
-- **Retrieval coverage** — the retrieval gold set is one case; add a single-author paper (the exact array-collapse risk the capability exists to catch), a trial (NCT) record, and a full-text/citation case across PubCrawl's other tools
-- **Number-adjacent superscript** — `week 24.1` is genuinely ambiguous with decimals; remains a tracked known gap
-- **Growing gold set** — more domains, all six verdict types, real-world reference material
-- **Stable adapter surface** — the contract may still shift pre-1.0; semver will signal breaking changes
+| Doc | What's in it |
+|---|---|
+| [Getting Started](docs/GETTING-STARTED.md) | Zero to a CI gate for a generic RAG system |
+| [ADAPTERS.md](ADAPTERS.md) | The adapter contract + a minimal skeleton |
+| [datasets/SCHEMA.md](datasets/SCHEMA.md) | Gold-case format |
+| [Roadmap](docs/ROADMAP.md) | What's next, and the road to 1.0 |
+| [Contributing](CONTRIBUTING.md) | Dev setup, adding cases/adapters/scorers, PR flow |
+| [Changelog](CHANGELOG.md) | Release history |
 
 ## Contributing
 
-Contributions are welcome, particularly:
-
-- **Gold cases** — new domains and citation styles (see `datasets/LABELING-GUIDE.md`)
-- **Adapters** — connect OpenGATE to your evidence-grounded system
-- **Scorers** — new metric families that fit the gold-case format
-
-Open an issue to discuss before large changes. Interfaces — particularly the adapter surface — may still shift pre-1.0.
+Contributions are welcome — especially **gold cases** (new domains, citation styles), **adapters** (connect your system), and **scorers** (new metric families). See **[CONTRIBUTING.md](CONTRIBUTING.md)**; open an issue to discuss large changes. Interfaces may still shift pre-1.0, and semver will signal breaking changes.
 
 ## License
 
 [MIT](LICENSE) — because evaluation frameworks shouldn't be black boxes. If an evaluation influences deployment decisions, engineers should be able to inspect every scorer, metric, and benchmark.
+
+<div align="center">
+<sub>Built by <a href="https://www.pharmatools.ai">PharmaTools.AI</a> · <a href="https://www.pharmatools.ai/opengate">opengate overview</a></sub>
+</div>

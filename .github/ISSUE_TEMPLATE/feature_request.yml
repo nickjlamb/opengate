@@ -1,0 +1,35 @@
+name: Feature request
+description: Suggest a scorer, adapter, metric, or improvement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: The evaluation gap or workflow friction you're hitting.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What you'd like OpenGATE to do. A new scorer? Adapter? Metric? Surface?
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type
+      options:
+        - New scorer / metric family
+        - New adapter / integration
+        - Gold cases (new domain or style)
+        - Developer experience / docs
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches, or how you work around it today.
