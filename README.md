@@ -212,7 +212,11 @@ opengate/
 
 ## Contributing
 
-Contributions are welcome — especially **gold cases** (new domains, citation styles), **adapters** (connect your system), and **scorers** (new metric families). See **[CONTRIBUTING.md](CONTRIBUTING.md)**; open an issue to discuss large changes. Interfaces may still shift pre-1.0, and semver will signal breaking changes.
+Contributions are welcome — especially **gold cases** (new domains, citation styles), **adapters** (connect your system), and **scorers** (new metric families). See **[CONTRIBUTING.md](CONTRIBUTING.md)** — including its support & governance expectations and AI-assisted development disclosure; open an issue to discuss large changes. Interfaces may still shift pre-1.0, and semver will signal breaking changes.
+
+## Citing OpenGATE
+
+If you use OpenGATE in research, please cite it — citation metadata is in [`CITATION.cff`](CITATION.cff) (GitHub's "Cite this repository" button uses it).
 
 ## License
 

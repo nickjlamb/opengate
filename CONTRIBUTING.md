@@ -73,6 +73,19 @@ Each scorer is a module in `src/scorers/` exporting `meta` (`{ id, mode }`) and 
 
 OpenGATE follows [semantic versioning](https://semver.org). The adapter surface may still shift pre-1.0; breaking changes will be called out in the [CHANGELOG](CHANGELOG.md) and signalled by the version bump.
 
+## Support and governance
+
+OpenGATE is maintained by [Nick Lamb](https://www.pharmatools.ai) (PharmaTools.AI), who runs it in production across the PharmaTools product line — so the framework is exercised daily, not maintained out of obligation. What you can expect:
+
+- **Issues and PRs** are reviewed on a best-effort basis, typically within a week. Bug reports with a failing gold case or test attached get priority — that's the house style.
+- **Decisions** rest with the maintainer, made in the open: design discussion happens in issues, and the reasoning behind changes lives in commit messages and the [CHANGELOG](CHANGELOG.md).
+- **Security reports** go through [SECURITY.md](SECURITY.md), not public issues.
+- **Releases** are tagged (`vX.Y.Z`), published to npm as `@pharmatools/opengate`, and documented in the changelog.
+
+## AI-assisted development disclosure
+
+Parts of OpenGATE — code, tests, and documentation — were developed with AI assistance (Anthropic's Claude), under human direction and review throughout: the problem framing, capability design, scoring philosophy (deterministic, no LLM-as-judge), gold-set labels, and every merge decision are the maintainer's. Contributions made with AI assistance are welcome under the same standard: you must have reviewed, understood, and tested what you submit, and you own it. If a substantial portion of a PR is AI-generated, say so in the PR description.
+
 ## Questions
 
 Open an [issue](https://github.com/nickjlamb/opengate/issues) or start a discussion. Thanks for helping make AI evaluation less of a black box.

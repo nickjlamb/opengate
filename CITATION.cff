@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use OpenGATE in your research, please cite it as below."
+type: software
+title: "OpenGATE: Open Grounded AI Testing & Evaluation"
+abstract: >-
+  An open-source framework for evaluating evidence-grounded AI systems.
+  Deterministic scorers, hand-labelled gold sets, and a CI regression gate
+  measure whether a system can prove its answers from source material —
+  across evidence QA, redaction, simplification, retrieval, and grounding
+  capabilities.
+authors:
+  - family-names: "Lamb"
+    given-names: "Nick"
+    affiliation: "PharmaTools.AI"
+version: 0.9.0
+date-released: 2026-07-06
+license: MIT
+repository-code: "https://github.com/nickjlamb/opengate"
+url: "https://www.pharmatools.ai/opengate"
+keywords:
+  - evaluation
+  - llm
+  - rag
+  - grounding
+  - hallucination
+  - regression-testing
+  - medical-ai
