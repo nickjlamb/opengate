@@ -1,0 +1,2 @@
+Returned label files go here (e.g. responses/labeller-a.json), then:
+  node paper/exp1/agreement.mjs paper/exp1/responses/labeller-a.json

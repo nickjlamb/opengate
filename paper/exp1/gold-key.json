@@ -1,0 +1,1019 @@
+{
+  "generatedAt": "2026-07-12T08:20:56.011Z",
+  "note": "ANSWER KEY — must not be given to the labeller. paper/exp1/agreement.mjs scores against this.",
+  "warmupIds": [
+    "verdict::pain-oa::0",
+    "verdict::neuro-ms::1",
+    "verdict::hep-nash::0",
+    "verdict::gastro-ibd::1",
+    "verdict::neuro-migraine::2",
+    "verdict::pulm-ipf::1"
+  ],
+  "itemsSha256": "c40d93a2d1a36907f5a0fbe68542f9c63fddeb897447c42a93112023b393efa9",
+  "key": [
+    {
+      "id": "verdict::case-authoryear-harvard::0",
+      "task": "verdict",
+      "caseId": "case-authoryear-harvard",
+      "gold": "strong_support"
+    },
+    {
+      "id": "verdict::case-authoryear-harvard::1",
+      "task": "verdict",
+      "caseId": "case-authoryear-harvard",
+      "gold": "strong_support"
+    },
+    {
+      "id": "verdict::case-authoryear-mixed::0",
+      "task": "verdict",
+      "caseId": "case-authoryear-mixed",
+      "gold": "strong_support"
+    },
+    {
+      "id": "verdict::cardio-bp::0",
+      "task": "verdict",
+      "caseId": "cardio-bp",
+      "gold": "overclaim",
+      "rationale": "Ref reports a 12 mmHg reduction but states no significance; claim asserts 'significantly' — overstated, not denied (rule 1)."
+    },
+    {
+      "id": "verdict::cardio-bp::1",
+      "task": "verdict",
+      "caseId": "cardio-bp",
+      "gold": "not_supported",
+      "rationale": "Ref says the trial was not designed to assess stroke — no support for any version of the stroke claim (rule 3)."
+    },
+    {
+      "id": "verdict::cardio-bp::2",
+      "task": "verdict",
+      "caseId": "cardio-bp",
+      "gold": "strong_support",
+      "rationale": "Ref states SAE 4.1% vs 4.3% (p=0.78) and calls tolerability comparable — explicit."
+    },
+    {
+      "id": "verdict::cardio-hf::0",
+      "task": "verdict",
+      "caseId": "cardio-hf",
+      "gold": "implied_by_data",
+      "rationale": "Support is a data table (9.1 vs 14.7 per 100 patient-years) with no narrative sentence stating it (rule 5)."
+    },
+    {
+      "id": "verdict::cardio-hf::1",
+      "task": "verdict",
+      "caseId": "cardio-hf",
+      "gold": "partial_support",
+      "rationale": "Symptom (KCCQ) improvement is explicit and significant; CV mortality did not differ — compound claim, one half holds (rule 4)."
+    },
+    {
+      "id": "verdict::cardio-hf::2",
+      "task": "verdict",
+      "caseId": "cardio-hf",
+      "gold": "not_supported",
+      "rationale": "Ref says renal outcomes were not assessed — silent (rule 2)."
+    },
+    {
+      "id": "verdict::cardio-lipids::0",
+      "task": "verdict",
+      "caseId": "cardio-lipids",
+      "gold": "strong_support",
+      "rationale": "Ref states the 58% reduction with p<0.001 explicitly; claim does not exceed it."
+    },
+    {
+      "id": "verdict::cardio-lipids::1",
+      "task": "verdict",
+      "caseId": "cardio-lipids",
+      "gold": "contradicted",
+      "rationale": "Ref explicitly says cardiovascular death alone was NOT significantly reduced — direct negation of the significance assertion (rule 1)."
+    },
+    {
+      "id": "verdict::cardio-lipids::2",
+      "task": "verdict",
+      "caseId": "cardio-lipids",
+      "gold": "not_supported",
+      "rationale": "Ref states renal endpoints were not assessed — silent on the claim (rule 2)."
+    },
+    {
+      "id": "verdict::derm-psoriasis::0",
+      "task": "verdict",
+      "caseId": "derm-psoriasis",
+      "gold": "overclaim",
+      "rationale": "Ref supports moderate-to-severe only and says mild was not studied; claim broadens scope to all severities (rule 3)."
+    },
+    {
+      "id": "verdict::derm-psoriasis::1",
+      "task": "verdict",
+      "caseId": "derm-psoriasis",
+      "gold": "implied_by_data",
+      "rationale": "Support is a data table (joint pain -3.1 vs -0.8) with no narrative sentence (rule 5)."
+    },
+    {
+      "id": "verdict::derm-psoriasis::2",
+      "task": "verdict",
+      "caseId": "derm-psoriasis",
+      "gold": "partial_support",
+      "rationale": "Nail improvement is explicit; scalp involvement was not evaluated — compound claim, one half holds (rule 4)."
+    },
+    {
+      "id": "verdict::diabetes-glp1::0",
+      "task": "verdict",
+      "caseId": "diabetes-glp1",
+      "gold": "implied_by_data",
+      "rationale": "Support is in a data table (-1.8 vs -0.3) with no narrative sentence stating the comparison (rule 5)."
+    },
+    {
+      "id": "verdict::diabetes-glp1::1",
+      "task": "verdict",
+      "caseId": "diabetes-glp1",
+      "gold": "partial_support",
+      "rationale": "Weight reduction is explicit and significant; SBP change is non-significant — compound claim, one half holds (rule 4)."
+    },
+    {
+      "id": "verdict::endo-thyroid::0",
+      "task": "verdict",
+      "caseId": "endo-thyroid",
+      "gold": "implied_by_data",
+      "rationale": "Support is a data table (71% vs 38%) with no narrative sentence stating it (rule 5)."
+    },
+    {
+      "id": "verdict::endo-thyroid::1",
+      "task": "verdict",
+      "caseId": "endo-thyroid",
+      "gold": "overclaim",
+      "rationale": "Ref reports an 18% vs 4% goitre reduction but states no significance; claim asserts 'significantly' (rule 1)."
+    },
+    {
+      "id": "verdict::gastro-ibd::0",
+      "task": "verdict",
+      "caseId": "gastro-ibd",
+      "gold": "strong_support",
+      "rationale": "Ref states remission 38% vs 19% with p<0.001 explicitly."
+    },
+    {
+      "id": "verdict::gastro-ibd::1",
+      "task": "verdict",
+      "caseId": "gastro-ibd",
+      "gold": "not_supported",
+      "rationale": "Ref says surgical outcomes were not evaluated — silent (rule 2)."
+    },
+    {
+      "id": "verdict::gastro-ibd::2",
+      "task": "verdict",
+      "caseId": "gastro-ibd",
+      "gold": "contradicted",
+      "rationale": "Ref says remission was lower than placebo and did not favour vedolizumab — negates 'effective' (rule 1)."
+    },
+    {
+      "id": "verdict::hema-anemia::0",
+      "task": "verdict",
+      "caseId": "hema-anemia",
+      "gold": "partial_support",
+      "rationale": "Transfusion independence is explicit and significant; quality of life was not measured — compound claim, one half holds (rule 4)."
+    },
+    {
+      "id": "verdict::hema-anemia::1",
+      "task": "verdict",
+      "caseId": "hema-anemia",
+      "gold": "contradicted",
+      "rationale": "Ref says overall survival did not differ (HR 1.02) — negates an improvement (rule 1/2)."
+    },
+    {
+      "id": "verdict::hep-nash::0",
+      "task": "verdict",
+      "caseId": "hep-nash",
+      "gold": "implied_by_data",
+      "rationale": "Support is an MRI-PDFF data table with no narrative sentence (rule 5)."
+    },
+    {
+      "id": "verdict::hep-nash::1",
+      "task": "verdict",
+      "caseId": "hep-nash",
+      "gold": "partial_support",
+      "rationale": "Fibrosis resolution is explicit; overall survival was not assessed — compound claim, one half holds (rule 4)."
+    },
+    {
+      "id": "verdict::hiv-prep::0",
+      "task": "verdict",
+      "caseId": "hiv-prep",
+      "gold": "strong_support",
+      "rationale": "Ref states incidence was significantly lower (HR 0.34, p<0.001) explicitly."
+    },
+    {
+      "id": "verdict::hiv-prep::1",
+      "task": "verdict",
+      "caseId": "hiv-prep",
+      "gold": "contradicted",
+      "rationale": "Ref says incident infections still occurred — negates 'eliminated the risk' (rule 1)."
+    },
+    {
+      "id": "verdict::id-antibiotic::0",
+      "task": "verdict",
+      "caseId": "id-antibiotic",
+      "gold": "strong_support",
+      "rationale": "Ref states the non-inferiority margin was met explicitly."
+    },
+    {
+      "id": "verdict::id-antibiotic::1",
+      "task": "verdict",
+      "caseId": "id-antibiotic",
+      "gold": "overclaim",
+      "rationale": "Cure was numerically higher (88% vs 85%) but the trial was not designed to test superiority; claim asserts an unestablished superiority, not denied (rule 1)."
+    },
+    {
+      "id": "verdict::nephro-ckd::0",
+      "task": "verdict",
+      "caseId": "nephro-ckd",
+      "gold": "implied_by_data",
+      "rationale": "Support is a data table (eGFR slope -2.1 vs -3.9) with no narrative sentence stating it (rule 5)."
+    },
+    {
+      "id": "verdict::nephro-ckd::1",
+      "task": "verdict",
+      "caseId": "nephro-ckd",
+      "gold": "overclaim",
+      "rationale": "Ref limits analysis to CKD stages 3-4; claim broadens to all stages (rule 3)."
+    },
+    {
+      "id": "verdict::nephro-ckd::2",
+      "task": "verdict",
+      "caseId": "nephro-ckd",
+      "gold": "not_supported",
+      "rationale": "Ref says CV mortality was not analysed — silent (rule 2)."
+    },
+    {
+      "id": "verdict::neuro-migraine::0",
+      "task": "verdict",
+      "caseId": "neuro-migraine",
+      "gold": "contradicted",
+      "rationale": "Ref says the effect was larger in episodic and did not reach significance in the chronic subgroup — negates the 'as effective' equivalence (rule 1)."
+    },
+    {
+      "id": "verdict::neuro-migraine::1",
+      "task": "verdict",
+      "caseId": "neuro-migraine",
+      "gold": "contradicted",
+      "rationale": "Ref says complete cessation was uncommon — explicit negation of 'most patients' (rule 1). Re-labeled from overclaim in v0.1."
+    },
+    {
+      "id": "verdict::neuro-migraine::2",
+      "task": "verdict",
+      "caseId": "neuro-migraine",
+      "gold": "not_supported",
+      "rationale": "Ref says MOH patients were excluded and efficacy not evaluated — silent (rule 2)."
+    },
+    {
+      "id": "verdict::neuro-ms::0",
+      "task": "verdict",
+      "caseId": "neuro-ms",
+      "gold": "strong_support",
+      "rationale": "Ref states the relapse-rate reduction (rate ratio 0.62, p<0.001) explicitly."
+    },
+    {
+      "id": "verdict::neuro-ms::1",
+      "task": "verdict",
+      "caseId": "neuro-ms",
+      "gold": "contradicted",
+      "rationale": "Ref says confirmed disability progression did not differ between groups — negates 'halted' (rule 1)."
+    },
+    {
+      "id": "verdict::neuro-ms::2",
+      "task": "verdict",
+      "caseId": "neuro-ms",
+      "gold": "implied_by_data",
+      "rationale": "Support is a lesion-count data table (1.2 vs 3.8) with no narrative sentence (rule 5)."
+    },
+    {
+      "id": "verdict::onco-pdl1::0",
+      "task": "verdict",
+      "caseId": "onco-pdl1",
+      "gold": "strong_support",
+      "rationale": "Ref states ORR 48% vs 27% in the PD-L1-high group explicitly."
+    },
+    {
+      "id": "verdict::onco-pdl1::1",
+      "task": "verdict",
+      "caseId": "onco-pdl1",
+      "gold": "overclaim",
+      "rationale": "Ref supports benefit only in PD-L1-high and is silent on other patients; claim broadens scope to all patients (rule 3)."
+    },
+    {
+      "id": "verdict::onco-pdl1::2",
+      "task": "verdict",
+      "caseId": "onco-pdl1",
+      "gold": "strong_support",
+      "rationale": "Ref states treatment-related deaths <1% in each arm — supports 'rare'."
+    },
+    {
+      "id": "verdict::oncology-pembro::0",
+      "task": "verdict",
+      "caseId": "oncology-pembro",
+      "gold": "strong_support",
+      "rationale": "Ref states the PFS result with matching figures and p<0.001 explicitly."
+    },
+    {
+      "id": "verdict::oncology-pembro::1",
+      "task": "verdict",
+      "caseId": "oncology-pembro",
+      "gold": "contradicted",
+      "rationale": "Ref says OS was immature and did not reach significance — negates 'significantly prolonged' (rule 1)."
+    },
+    {
+      "id": "verdict::osteo-fracture::0",
+      "task": "verdict",
+      "caseId": "osteo-fracture",
+      "gold": "overclaim",
+      "rationale": "Ref establishes a vertebral-fracture reduction only; hip reduction was non-significant. Claim generalises to all sites beyond what is established, without explicit denial (rule 1/3)."
+    },
+    {
+      "id": "verdict::osteo-fracture::1",
+      "task": "verdict",
+      "caseId": "osteo-fracture",
+      "gold": "implied_by_data",
+      "rationale": "Support is a BMD data table for spine and hip with no narrative sentence (rule 5)."
+    },
+    {
+      "id": "verdict::pain-oa::0",
+      "task": "verdict",
+      "caseId": "pain-oa",
+      "gold": "implied_by_data",
+      "rationale": "Support is a data table (WOMAC pain -3.4 vs -1.6) with no narrative sentence (rule 5)."
+    },
+    {
+      "id": "verdict::pain-oa::1",
+      "task": "verdict",
+      "caseId": "pain-oa",
+      "gold": "overclaim",
+      "rationale": "Table shows a function change (-2.9 vs -1.4) but states no significance; claim asserts 'significantly' (rule 1)."
+    },
+    {
+      "id": "verdict::pain-oa::2",
+      "task": "verdict",
+      "caseId": "pain-oa",
+      "gold": "not_supported",
+      "rationale": "Ref says structural outcomes were not assessed — silent (rule 2)."
+    },
+    {
+      "id": "verdict::psych-depression::0",
+      "task": "verdict",
+      "caseId": "psych-depression",
+      "gold": "partial_support",
+      "rationale": "Depression-score reduction is explicit; cognitive function was not assessed — compound claim, one half holds (rule 4)."
+    },
+    {
+      "id": "verdict::psych-depression::1",
+      "task": "verdict",
+      "caseId": "psych-depression",
+      "gold": "not_supported",
+      "rationale": "Ref says treatment-resistant patients were not enrolled — silent on this population (rule 2/3)."
+    },
+    {
+      "id": "verdict::pulm-ipf::0",
+      "task": "verdict",
+      "caseId": "pulm-ipf",
+      "gold": "partial_support",
+      "rationale": "FVC slowing is explicit; cough was not assessed — compound claim, one half holds (rule 4)."
+    },
+    {
+      "id": "verdict::pulm-ipf::1",
+      "task": "verdict",
+      "caseId": "pulm-ipf",
+      "gold": "overclaim",
+      "rationale": "Ref reports a numerically lower, underpowered, non-significant mortality difference; claim asserts a definite reduction that is not established and not denied (rule 1)."
+    },
+    {
+      "id": "verdict::resp-copd::0",
+      "task": "verdict",
+      "caseId": "resp-copd",
+      "gold": "strong_support",
+      "rationale": "Ref states the exacerbation rate reduction explicitly with rate ratio and p<0.001."
+    },
+    {
+      "id": "verdict::resp-copd::1",
+      "task": "verdict",
+      "caseId": "resp-copd",
+      "gold": "partial_support",
+      "rationale": "Lung-function improvement is explicit; mortality reduction is not established in ref 1 — compound claim, one half holds (rule 4)."
+    },
+    {
+      "id": "verdict::rheum-jak::0",
+      "task": "verdict",
+      "caseId": "rheum-jak",
+      "gold": "implied_by_data",
+      "rationale": "Support is a data table (62% vs 25%) with no narrative sentence stating the comparison (rule 5)."
+    },
+    {
+      "id": "verdict::rheum-jak::1",
+      "task": "verdict",
+      "caseId": "rheum-jak",
+      "gold": "partial_support",
+      "rationale": "Physical function improvement is explicit and significant; fatigue is non-significant — compound claim, one half holds (rule 4)."
+    },
+    {
+      "id": "verdict::vaccine-efficacy::0",
+      "task": "verdict",
+      "caseId": "vaccine-efficacy",
+      "gold": "strong_support",
+      "rationale": "Ref states 71% efficacy (95% CI 62-78) vs placebo explicitly."
+    },
+    {
+      "id": "verdict::vaccine-efficacy::1",
+      "task": "verdict",
+      "caseId": "vaccine-efficacy",
+      "gold": "contradicted",
+      "rationale": "Ref says efficacy against severe disease was not demonstrated and rates were similar — negates 'prevented' (rule 1/2)."
+    },
+    {
+      "id": "verdict::womens-pcos::0",
+      "task": "verdict",
+      "caseId": "womens-pcos",
+      "gold": "implied_by_data",
+      "rationale": "Support is a data table (ovulation 62% vs 28%) with no narrative sentence (rule 5)."
+    },
+    {
+      "id": "verdict::womens-pcos::1",
+      "task": "verdict",
+      "caseId": "womens-pcos",
+      "gold": "contradicted",
+      "rationale": "Ref says live birth rates were similar (24% vs 22%, not significant) — negates an improvement (rule 1)."
+    },
+    {
+      "id": "verdict::womens-pcos::2",
+      "task": "verdict",
+      "caseId": "womens-pcos",
+      "gold": "not_supported",
+      "rationale": "Ref says metabolic outcomes were not evaluated — silent (rule 2)."
+    },
+    {
+      "id": "verdict::seed-teprotumumab::0",
+      "task": "verdict",
+      "caseId": "seed-teprotumumab",
+      "gold": "strong_support",
+      "rationale": "Ref states the 2.82 mm proptosis reduction vs placebo explicitly with p<0.001."
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::0",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": true,
+      "entityType": "STREET_ADDRESS",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::1",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": true,
+      "entityType": "POSTCODE",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::2",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": true,
+      "entityType": "NHS_NUMBER",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::3",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::4",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": true,
+      "entityType": "DATE_OF_BIRTH",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::5",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": false,
+      "entityType": null,
+      "note": "boundary — city without street line"
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::6",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::7",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": true,
+      "entityType": "PHONE",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::8",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": false,
+      "entityType": null,
+      "note": "boundary — treating clinician, not the patient"
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::9",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::10",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": true,
+      "entityType": "EMAIL",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::11",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": true,
+      "entityType": "PATIENT_NAME",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-cardio-clinic::12",
+      "task": "redaction",
+      "caseId": "redact-cardio-clinic",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::0",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::1",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::2",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": true,
+      "entityType": "RELATIVE_NAME",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::3",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": true,
+      "entityType": "DATE_OF_BIRTH",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::4",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": true,
+      "entityType": "NHS_NUMBER",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::5",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": true,
+      "entityType": "POSTCODE",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::6",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::7",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": true,
+      "entityType": "PHONE",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::8",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": true,
+      "entityType": "PATIENT_NAME",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-discharge-summary::9",
+      "task": "redaction",
+      "caseId": "redact-discharge-summary",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-gp-referral::0",
+      "task": "redaction",
+      "caseId": "redact-gp-referral",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-gp-referral::1",
+      "task": "redaction",
+      "caseId": "redact-gp-referral",
+      "gold": true,
+      "entityType": "PHONE",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-gp-referral::2",
+      "task": "redaction",
+      "caseId": "redact-gp-referral",
+      "gold": false,
+      "entityType": null,
+      "note": "boundary — practice name, quasi-identifying"
+    },
+    {
+      "id": "redaction::redact-gp-referral::3",
+      "task": "redaction",
+      "caseId": "redact-gp-referral",
+      "gold": true,
+      "entityType": "DATE_OF_BIRTH",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-gp-referral::4",
+      "task": "redaction",
+      "caseId": "redact-gp-referral",
+      "gold": false,
+      "entityType": null,
+      "note": "boundary — referring clinician"
+    },
+    {
+      "id": "redaction::redact-gp-referral::5",
+      "task": "redaction",
+      "caseId": "redact-gp-referral",
+      "gold": false,
+      "entityType": null,
+      "note": "boundary — lifestyle detail, weakly identifying"
+    },
+    {
+      "id": "redaction::redact-gp-referral::6",
+      "task": "redaction",
+      "caseId": "redact-gp-referral",
+      "gold": true,
+      "entityType": "EMAIL",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-gp-referral::7",
+      "task": "redaction",
+      "caseId": "redact-gp-referral",
+      "gold": true,
+      "entityType": "PATIENT_NAME",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-gp-referral::8",
+      "task": "redaction",
+      "caseId": "redact-gp-referral",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-mdt-note::0",
+      "task": "redaction",
+      "caseId": "redact-mdt-note",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-mdt-note::1",
+      "task": "redaction",
+      "caseId": "redact-mdt-note",
+      "gold": false,
+      "entityType": null,
+      "note": "boundary — social circumstance"
+    },
+    {
+      "id": "redaction::redact-mdt-note::2",
+      "task": "redaction",
+      "caseId": "redact-mdt-note",
+      "gold": true,
+      "entityType": "DATE_OF_BIRTH",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-mdt-note::3",
+      "task": "redaction",
+      "caseId": "redact-mdt-note",
+      "gold": true,
+      "entityType": "POSTCODE",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-mdt-note::4",
+      "task": "redaction",
+      "caseId": "redact-mdt-note",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-mdt-note::5",
+      "task": "redaction",
+      "caseId": "redact-mdt-note",
+      "gold": true,
+      "entityType": "NHS_NUMBER",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-mdt-note::6",
+      "task": "redaction",
+      "caseId": "redact-mdt-note",
+      "gold": true,
+      "entityType": "PATIENT_NAME",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-mdt-note::7",
+      "task": "redaction",
+      "caseId": "redact-mdt-note",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-ward-round::0",
+      "task": "redaction",
+      "caseId": "redact-ward-round",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-ward-round::1",
+      "task": "redaction",
+      "caseId": "redact-ward-round",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-ward-round::2",
+      "task": "redaction",
+      "caseId": "redact-ward-round",
+      "gold": true,
+      "entityType": "NHS_NUMBER",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-ward-round::3",
+      "task": "redaction",
+      "caseId": "redact-ward-round",
+      "gold": true,
+      "entityType": "PHONE",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-ward-round::4",
+      "task": "redaction",
+      "caseId": "redact-ward-round",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "redaction::redact-ward-round::5",
+      "task": "redaction",
+      "caseId": "redact-ward-round",
+      "gold": true,
+      "entityType": "RELATIVE_NAME",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-ward-round::6",
+      "task": "redaction",
+      "caseId": "redact-ward-round",
+      "gold": true,
+      "entityType": "PATIENT_NAME",
+      "note": null
+    },
+    {
+      "id": "redaction::redact-ward-round::7",
+      "task": "redaction",
+      "caseId": "redact-ward-round",
+      "gold": false,
+      "entityType": null,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-discharge-brief::0",
+      "task": "simplification",
+      "caseId": "simplify-discharge-brief",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-discharge-brief::1",
+      "task": "simplification",
+      "caseId": "simplify-discharge-brief",
+      "gold": false,
+      "note": "boundary — safety-netting trigger"
+    },
+    {
+      "id": "simplification::simplify-discharge-brief::2",
+      "task": "simplification",
+      "caseId": "simplify-discharge-brief",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-discharge-brief::3",
+      "task": "simplification",
+      "caseId": "simplify-discharge-brief",
+      "gold": false,
+      "note": "BOUNDARY AGAINST OUR OWN GOLD — dose frequency, not currently an anchor"
+    },
+    {
+      "id": "simplification::simplify-discharge-brief::4",
+      "task": "simplification",
+      "caseId": "simplify-discharge-brief",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-discharge-brief::5",
+      "task": "simplification",
+      "caseId": "simplify-discharge-brief",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-discharge-brief::6",
+      "task": "simplification",
+      "caseId": "simplify-discharge-brief",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-discharge-brief::7",
+      "task": "simplification",
+      "caseId": "simplify-discharge-brief",
+      "gold": false,
+      "note": "boundary — the diagnosis itself"
+    },
+    {
+      "id": "simplification::simplify-discharge-brief::8",
+      "task": "simplification",
+      "caseId": "simplify-discharge-brief",
+      "gold": false,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-lab-results::0",
+      "task": "simplification",
+      "caseId": "simplify-lab-results",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-lab-results::1",
+      "task": "simplification",
+      "caseId": "simplify-lab-results",
+      "gold": false,
+      "note": "boundary — interpretation of the value"
+    },
+    {
+      "id": "simplification::simplify-lab-results::2",
+      "task": "simplification",
+      "caseId": "simplify-lab-results",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-lab-results::3",
+      "task": "simplification",
+      "caseId": "simplify-lab-results",
+      "gold": false,
+      "note": "BOUNDARY AGAINST OUR OWN GOLD — dose frequency, not currently an anchor"
+    },
+    {
+      "id": "simplification::simplify-lab-results::4",
+      "task": "simplification",
+      "caseId": "simplify-lab-results",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-lab-results::5",
+      "task": "simplification",
+      "caseId": "simplify-lab-results",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-lab-results::6",
+      "task": "simplification",
+      "caseId": "simplify-lab-results",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-lab-results::7",
+      "task": "simplification",
+      "caseId": "simplify-lab-results",
+      "gold": false,
+      "note": "boundary — the diagnosis"
+    },
+    {
+      "id": "simplification::simplify-lab-results::8",
+      "task": "simplification",
+      "caseId": "simplify-lab-results",
+      "gold": false,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-medication-change::0",
+      "task": "simplification",
+      "caseId": "simplify-medication-change",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-medication-change::1",
+      "task": "simplification",
+      "caseId": "simplify-medication-change",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-medication-change::2",
+      "task": "simplification",
+      "caseId": "simplify-medication-change",
+      "gold": false,
+      "note": "BOUNDARY — the OLD dose; arguably must be dropped, not kept"
+    },
+    {
+      "id": "simplification::simplify-medication-change::3",
+      "task": "simplification",
+      "caseId": "simplify-medication-change",
+      "gold": false,
+      "note": "boundary — administration instruction"
+    },
+    {
+      "id": "simplification::simplify-medication-change::4",
+      "task": "simplification",
+      "caseId": "simplify-medication-change",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-medication-change::5",
+      "task": "simplification",
+      "caseId": "simplify-medication-change",
+      "gold": true,
+      "note": null
+    },
+    {
+      "id": "simplification::simplify-medication-change::6",
+      "task": "simplification",
+      "caseId": "simplify-medication-change",
+      "gold": false,
+      "note": "boundary — the reason for the change"
+    },
+    {
+      "id": "simplification::simplify-medication-change::7",
+      "task": "simplification",
+      "caseId": "simplify-medication-change",
+      "gold": false,
+      "note": null
+    }
+  ]
+}

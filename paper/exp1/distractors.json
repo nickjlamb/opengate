@@ -1,0 +1,79 @@
+{
+  "_comment": [
+    "Committed, hand-authored NEGATIVE and BOUNDARY candidates for the two binary",
+    "labelling tasks. Authored BEFORE the second labeller sees anything, so the",
+    "item set cannot be tuned to the answers we get back.",
+    "",
+    "These are not padding. A binary agreement task needs negatives, and the",
+    "negatives have to be plausible or kappa is inflated by easy rejections. Each",
+    "list therefore mixes:",
+    "  • clear negatives  — clinical content nobody should redact / non-essential detail",
+    "  • BOUNDARY cases   — genuinely contestable, flagged below. These are where the",
+    "                       rubric earns its keep, and where a disagreement is a",
+    "                       finding about the GOLD SET rather than about the labeller.",
+    "",
+    "Two boundary cases are deliberately aimed at our own gold set: dose frequency",
+    "('three times daily', 'twice daily') is safety-critical to a patient and is NOT",
+    "currently a gold anchor in the simplification cases. If the second labeller",
+    "calls those essential, our anchors are incomplete and the paper should say so."
+  ],
+
+  "redaction": {
+    "_task": "Which spans MUST be removed before this text could be shared outside the care team?",
+    "redact-cardio-clinic": [
+      { "value": "Dr Patel", "note": "boundary — treating clinician, not the patient" },
+      { "value": "Oxford", "note": "boundary — city without street line" },
+      { "value": "atrial fibrillation" },
+      { "value": "132/84 mmHg" },
+      { "value": "apixaban 5 mg BD" },
+      { "value": "Follow-up in 12 weeks" }
+    ],
+    "redact-discharge-summary": [
+      { "value": "community-acquired pneumonia" },
+      { "value": "co-amoxiclav" },
+      { "value": "5 days" },
+      { "value": "district nurse follow-up" }
+    ],
+    "redact-gp-referral": [
+      { "value": "Dr Okafor", "note": "boundary — referring clinician" },
+      { "value": "Riverside Surgery", "note": "boundary — practice name, quasi-identifying" },
+      { "value": "night shifts", "note": "boundary — lifestyle detail, weakly identifying" },
+      { "value": "Ferritin 8 ug/L" },
+      { "value": "iron-deficiency anaemia" }
+    ],
+    "redact-mdt-note": [
+      { "value": "lives alone", "note": "boundary — social circumstance" },
+      { "value": "stage II colorectal adenocarcinoma" },
+      { "value": "laparoscopic resection" },
+      { "value": "anaesthetic review booked" }
+    ],
+    "redact-ward-round": [
+      { "value": "hip hemiarthroplasty" },
+      { "value": "enoxaparin" },
+      { "value": "referred to social work" },
+      { "value": "orthogeriatric review tomorrow" }
+    ]
+  },
+
+  "simplification": {
+    "_task": "Which facts MUST survive into the patient-facing simplification? (Losing one would be a safety problem.)",
+    "simplify-discharge-brief": [
+      { "value": "three times daily", "note": "BOUNDARY AGAINST OUR OWN GOLD — dose frequency, not currently an anchor" },
+      { "value": "community-acquired pneumonia", "note": "boundary — the diagnosis itself" },
+      { "value": "worsening breathlessness", "note": "boundary — safety-netting trigger" },
+      { "value": "You were admitted" }
+    ],
+    "simplify-lab-results": [
+      { "value": "twice daily", "note": "BOUNDARY AGAINST OUR OWN GOLD — dose frequency, not currently an anchor" },
+      { "value": "iron-deficiency anaemia", "note": "boundary — the diagnosis" },
+      { "value": "below the normal range", "note": "boundary — interpretation of the value" },
+      { "value": "micrograms/L" }
+    ],
+    "simplify-medication-change": [
+      { "value": "50 micrograms", "note": "BOUNDARY — the OLD dose; arguably must be dropped, not kept" },
+      { "value": "TSH result of 8.2 mU/L", "note": "boundary — the reason for the change" },
+      { "value": "before breakfast", "note": "boundary — administration instruction" },
+      { "value": "thyroid function tests" }
+    ]
+  }
+}
