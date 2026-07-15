@@ -1,0 +1,708 @@
+{
+  "builtFrom": {
+    "file": "corpus/base-outputs.json",
+    "corpusSha256": "fd9472b9936aaa107612fb981f9fa7ddc9e441ee99fad443e47aadef9fed0057",
+    "capturedAt": "2026-07-11T17:39:35.598Z"
+  },
+  "builtAt": "2026-07-11T17:39:35.658Z",
+  "note": "FROZEN corpus for exp-2. Base outputs captured once; mutants derived deterministically. Every judge, every repeat, and the deterministic arm all score these exact bytes.",
+  "defectClasses": {
+    "none": {
+      "description": "base output, no injected defect",
+      "deterministicInScope": null,
+      "judgeInScope": null
+    },
+    "dropped_anchor": {
+      "description": "safety-critical fact deleted from the output",
+      "deterministicInScope": true,
+      "judgeInScope": false,
+      "why": "an omission asserts nothing unsupported, so a faithfulness judge cannot see it by construction"
+    },
+    "fabricated_number": {
+      "description": "number asserted that appears nowhere in the source",
+      "deterministicInScope": true,
+      "judgeInScope": true
+    },
+    "non_abstention": {
+      "description": "confident answer to a question the context cannot answer",
+      "deterministicInScope": true,
+      "judgeInScope": true
+    },
+    "contradiction": {
+      "description": "sentence contradicting the source, appended; adds no numbers, removes no anchors",
+      "deterministicInScope": false,
+      "judgeInScope": true,
+      "why": "an added unsupported assertion — the deterministic layer has no semantic model"
+    },
+    "inversion": {
+      "description": "meaning of an existing statement flipped in place; every anchor and number survives verbatim",
+      "deterministicInScope": false,
+      "judgeInScope": true,
+      "why": "the floor of anchor-and-number checking, stated as a measurement rather than a caveat"
+    }
+  },
+  "items": [
+    {
+      "outputId": "simplify-discharge-brief::base",
+      "caseId": "simplify-discharge-brief",
+      "kind": "simplification",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified"
+      },
+      "caseSha256": "50b87ccb18047dfef49599add648a844b1e19a76e178de85cb452aacfba9c4e7",
+      "text": "- You have pneumonia and are taking amoxicillin 500 mg three times a day for 5 days.  \n- Visit your GP for a check-up in 2 weeks.  \n- Go back to the hospital if you have more trouble breathing or a fever over 38°C.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "none",
+        "note": null
+      }
+    },
+    {
+      "outputId": "simplify-discharge-brief::drop-anchor",
+      "caseId": "simplify-discharge-brief",
+      "kind": "simplification",
+      "variant": "drop-anchor",
+      "injectedDefect": {
+        "class": "dropped_anchor",
+        "detail": "anchor \"500 mg\" deleted from the output"
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic deletion"
+      },
+      "caseSha256": "50b87ccb18047dfef49599add648a844b1e19a76e178de85cb452aacfba9c4e7",
+      "text": "- You have pneumonia and are taking amoxicillin three times a day for 5 days.\n- Visit your GP for a check-up in 2 weeks.\n- Go back to the hospital if you have more trouble breathing or a fever over 38°C.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "dropped_anchor",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "blind by construction — faithfulness asks only whether asserted claims are supported"
+      }
+    },
+    {
+      "outputId": "simplify-discharge-brief::fabricate-number",
+      "caseId": "simplify-discharge-brief",
+      "kind": "simplification",
+      "variant": "fabricate-number",
+      "injectedDefect": {
+        "class": "fabricated_number",
+        "detail": "number \"11\" appears nowhere in the source"
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "50b87ccb18047dfef49599add648a844b1e19a76e178de85cb452aacfba9c4e7",
+      "text": "- You have pneumonia and are taking amoxicillin 500 mg three times a day for 5 days.  \n- Visit your GP for a check-up in 2 weeks.  \n- Go back to the hospital if you have more trouble breathing or a fever over 38°C.\n- About 11% of people notice an improvement within the first few days.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "fabricated_number",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "should catch — an unsupported asserted claim"
+      }
+    },
+    {
+      "outputId": "simplify-discharge-brief::contradiction",
+      "caseId": "simplify-discharge-brief",
+      "kind": "simplification",
+      "variant": "contradiction",
+      "injectedDefect": {
+        "class": "contradiction",
+        "detail": "You do not need to finish the full course of antibiotics once you feel better."
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "50b87ccb18047dfef49599add648a844b1e19a76e178de85cb452aacfba9c4e7",
+      "text": "- You have pneumonia and are taking amoxicillin 500 mg three times a day for 5 days.  \n- Visit your GP for a check-up in 2 weeks.  \n- Go back to the hospital if you have more trouble breathing or a fever over 38°C.\n- You do not need to finish the full course of antibiotics once you feel better.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "contradiction",
+        "deterministicShouldFail": false,
+        "judgeExpectation": "should catch — this is what a judge is for"
+      }
+    },
+    {
+      "outputId": "simplify-discharge-brief::inversion",
+      "caseId": "simplify-discharge-brief",
+      "kind": "simplification",
+      "variant": "inversion",
+      "injectedDefect": {
+        "class": "inversion",
+        "detail": "safety-netting advice reversed (return to hospital → do not return)",
+        "applied": [
+          {
+            "pattern": "/\\bgo (?:back )?to (?:the\\s+)?hospital\\b/i",
+            "replacement": "Do not go to hospital"
+          }
+        ]
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic in-place polarity flip"
+      },
+      "caseSha256": "50b87ccb18047dfef49599add648a844b1e19a76e178de85cb452aacfba9c4e7",
+      "text": "- You have pneumonia and are taking amoxicillin 500 mg three times a day for 5 days.  \n- Visit your GP for a check-up in 2 weeks.  \n- Do not go to hospital if you have more trouble breathing or a fever over 38°C.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "inversion",
+        "deterministicShouldFail": false,
+        "deterministicInScope": false,
+        "judgeExpectation": "should catch — semantics is the one thing anchors cannot check"
+      }
+    },
+    {
+      "outputId": "simplify-lab-results::base",
+      "caseId": "simplify-lab-results",
+      "kind": "simplification",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified"
+      },
+      "caseSha256": "3cd5db5378a94c9380e5237f6189fe97e15f4ee304db88fed605f40ff3e7fda3",
+      "text": "Alright, let’s break this down together. You recently had some blood tests done, and two important results came back showing that your haemoglobin and ferritin levels are low. \n\nHaemoglobin is a protein in your red blood cells that carries oxygen throughout your body. Normally, we like to see a haemoglobin level above 12 g/dL, but yours is 9.8 g/dL, which is a bit low. This means your body might not be getting as much oxygen as it needs, which can make you feel tired or weak.\n\nFerritin is a protein that helps your body store iron. Iron is crucial because it helps your body make the haemoglobin I mentioned earlier. Your ferritin level is 8 micrograms/L, which is lower than what's considered normal. This suggests that your body doesn't have enough iron, leading to what's known as iron-deficiency anaemia. This is a common condition and can usually be managed effectively.\n\nTo help your body get the iron it needs, we recommend you start taking a supplement called ferrous sulfate. You will take 200 mg twice a day. This should help boost your iron levels over time.\n\nIn about 8 weeks, we’ll repeat your blood tests to see how well the treatment is working. It’s important to take the supplement as directed and to come back for your follow-up test, so we can make sure your levels are improving.\n\nI understand that hearing about low levels can be concerning, but iron-deficiency anaemia is a common issue and quite manageable with treatment. If you have any questions or notice anything unusual while taking the supplement, please don't hesitate to reach out. We’re here to help you feel better.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "observed-in-production",
+        "note": "base output already fails the gate: fabricated number \"12\" — not in the source"
+      }
+    },
+    {
+      "outputId": "simplify-lab-results::drop-anchor",
+      "caseId": "simplify-lab-results",
+      "kind": "simplification",
+      "variant": "drop-anchor",
+      "injectedDefect": {
+        "class": "dropped_anchor",
+        "detail": "anchor \"9.8\" deleted from the output"
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic deletion"
+      },
+      "caseSha256": "3cd5db5378a94c9380e5237f6189fe97e15f4ee304db88fed605f40ff3e7fda3",
+      "text": "Alright, let’s break this down together. You recently had some blood tests done, and two important results came back showing that your haemoglobin and ferritin levels are low.\n\nHaemoglobin is a protein in your red blood cells that carries oxygen throughout your body. Normally, we like to see a haemoglobin level above 12 g/dL, but yours is g/dL, which is a bit low. This means your body might not be getting as much oxygen as it needs, which can make you feel tired or weak.\n\nFerritin is a protein that helps your body store iron. Iron is crucial because it helps your body make the haemoglobin I mentioned earlier. Your ferritin level is 8 micrograms/L, which is lower than what's considered normal. This suggests that your body doesn't have enough iron, leading to what's known as iron-deficiency anaemia. This is a common condition and can usually be managed effectively.\n\nTo help your body get the iron it needs, we recommend you start taking a supplement called ferrous sulfate. You will take 200 mg twice a day. This should help boost your iron levels over time.\n\nIn about 8 weeks, we’ll repeat your blood tests to see how well the treatment is working. It’s important to take the supplement as directed and to come back for your follow-up test, so we can make sure your levels are improving.\n\nI understand that hearing about low levels can be concerning, but iron-deficiency anaemia is a common issue and quite manageable with treatment. If you have any questions or notice anything unusual while taking the supplement, please don't hesitate to reach out. We’re here to help you feel better.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "dropped_anchor",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "blind by construction — faithfulness asks only whether asserted claims are supported"
+      }
+    },
+    {
+      "outputId": "simplify-lab-results::fabricate-number",
+      "caseId": "simplify-lab-results",
+      "kind": "simplification",
+      "variant": "fabricate-number",
+      "injectedDefect": {
+        "class": "fabricated_number",
+        "detail": "number \"11\" appears nowhere in the source"
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "3cd5db5378a94c9380e5237f6189fe97e15f4ee304db88fed605f40ff3e7fda3",
+      "text": "Alright, let’s break this down together. You recently had some blood tests done, and two important results came back showing that your haemoglobin and ferritin levels are low. \n\nHaemoglobin is a protein in your red blood cells that carries oxygen throughout your body. Normally, we like to see a haemoglobin level above 12 g/dL, but yours is 9.8 g/dL, which is a bit low. This means your body might not be getting as much oxygen as it needs, which can make you feel tired or weak.\n\nFerritin is a protein that helps your body store iron. Iron is crucial because it helps your body make the haemoglobin I mentioned earlier. Your ferritin level is 8 micrograms/L, which is lower than what's considered normal. This suggests that your body doesn't have enough iron, leading to what's known as iron-deficiency anaemia. This is a common condition and can usually be managed effectively.\n\nTo help your body get the iron it needs, we recommend you start taking a supplement called ferrous sulfate. You will take 200 mg twice a day. This should help boost your iron levels over time.\n\nIn about 8 weeks, we’ll repeat your blood tests to see how well the treatment is working. It’s important to take the supplement as directed and to come back for your follow-up test, so we can make sure your levels are improving.\n\nI understand that hearing about low levels can be concerning, but iron-deficiency anaemia is a common issue and quite manageable with treatment. If you have any questions or notice anything unusual while taking the supplement, please don't hesitate to reach out. We’re here to help you feel better. About 11% of people notice an improvement within the first few days.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "fabricated_number",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "should catch — an unsupported asserted claim"
+      }
+    },
+    {
+      "outputId": "simplify-lab-results::contradiction",
+      "caseId": "simplify-lab-results",
+      "kind": "simplification",
+      "variant": "contradiction",
+      "injectedDefect": {
+        "class": "contradiction",
+        "detail": "Your iron levels are within the normal range, so no treatment is needed."
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "3cd5db5378a94c9380e5237f6189fe97e15f4ee304db88fed605f40ff3e7fda3",
+      "text": "Alright, let’s break this down together. You recently had some blood tests done, and two important results came back showing that your haemoglobin and ferritin levels are low. \n\nHaemoglobin is a protein in your red blood cells that carries oxygen throughout your body. Normally, we like to see a haemoglobin level above 12 g/dL, but yours is 9.8 g/dL, which is a bit low. This means your body might not be getting as much oxygen as it needs, which can make you feel tired or weak.\n\nFerritin is a protein that helps your body store iron. Iron is crucial because it helps your body make the haemoglobin I mentioned earlier. Your ferritin level is 8 micrograms/L, which is lower than what's considered normal. This suggests that your body doesn't have enough iron, leading to what's known as iron-deficiency anaemia. This is a common condition and can usually be managed effectively.\n\nTo help your body get the iron it needs, we recommend you start taking a supplement called ferrous sulfate. You will take 200 mg twice a day. This should help boost your iron levels over time.\n\nIn about 8 weeks, we’ll repeat your blood tests to see how well the treatment is working. It’s important to take the supplement as directed and to come back for your follow-up test, so we can make sure your levels are improving.\n\nI understand that hearing about low levels can be concerning, but iron-deficiency anaemia is a common issue and quite manageable with treatment. If you have any questions or notice anything unusual while taking the supplement, please don't hesitate to reach out. We’re here to help you feel better. Your iron levels are within the normal range, so no treatment is needed.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "contradiction",
+        "deterministicShouldFail": false,
+        "judgeExpectation": "should catch — this is what a judge is for"
+      }
+    },
+    {
+      "outputId": "simplify-lab-results::inversion",
+      "caseId": "simplify-lab-results",
+      "kind": "simplification",
+      "variant": "inversion",
+      "injectedDefect": {
+        "class": "inversion",
+        "detail": "abnormal results described as the opposite abnormality (low → high)",
+        "applied": [
+          {
+            "pattern": "/\\b(is|are|was|were)\\s+(?:a little\\s+|slightly\\s+|quite\\s+|very\\s+)?low\\b/gi",
+            "replacement": "$1 high"
+          },
+          {
+            "pattern": "/\\b(?:a little\\s+|slightly\\s+)?low\\b/gi",
+            "replacement": "high"
+          },
+          {
+            "pattern": "/\\banaemia\\b/gi",
+            "replacement": "iron overload"
+          }
+        ]
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic in-place polarity flip"
+      },
+      "caseSha256": "3cd5db5378a94c9380e5237f6189fe97e15f4ee304db88fed605f40ff3e7fda3",
+      "text": "Alright, let’s break this down together. You recently had some blood tests done, and two important results came back showing that your haemoglobin and ferritin levels are high. \n\nHaemoglobin is a protein in your red blood cells that carries oxygen throughout your body. Normally, we like to see a haemoglobin level above 12 g/dL, but yours is 9.8 g/dL, which is a bit high. This means your body might not be getting as much oxygen as it needs, which can make you feel tired or weak.\n\nFerritin is a protein that helps your body store iron. Iron is crucial because it helps your body make the haemoglobin I mentioned earlier. Your ferritin level is 8 micrograms/L, which is lower than what's considered normal. This suggests that your body doesn't have enough iron, leading to what's known as iron-deficiency iron overload. This is a common condition and can usually be managed effectively.\n\nTo help your body get the iron it needs, we recommend you start taking a supplement called ferrous sulfate. You will take 200 mg twice a day. This should help boost your iron levels over time.\n\nIn about 8 weeks, we’ll repeat your blood tests to see how well the treatment is working. It’s important to take the supplement as directed and to come back for your follow-up test, so we can make sure your levels are improving.\n\nI understand that hearing about high levels can be concerning, but iron-deficiency iron overload is a common issue and quite manageable with treatment. If you have any questions or notice anything unusual while taking the supplement, please don't hesitate to reach out. We’re here to help you feel better.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "inversion",
+        "deterministicShouldFail": false,
+        "deterministicInScope": false,
+        "judgeExpectation": "should catch — semantics is the one thing anchors cannot check"
+      }
+    },
+    {
+      "outputId": "simplify-medication-change::base",
+      "caseId": "simplify-medication-change",
+      "kind": "simplification",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified"
+      },
+      "caseSha256": "6c3ed06f3f6e74d7734c23bb3ecf7ea7dd3707a39a935ebd3de97a376394e45b",
+      "text": "Your current medication, levothyroxine, is used to help manage your thyroid levels. You've been taking 50 micrograms of it every day, but your recent blood test showed that your TSH level is 8.2 mU/L. TSH stands for Thyroid Stimulating Hormone, and it helps regulate your thyroid. A TSH level of 8.2 is a bit higher than what we usually aim for, which suggests your thyroid might not be producing enough hormones on its own. \n\nTo address this, your doctor has decided to increase your levothyroxine dose to 100 micrograms each day. This should help bring your hormone levels back to where they should be. You'll need to take this new dose every morning before you eat breakfast. Taking it on an empty stomach helps your body absorb the medication better.\n\nWe'll check your thyroid levels again in 6 to 8 weeks to see how the new dose is working. This follow-up test will help us make sure your TSH levels are back in a healthier range. If you have any questions about how to take your medication or if you notice any changes in how you feel, be sure to let your doctor know.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "none",
+        "note": null
+      }
+    },
+    {
+      "outputId": "simplify-medication-change::drop-anchor",
+      "caseId": "simplify-medication-change",
+      "kind": "simplification",
+      "variant": "drop-anchor",
+      "injectedDefect": {
+        "class": "dropped_anchor",
+        "detail": "anchor \"100 micrograms\" deleted from the output"
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic deletion"
+      },
+      "caseSha256": "6c3ed06f3f6e74d7734c23bb3ecf7ea7dd3707a39a935ebd3de97a376394e45b",
+      "text": "Your current medication, levothyroxine, is used to help manage your thyroid levels. You've been taking 50 micrograms of it every day, but your recent blood test showed that your TSH level is 8.2 mU/L. TSH stands for Thyroid Stimulating Hormone, and it helps regulate your thyroid. A TSH level of 8.2 is a bit higher than what we usually aim for, which suggests your thyroid might not be producing enough hormones on its own.\n\nTo address this, your doctor has decided to increase your levothyroxine dose to each day. This should help bring your hormone levels back to where they should be. You'll need to take this new dose every morning before you eat breakfast. Taking it on an empty stomach helps your body absorb the medication better.\n\nWe'll check your thyroid levels again in 6 to 8 weeks to see how the new dose is working. This follow-up test will help us make sure your TSH levels are back in a healthier range. If you have any questions about how to take your medication or if you notice any changes in how you feel, be sure to let your doctor know.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "dropped_anchor",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "blind by construction — faithfulness asks only whether asserted claims are supported"
+      }
+    },
+    {
+      "outputId": "simplify-medication-change::fabricate-number",
+      "caseId": "simplify-medication-change",
+      "kind": "simplification",
+      "variant": "fabricate-number",
+      "injectedDefect": {
+        "class": "fabricated_number",
+        "detail": "number \"11\" appears nowhere in the source"
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "6c3ed06f3f6e74d7734c23bb3ecf7ea7dd3707a39a935ebd3de97a376394e45b",
+      "text": "Your current medication, levothyroxine, is used to help manage your thyroid levels. You've been taking 50 micrograms of it every day, but your recent blood test showed that your TSH level is 8.2 mU/L. TSH stands for Thyroid Stimulating Hormone, and it helps regulate your thyroid. A TSH level of 8.2 is a bit higher than what we usually aim for, which suggests your thyroid might not be producing enough hormones on its own. \n\nTo address this, your doctor has decided to increase your levothyroxine dose to 100 micrograms each day. This should help bring your hormone levels back to where they should be. You'll need to take this new dose every morning before you eat breakfast. Taking it on an empty stomach helps your body absorb the medication better.\n\nWe'll check your thyroid levels again in 6 to 8 weeks to see how the new dose is working. This follow-up test will help us make sure your TSH levels are back in a healthier range. If you have any questions about how to take your medication or if you notice any changes in how you feel, be sure to let your doctor know. About 11% of people notice an improvement within the first few days.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "fabricated_number",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "should catch — an unsupported asserted claim"
+      }
+    },
+    {
+      "outputId": "simplify-medication-change::contradiction",
+      "caseId": "simplify-medication-change",
+      "kind": "simplification",
+      "variant": "contradiction",
+      "injectedDefect": {
+        "class": "contradiction",
+        "detail": "Take the new dose of levothyroxine at bedtime rather than in the morning."
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "6c3ed06f3f6e74d7734c23bb3ecf7ea7dd3707a39a935ebd3de97a376394e45b",
+      "text": "Your current medication, levothyroxine, is used to help manage your thyroid levels. You've been taking 50 micrograms of it every day, but your recent blood test showed that your TSH level is 8.2 mU/L. TSH stands for Thyroid Stimulating Hormone, and it helps regulate your thyroid. A TSH level of 8.2 is a bit higher than what we usually aim for, which suggests your thyroid might not be producing enough hormones on its own. \n\nTo address this, your doctor has decided to increase your levothyroxine dose to 100 micrograms each day. This should help bring your hormone levels back to where they should be. You'll need to take this new dose every morning before you eat breakfast. Taking it on an empty stomach helps your body absorb the medication better.\n\nWe'll check your thyroid levels again in 6 to 8 weeks to see how the new dose is working. This follow-up test will help us make sure your TSH levels are back in a healthier range. If you have any questions about how to take your medication or if you notice any changes in how you feel, be sure to let your doctor know. Take the new dose of levothyroxine at bedtime rather than in the morning.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "contradiction",
+        "deterministicShouldFail": false,
+        "judgeExpectation": "should catch — this is what a judge is for"
+      }
+    },
+    {
+      "outputId": "simplify-medication-change::inversion",
+      "caseId": "simplify-medication-change",
+      "kind": "simplification",
+      "variant": "inversion",
+      "injectedDefect": {
+        "class": "inversion",
+        "detail": "dose change direction reversed (increase → reduction)",
+        "applied": [
+          {
+            "pattern": "/\\bincreas(?:ed|ing|e)\\b/i",
+            "replacement": "reduced"
+          }
+        ]
+      },
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified",
+        "mutated": "deterministic in-place polarity flip"
+      },
+      "caseSha256": "6c3ed06f3f6e74d7734c23bb3ecf7ea7dd3707a39a935ebd3de97a376394e45b",
+      "text": "Your current medication, levothyroxine, is used to help manage your thyroid levels. You've been taking 50 micrograms of it every day, but your recent blood test showed that your TSH level is 8.2 mU/L. TSH stands for Thyroid Stimulating Hormone, and it helps regulate your thyroid. A TSH level of 8.2 is a bit higher than what we usually aim for, which suggests your thyroid might not be producing enough hormones on its own. \n\nTo address this, your doctor has decided to reduced your levothyroxine dose to 100 micrograms each day. This should help bring your hormone levels back to where they should be. You'll need to take this new dose every morning before you eat breakfast. Taking it on an empty stomach helps your body absorb the medication better.\n\nWe'll check your thyroid levels again in 6 to 8 weeks to see how the new dose is working. This follow-up test will help us make sure your TSH levels are back in a healthier range. If you have any questions about how to take your medication or if you notice any changes in how you feel, be sure to let your doctor know.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "inversion",
+        "deterministicShouldFail": false,
+        "deterministicInScope": false,
+        "judgeExpectation": "should catch — semantics is the one thing anchors cannot check"
+      }
+    },
+    {
+      "outputId": "grounding-legal-clause::base",
+      "caseId": "grounding-legal-clause",
+      "kind": "grounding",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini"
+      },
+      "caseSha256": "1bff5256e448d8a9fc937c5a9ab68ac45f3c60bee61cb62b5088c7ef4c92bb31",
+      "text": "A notice period of ninety (90) days is required to terminate the agreement for convenience.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "observed-in-production",
+        "note": "base output already fails the gate: missing answer fact \"written notice\""
+      }
+    },
+    {
+      "outputId": "grounding-legal-clause::drop-anchor",
+      "caseId": "grounding-legal-clause",
+      "kind": "grounding",
+      "variant": "drop-anchor",
+      "injectedDefect": {
+        "class": "dropped_anchor",
+        "detail": "anchor \"90 days\" deleted from the output"
+      },
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini",
+        "mutated": "deterministic deletion"
+      },
+      "caseSha256": "1bff5256e448d8a9fc937c5a9ab68ac45f3c60bee61cb62b5088c7ef4c92bb31",
+      "text": "A notice period of is required to terminate the agreement for convenience.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "dropped_anchor",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "blind by construction — faithfulness asks only whether asserted claims are supported"
+      }
+    },
+    {
+      "outputId": "grounding-legal-clause::fabricate-number",
+      "caseId": "grounding-legal-clause",
+      "kind": "grounding",
+      "variant": "fabricate-number",
+      "injectedDefect": {
+        "class": "fabricated_number",
+        "detail": "number \"11\" appears nowhere in the source"
+      },
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "1bff5256e448d8a9fc937c5a9ab68ac45f3c60bee61cb62b5088c7ef4c92bb31",
+      "text": "A notice period of ninety (90) days is required to terminate the agreement for convenience. This applies in approximately 11% of cases.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "fabricated_number",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "should catch — an unsupported asserted claim"
+      }
+    },
+    {
+      "outputId": "grounding-legal-clause::contradiction",
+      "caseId": "grounding-legal-clause",
+      "kind": "grounding",
+      "variant": "contradiction",
+      "injectedDefect": {
+        "class": "contradiction",
+        "detail": "Either party may also terminate for convenience without any written notice, at its discretion."
+      },
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "1bff5256e448d8a9fc937c5a9ab68ac45f3c60bee61cb62b5088c7ef4c92bb31",
+      "text": "A notice period of ninety (90) days is required to terminate the agreement for convenience. Either party may also terminate for convenience without any written notice, at its discretion.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "contradiction",
+        "deterministicShouldFail": false,
+        "judgeExpectation": "should catch — this is what a judge is for"
+      }
+    },
+    {
+      "outputId": "grounding-legal-clause::inversion",
+      "caseId": "grounding-legal-clause",
+      "kind": "grounding",
+      "variant": "inversion",
+      "injectedDefect": {
+        "class": "inversion",
+        "detail": "notice requirement negated (requires 90 days → does not require)",
+        "applied": [
+          {
+            "pattern": "/\\bis required\\b/i",
+            "replacement": "is not required"
+          }
+        ]
+      },
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini",
+        "mutated": "deterministic in-place polarity flip"
+      },
+      "caseSha256": "1bff5256e448d8a9fc937c5a9ab68ac45f3c60bee61cb62b5088c7ef4c92bb31",
+      "text": "A notice period of ninety (90) days is not required to terminate the agreement for convenience.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "inversion",
+        "deterministicShouldFail": false,
+        "deterministicInScope": false,
+        "judgeExpectation": "should catch — semantics is the one thing anchors cannot check"
+      }
+    },
+    {
+      "outputId": "grounding-saas-refund::base",
+      "caseId": "grounding-saas-refund",
+      "kind": "grounding",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini"
+      },
+      "caseSha256": "e910854633efa17228ee7c0ad961b557dfabe8d903d65ae27f0b18c70dabea65",
+      "text": "Customers have 30 days to request a refund, and there is no restocking fee for standard plans. However, enterprise hardware returns are subject to a 15% restocking fee.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "none",
+        "note": null
+      }
+    },
+    {
+      "outputId": "grounding-saas-refund::drop-anchor",
+      "caseId": "grounding-saas-refund",
+      "kind": "grounding",
+      "variant": "drop-anchor",
+      "injectedDefect": {
+        "class": "dropped_anchor",
+        "detail": "anchor \"30 days\" deleted from the output"
+      },
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini",
+        "mutated": "deterministic deletion"
+      },
+      "caseSha256": "e910854633efa17228ee7c0ad961b557dfabe8d903d65ae27f0b18c70dabea65",
+      "text": "Customers have to request a refund, and there is no restocking fee for standard plans. However, enterprise hardware returns are subject to a 15% restocking fee.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "dropped_anchor",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "blind by construction — faithfulness asks only whether asserted claims are supported"
+      }
+    },
+    {
+      "outputId": "grounding-saas-refund::fabricate-number",
+      "caseId": "grounding-saas-refund",
+      "kind": "grounding",
+      "variant": "fabricate-number",
+      "injectedDefect": {
+        "class": "fabricated_number",
+        "detail": "number \"11\" appears nowhere in the source"
+      },
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "e910854633efa17228ee7c0ad961b557dfabe8d903d65ae27f0b18c70dabea65",
+      "text": "Customers have 30 days to request a refund, and there is no restocking fee for standard plans. However, enterprise hardware returns are subject to a 15% restocking fee. This applies in approximately 11% of cases.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "fabricated_number",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "should catch — an unsupported asserted claim"
+      }
+    },
+    {
+      "outputId": "grounding-saas-refund::contradiction",
+      "caseId": "grounding-saas-refund",
+      "kind": "grounding",
+      "variant": "contradiction",
+      "injectedDefect": {
+        "class": "contradiction",
+        "detail": "Standard plans are also subject to a restocking fee on return."
+      },
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini",
+        "mutated": "deterministic append"
+      },
+      "caseSha256": "e910854633efa17228ee7c0ad961b557dfabe8d903d65ae27f0b18c70dabea65",
+      "text": "Customers have 30 days to request a refund, and there is no restocking fee for standard plans. However, enterprise hardware returns are subject to a 15% restocking fee. Standard plans are also subject to a restocking fee on return.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "contradiction",
+        "deterministicShouldFail": false,
+        "judgeExpectation": "should catch — this is what a judge is for"
+      }
+    },
+    {
+      "outputId": "grounding-saas-refund::inversion",
+      "caseId": "grounding-saas-refund",
+      "kind": "grounding",
+      "variant": "inversion",
+      "injectedDefect": {
+        "class": "inversion",
+        "detail": "refund entitlement reversed (refund within 30 days → no refund within 30 days)",
+        "applied": [
+          {
+            "pattern": "/\\b(?:customers\\s+)?(?:have|get)\\s+30 days\\b[^.]*?\\brefund\\b/i",
+            "replacement": "Customers may not request a refund within 30 days of purchase"
+          }
+        ]
+      },
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini",
+        "mutated": "deterministic in-place polarity flip"
+      },
+      "caseSha256": "e910854633efa17228ee7c0ad961b557dfabe8d903d65ae27f0b18c70dabea65",
+      "text": "Customers may not request a refund within 30 days of purchase, and there is no restocking fee for standard plans. However, enterprise hardware returns are subject to a 15% restocking fee.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "inversion",
+        "deterministicShouldFail": false,
+        "deterministicInScope": false,
+        "judgeExpectation": "should catch — semantics is the one thing anchors cannot check"
+      }
+    },
+    {
+      "outputId": "grounding-unanswerable::base",
+      "caseId": "grounding-unanswerable",
+      "kind": "grounding",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini"
+      },
+      "caseSha256": "eaab948dc7ef8aedc4fbc8e4efd0bbbd3d171e42831e8abb05c62e2fb4fe1756",
+      "text": "The context does not provide information about the annual price of the Enterprise plan.",
+      "expected": {
+        "faithful": true,
+        "defectClass": "none",
+        "note": null
+      }
+    },
+    {
+      "outputId": "grounding-unanswerable::non-abstention",
+      "caseId": "grounding-unanswerable",
+      "kind": "grounding",
+      "variant": "non-abstention",
+      "injectedDefect": {
+        "class": "non_abstention",
+        "detail": "The Enterprise plan is priced the same as the Pro plan and is billed annually."
+      },
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini",
+        "mutated": "deterministic replacement"
+      },
+      "caseSha256": "eaab948dc7ef8aedc4fbc8e4efd0bbbd3d171e42831e8abb05c62e2fb4fe1756",
+      "text": "The Enterprise plan is priced the same as the Pro plan and is billed annually.",
+      "expected": {
+        "faithful": false,
+        "defectClass": "non_abstention",
+        "deterministicShouldFail": true,
+        "judgeExpectation": "should catch — answers a question the context cannot answer"
+      }
+    }
+  ],
+  "corpusSha256": "0167bf8ad539b7f3832c906dd26eb66ae7093b2ba20572b8e5a2310d6c28d71e"
+}

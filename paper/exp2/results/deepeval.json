@@ -1,0 +1,726 @@
+{
+  "arm": "deepeval-faithfulness",
+  "judgeModel": "gpt-4o",
+  "note": "Second, independent judge implementation. Same frozen inputs, same 5 repeats. Per-verdict `reason` captured for the failure-localisation comparison.",
+  "ranAt": "2026-07-11T20:36:19.311468+00:00",
+  "corpusSha256": "0167bf8ad539b7f3832c906dd26eb66ae7093b2ba20572b8e5a2310d6c28d71e",
+  "repeats": 5,
+  "cost": {
+    "usd": 1.119076,
+    "meanWallSecondsPerRepeat": 118.5
+  },
+  "runs": [
+    {
+      "repeat": 1,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output suggests a different duration or dosage for the antibiotic course than the retrieval context, which specifies a 5-day course of amoxicillin 500 mg three times daily. This discrepancy affects the faithfulness of the output to the provided context."
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output incorrectly advises the patient on when to return to the hospital, contradicting the retrieval context's specific instructions regarding worsening breathlessness or a fever above 38 degrees."
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0.9375,
+          "reason": "The score is 0.94 because the actual output omits the specific haemoglobin level of 9.8 g/dL, which is clearly stated in the retrieval context. This minor omission slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.9444444444444444,
+          "reason": "The score is 0.94 because the actual output inaccurately claims that iron levels are within the normal range, while the retrieval context clearly indicates they are low. This minor discrepancy slightly affects the overall faithfulness."
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.8235294117647058,
+          "reason": "The score is 0.82 because the actual output incorrectly states that haemoglobin and ferritin levels are high, whereas the retrieval context clearly indicates they are low. Additionally, the actual output misrepresents the condition as iron-deficiency iron overload instead of iron-deficiency anaemia. Despite these discrepancies, the overall alignment with the retrieval context is relatively strong, hence the score."
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.9090909090909091,
+          "reason": "The score is 0.91 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms, while the retrieval context specifies it as 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.8181818181818182,
+          "reason": "The score is 0.82 because the actual output inaccurately states the dosage of levothyroxine as 50 micrograms, while the retrieval context clearly indicates it should be 100 micrograms. Additionally, the output fails to specify the frequency of the dosage increase, which is meant to be daily."
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.8461538461538461,
+          "reason": "The score is 0.85 because the actual output incorrectly states the dosage and timing of levothyroxine intake, contradicting the retrieval context which specifies a dose increase to 100 micrograms and a morning intake schedule."
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.8181818181818182,
+          "reason": "The score is 0.82 because the actual output incorrectly states that the levothyroxine dose was reduced, while the retrieval context clearly indicates that the dose was increased from 50 micrograms to 100 micrograms. This contradiction affects the faithfulness of the output to the context."
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output failed to include the critical detail that a ninety (90) day notice period is required to terminate the agreement for convenience, leading to an incomplete and misleading statement."
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.5,
+          "reason": "The score is 0.50 because the actual output incorrectly claims that termination for convenience can occur without written notice, whereas the retrieval context clearly requires a ninety-day prior written notice for such termination."
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output incorrectly claims a different notice period for termination for convenience, while the retrieval context clearly specifies a ninety (90) days' prior written notice requirement."
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output incorrectly claims that standard plans are subject to a restocking fee, whereas the retrieval context clearly states that there is no restocking fee for standard plans. This discrepancy affects the faithfulness of the output."
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output incorrectly claims that customers cannot request a full refund within 30 days, which contradicts the retrieval context stating they can do so for any reason."
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output is perfectly aligned with the retrieval context. Great job maintaining accuracy and consistency!"
+        }
+      ],
+      "wallSeconds": 119.6,
+      "usd": 0.22473
+    },
+    {
+      "repeat": 2,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output suggests a different duration or dosage for the antibiotic course than the retrieval context, which specifies a 5-day course of amoxicillin 500 mg three times daily."
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output incorrectly advises against going to the hospital, contradicting the retrieval context's guidance to seek medical attention if symptoms worsen."
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output is perfectly aligned with the retrieval context. Great job maintaining accuracy and consistency!"
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0.9411764705882353,
+          "reason": "The score is 0.94 because the actual output closely aligns with the retrieval context, with only a minor omission of the specific haemoglobin level of 9.8 g/dL. This small detail does not significantly detract from the overall faithfulness of the information presented."
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.9444444444444444,
+          "reason": "The score is 0.94 because the actual output slightly misrepresents the retrieval context by not acknowledging the low iron levels that indicate a need for treatment. However, this is a minor discrepancy, and overall, the output remains largely faithful to the context."
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.8235294117647058,
+          "reason": "The score is 0.82 because the actual output incorrectly states that haemoglobin and ferritin levels are high, whereas the retrieval context clearly indicates they are low. Additionally, the actual output misrepresents a haemoglobin level of 9.8 g/dL as high, while the context specifies it is below normal. Lastly, the output confuses iron-deficiency anaemia with iron overload, which contradicts the context's information."
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.9090909090909091,
+          "reason": "The score is 0.91 because the actual output accurately reflects the change in dosage from 50 micrograms to 100 micrograms of levothyroxine, indicating a minor discrepancy in the retrieval context."
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.9090909090909091,
+          "reason": "The score is 0.91 because the actual output incorrectly states the dose as 50 micrograms, while the retrieval context clearly mentions it has been increased to 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0.9090909090909091,
+          "reason": "The score is 0.91 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms, while the retrieval context specifies it as 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.8461538461538461,
+          "reason": "The score is 0.85 because the actual output incorrectly states the dosage and timing of levothyroxine intake, which contradicts the retrieval context. The individual is taking 100 micrograms daily, not 50, and the medication should be taken in the morning, not at bedtime."
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.8181818181818182,
+          "reason": "The score is 0.82 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms, while the retrieval context clearly indicates it should be 100 micrograms. Additionally, the actual output suggests a reduction in dosage, contradicting the context where an increase was decided."
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output failed to include the critical detail that a ninety-day notice period is required to terminate the agreement for convenience, leading to an incomplete and misleading statement."
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.5,
+          "reason": "The score is 0.50 because the actual output incorrectly claims that termination for convenience can occur without written notice, whereas the retrieval context specifies a requirement for a ninety-day prior written notice."
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output incorrectly claims a different notice period for termination for convenience, while the retrieval context clearly specifies a ninety (90) days' prior written notice requirement."
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output incorrectly claims that standard plans are subject to a restocking fee on return, while the retrieval context clearly states there is no restocking fee for standard plans."
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output incorrectly claims that customers cannot request a full refund within 30 days, which contradicts the retrieval context stating they can do so for any reason."
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        }
+      ],
+      "wallSeconds": 123.9,
+      "usd": 0.222775
+    },
+    {
+      "repeat": 3,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output suggests stopping antibiotics once symptoms improve, contradicting the retrieval context's advice to complete the full 5-day course of amoxicillin."
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output incorrectly advises the patient on when to return to the hospital, contradicting the retrieval context's specific guidance on worsening breathlessness or a fever above 38 degrees."
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.9444444444444444,
+          "reason": "The score is 0.94 because the actual output inaccurately claims that iron levels are within the normal range, while the retrieval context clearly indicates that they are low. This minor discrepancy slightly affects the overall faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.8235294117647058,
+          "reason": "The score is 0.82 because the actual output incorrectly states that haemoglobin and ferritin levels are high, whereas the retrieval context clearly indicates they are low. Additionally, the actual output misrepresents the condition as iron-deficiency iron overload instead of iron-deficiency anaemia. Despite these discrepancies, the overall alignment with the retrieval context is relatively strong, hence the score."
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.9166666666666666,
+          "reason": "The score is 0.92 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms, while the retrieval context specifies it as 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.8181818181818182,
+          "reason": "The score is 0.82 because the actual output inaccurately states the dosage of levothyroxine as 50 micrograms instead of the correct 100 micrograms, and it omits the specific increase in dosage decided by the doctor."
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0.9090909090909091,
+          "reason": "The score is 0.91 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms, while the retrieval context specifies it as 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.8461538461538461,
+          "reason": "The score is 0.85 because the actual output incorrectly states the current dose as 50 micrograms instead of the increased 100 micrograms, and it mentions taking the dose at bedtime rather than in the morning before breakfast, as specified in the context."
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.8181818181818182,
+          "reason": "The score is 0.82 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms, while the retrieval context clearly indicates it is 100 micrograms. Additionally, the actual output mistakenly suggests a reduction in dosage, whereas the context specifies an increase to 100 micrograms."
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output failed to include the critical detail that a ninety-day notice period is required to terminate the agreement for convenience, leading to an incomplete and misleading statement."
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.5,
+          "reason": "The score is 0.50 because the actual output incorrectly claims that termination for convenience can occur without written notice, whereas the retrieval context clearly requires a ninety-day prior written notice for such termination."
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output incorrectly claims that a ninety-day notice period is not required, while the retrieval context clearly states that such a notice period is necessary for terminating the agreement for convenience."
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output incorrectly claims that standard plans are subject to a restocking fee, whereas the retrieval context clearly states that there is no restocking fee for standard plans. This discrepancy affects the faithfulness of the output."
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output likely misrepresented the refund policy by either omitting the 30-day timeframe or altering the conditions under which a refund can be requested, leading to a partial misalignment with the retrieval context."
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        }
+      ],
+      "wallSeconds": 113.4,
+      "usd": 0.223648
+    },
+    {
+      "repeat": 4,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output likely suggests a different duration or dosage for the antibiotic course, which contradicts the retrieval context's recommendation of a 5-day course of amoxicillin 500 mg three times daily."
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output incorrectly advises the patient on when to return to the hospital, contradicting the retrieval context's specific instructions regarding worsening breathlessness or a fever above 38 degrees."
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.9333333333333333,
+          "reason": "The score is 0.93 because the actual output incorrectly states that no treatment is needed, while the retrieval context clearly indicates that a low ferritin level necessitates treatment. This minor contradiction slightly affects the overall faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.8235294117647058,
+          "reason": "The score is 0.82 because the actual output incorrectly states that haemoglobin and ferritin levels are high, whereas the retrieval context clearly indicates they are low. Additionally, the actual output misinterprets a haemoglobin level of 9.8 g/dL as high, which contradicts the context stating it is below normal. Lastly, the output confuses iron-deficiency anaemia with iron overload, which is not supported by the retrieval context."
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.9166666666666666,
+          "reason": "The score is 0.92 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms, while the retrieval context specifies it as 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.9090909090909091,
+          "reason": "The score is 0.91 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms, while the retrieval context specifies it as 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0.9090909090909091,
+          "reason": "The score is 0.91 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms daily, whereas the retrieval context indicates it should be 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.8461538461538461,
+          "reason": "The score is 0.85 because the actual output incorrectly states the dosage and timing of levothyroxine intake, which contradicts the retrieval context. The individual is taking 100 micrograms daily, not 50, and the medication should be taken in the morning, not at bedtime."
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.8181818181818182,
+          "reason": "The score is 0.82 because the actual output incorrectly states a reduction in the levothyroxine dose, while the retrieval context clearly indicates an increase from 50 micrograms to 100 micrograms."
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output failed to include the critical detail that a ninety (90) day notice period is required to terminate the agreement for convenience, leading to an incomplete and misleading statement."
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.5,
+          "reason": "The score is 0.50 because the actual output incorrectly states that termination for convenience can occur without any written notice, whereas the retrieval context clearly specifies a requirement for ninety (90) days' prior written notice."
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output incorrectly claims that a ninety-day notice period is not required, while the retrieval context clearly states that such a notice period is necessary for terminating the agreement for convenience."
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output incorrectly claims that standard plans are subject to a restocking fee on return, whereas the retrieval context clearly states there is no restocking fee for standard plans. This discrepancy affects the faithfulness of the output."
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output incorrectly claims that customers cannot request a full refund within 30 days, which contradicts the retrieval context that allows refunds for any reason within this period."
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output is perfectly aligned with the retrieval context. Great job maintaining accuracy and consistency!"
+        }
+      ],
+      "wallSeconds": 117.4,
+      "usd": 0.22487
+    },
+    {
+      "repeat": 5,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output suggests stopping antibiotics once symptoms improve, contradicting the retrieval context's advice to complete the full 5-day course."
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output incorrectly advises against going to the hospital, contradicting the retrieval context's guidance to seek medical attention if symptoms worsen."
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions, indicating that the actual output is perfectly aligned with the retrieval context. Great job maintaining accuracy and consistency!"
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.9411764705882353,
+          "reason": "The score is 0.94 because the actual output slightly misrepresents the retrieval context by not acknowledging the low ferritin level, which suggests a need for treatment. However, this is a minor discrepancy, and overall, the output remains largely faithful to the context."
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.8125,
+          "reason": "The score is 0.81 because the actual output incorrectly states that haemoglobin and ferritin levels are high, whereas the retrieval context clearly indicates they are low. Additionally, the actual output misinterprets a haemoglobin level of 9.8 g/dL as high, while the context specifies it is below the normal range. Furthermore, the output confuses iron-deficiency anaemia with iron-deficiency iron overload, which is not supported by the context."
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.9090909090909091,
+          "reason": "The score is 0.91 because the actual output accurately reflects the change in dosage from 50 micrograms to 100 micrograms, aligning closely with the retrieval context. The minor discrepancy in the presentation of this information slightly affects the faithfulness score."
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.8181818181818182,
+          "reason": "The score is 0.82 because the actual output correctly identifies the increase in levothyroxine dosage from 50 micrograms to 100 micrograms, but it lacks completeness by not specifying the doctor's decision to make this change."
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0.9090909090909091,
+          "reason": "The score is 0.91 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms daily, while the retrieval context indicates it should be 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.9166666666666666,
+          "reason": "The score is 0.92 because the actual output incorrectly states the dosage of levothyroxine as 50 micrograms daily, while the retrieval context indicates it should be 100 micrograms. This minor discrepancy slightly affects the faithfulness of the output."
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.8181818181818182,
+          "reason": "The score is 0.82 because the actual output incorrectly states that the levothyroxine dose was reduced, while the retrieval context clearly indicates that the dose was increased from 50 micrograms to 100 micrograms."
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output fails to include the critical detail that a ninety (90) day notice period is required to terminate the agreement for convenience, leading to an incomplete and misleading statement."
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.5,
+          "reason": "The score is 0.50 because the actual output incorrectly claims that termination for convenience can occur without written notice, whereas the retrieval context specifies a requirement for a ninety-day prior written notice."
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.0,
+          "reason": "The score is 0.00 because the actual output incorrectly claims a different notice period for termination for convenience, while the retrieval context clearly specifies a ninety (90) days' prior written notice requirement."
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75,
+          "reason": "The score is 0.75 because the actual output incorrectly claims that standard plans are subject to a restocking fee, which contradicts the retrieval context stating there is no restocking fee for standard plans."
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666,
+          "reason": "The score is 0.67 because the actual output incorrectly claims that customers cannot request a full refund within 30 days, which contradicts the retrieval context stating they can do so for any reason."
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 1.0,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+        }
+      ],
+      "wallSeconds": 118.3,
+      "usd": 0.223053
+    }
+  ],
+  "judgeTemperature": 0.0,
+  "flagThreshold": 1.0
+}

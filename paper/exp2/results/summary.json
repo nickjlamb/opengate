@@ -1,0 +1,1785 @@
+{
+  "threshold": 1,
+  "corpusSha256": "0167bf8ad539b7f3832c906dd26eb66ae7093b2ba20572b8e5a2310d6c28d71e",
+  "arms": {
+    "deterministic": {
+      "label": "OpenGATE (deterministic)",
+      "repeats": 5,
+      "stability": {
+        "meanRange": 0,
+        "maxRange": 0,
+        "outputsWithAnyMovement": 0,
+        "verdictFlips": 0,
+        "nOutputs": 27
+      },
+      "cost": {
+        "apiCalls": 0,
+        "tokens": 0,
+        "usd": 0,
+        "meanWallMsPerRepeat": 3.81
+      },
+      "rows": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        }
+      ]
+    },
+    "ragas": {
+      "label": "RAGAS faithfulness (gpt-4o)",
+      "repeats": 5,
+      "stability": {
+        "meanRange": 0.026,
+        "maxRange": 0.188,
+        "outputsWithAnyMovement": 9,
+        "verdictFlips": 0,
+        "nOutputs": 27
+      },
+      "cost": {
+        "apiCalls": null,
+        "tokens": 311453,
+        "usd": 1.550972,
+        "meanWallSecondsPerRepeat": 194.4
+      },
+      "rows": [
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "scores": [
+            0.3125,
+            0.5,
+            0.3125,
+            0.375,
+            0.3125
+          ],
+          "mean": 0.363,
+          "range": 0.188,
+          "sd": 0.081,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "scores": [
+            0.3076923076923077,
+            0.37037037037037035,
+            0.34615384615384615,
+            0.4166666666666667,
+            0.38461538461538464
+          ],
+          "mean": 0.365,
+          "range": 0.109,
+          "sd": 0.041,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "scores": [
+            0.375,
+            0.47058823529411764,
+            0.47058823529411764,
+            0.4117647058823529,
+            0.47058823529411764
+          ],
+          "mean": 0.44,
+          "range": 0.096,
+          "sd": 0.044,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "scores": [
+            0.3333333333333333,
+            0.4,
+            0.3333333333333333,
+            0.3333333333333333,
+            0.41379310344827586
+          ],
+          "mean": 0.363,
+          "range": 0.08,
+          "sd": 0.041,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "scores": [
+            0.3225806451612903,
+            0.3548387096774194,
+            0.3225806451612903,
+            0.3870967741935484,
+            0.3225806451612903
+          ],
+          "mean": 0.342,
+          "range": 0.065,
+          "sd": 0.029,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "scores": [
+            0.375,
+            0.375,
+            0.375,
+            0.375,
+            0.4375
+          ],
+          "mean": 0.388,
+          "range": 0.063,
+          "sd": 0.028,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "scores": [
+            0.375,
+            0.3125,
+            0.375,
+            0.3125,
+            0.3125
+          ],
+          "mean": 0.338,
+          "range": 0.063,
+          "sd": 0.034,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "scores": [
+            0.37037037037037035,
+            0.3448275862068966,
+            0.37037037037037035,
+            0.37037037037037035,
+            0.3448275862068966
+          ],
+          "mean": 0.36,
+          "range": 0.026,
+          "sd": 0.014,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "scores": [
+            0.3103448275862069,
+            0.32142857142857145,
+            0.32142857142857145,
+            0.3103448275862069,
+            0.32142857142857145
+          ],
+          "mean": 0.317,
+          "range": 0.011,
+          "sd": 0.006,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "scores": [
+            0.8333333333333334,
+            0.8333333333333334,
+            0.8333333333333334,
+            0.8333333333333334,
+            0.8333333333333334
+          ],
+          "mean": 0.833,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "scores": [
+            0.8333333333333334,
+            0.8333333333333334,
+            0.8333333333333334,
+            0.8333333333333334,
+            0.8333333333333334
+          ],
+          "mean": 0.833,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "scores": [
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          "mean": 0.6,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "scores": [
+            0.35294117647058826,
+            0.35294117647058826,
+            0.35294117647058826,
+            0.35294117647058826,
+            0.35294117647058826
+          ],
+          "mean": 0.353,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "scores": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "mean": 0.5,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "scores": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ],
+          "mean": 0.333,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "scores": [
+            0.75,
+            0.75,
+            0.75,
+            0.75,
+            0.75
+          ],
+          "mean": 0.75,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "scores": [
+            0.75,
+            0.75,
+            0.75,
+            0.75,
+            0.75
+          ],
+          "mean": 0.75,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "scores": [
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666
+          ],
+          "mean": 0.667,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        }
+      ]
+    },
+    "deepeval": {
+      "label": "DeepEval faithfulness (gpt-4o)",
+      "repeats": 5,
+      "stability": {
+        "meanRange": 0.013,
+        "maxRange": 0.091,
+        "outputsWithAnyMovement": 7,
+        "verdictFlips": 2,
+        "nOutputs": 27
+      },
+      "cost": {
+        "usd": 1.119076,
+        "meanWallSecondsPerRepeat": 118.5
+      },
+      "rows": [
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "scores": [
+            0.8181818181818182,
+            0.9090909090909091,
+            0.8181818181818182,
+            0.9090909090909091,
+            0.8181818181818182
+          ],
+          "mean": 0.855,
+          "range": 0.091,
+          "sd": 0.05,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "scores": [
+            1,
+            0.9090909090909091,
+            0.9090909090909091,
+            0.9090909090909091,
+            0.9090909090909091
+          ],
+          "mean": 0.927,
+          "range": 0.091,
+          "sd": 0.041,
+          "verdictFlipped": true
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "scores": [
+            0.8461538461538461,
+            0.8461538461538461,
+            0.8461538461538461,
+            0.8461538461538461,
+            0.9166666666666666
+          ],
+          "mean": 0.86,
+          "range": 0.071,
+          "sd": 0.032,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "scores": [
+            0.9375,
+            0.9411764705882353,
+            1,
+            1,
+            1
+          ],
+          "mean": 0.976,
+          "range": 0.063,
+          "sd": 0.033,
+          "verdictFlipped": true
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "scores": [
+            0.9444444444444444,
+            0.9444444444444444,
+            0.9444444444444444,
+            0.9333333333333333,
+            0.9411764705882353
+          ],
+          "mean": 0.942,
+          "range": 0.011,
+          "sd": 0.005,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "scores": [
+            0.8235294117647058,
+            0.8235294117647058,
+            0.8235294117647058,
+            0.8235294117647058,
+            0.8125
+          ],
+          "mean": 0.821,
+          "range": 0.011,
+          "sd": 0.005,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "scores": [
+            0.9090909090909091,
+            0.9090909090909091,
+            0.9166666666666666,
+            0.9166666666666666,
+            0.9090909090909091
+          ],
+          "mean": 0.912,
+          "range": 0.008,
+          "sd": 0.004,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "scores": [
+            0.75,
+            0.75,
+            0.75,
+            0.75,
+            0.75
+          ],
+          "mean": 0.75,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "scores": [
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666
+          ],
+          "mean": 0.667,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "scores": [
+            0.8181818181818182,
+            0.8181818181818182,
+            0.8181818181818182,
+            0.8181818181818182,
+            0.8181818181818182
+          ],
+          "mean": 0.818,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "scores": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "mean": 0.5,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "scores": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "mean": 0,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "scores": [
+            0.75,
+            0.75,
+            0.75,
+            0.75,
+            0.75
+          ],
+          "mean": 0.75,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "scores": [
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666,
+            0.6666666666666666
+          ],
+          "mean": 0.667,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "mean": 1,
+          "range": 0,
+          "sd": 0,
+          "verdictFlipped": false
+        }
+      ]
+    }
+  },
+  "detection": {
+    "none": {
+      "n": 4,
+      "arms": {
+        "deterministic": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 0,
+          "rawDetectedEveryRepeat": 0,
+          "rate": 0
+        },
+        "ragas": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 0,
+          "rawDetectedEveryRepeat": 1,
+          "rate": 0
+        },
+        "deepeval": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 0,
+          "rawDetectedEveryRepeat": 1,
+          "rate": 0
+        }
+      }
+    },
+    "dropped_anchor": {
+      "n": 5,
+      "arms": {
+        "deterministic": {
+          "detectedEveryRepeat": 5,
+          "detectedAtLeastOnce": 5,
+          "rawDetectedEveryRepeat": 5,
+          "rate": 1
+        },
+        "ragas": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 2,
+          "rawDetectedEveryRepeat": 2,
+          "rate": 0
+        },
+        "deepeval": {
+          "detectedEveryRepeat": 1,
+          "detectedAtLeastOnce": 3,
+          "rawDetectedEveryRepeat": 2,
+          "rate": 0.2
+        }
+      }
+    },
+    "fabricated_number": {
+      "n": 5,
+      "arms": {
+        "deterministic": {
+          "detectedEveryRepeat": 5,
+          "detectedAtLeastOnce": 5,
+          "rawDetectedEveryRepeat": 5,
+          "rate": 1
+        },
+        "ragas": {
+          "detectedEveryRepeat": 4,
+          "detectedAtLeastOnce": 5,
+          "rawDetectedEveryRepeat": 5,
+          "rate": 0.8
+        },
+        "deepeval": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 1,
+          "rawDetectedEveryRepeat": 0,
+          "rate": 0
+        }
+      }
+    },
+    "contradiction": {
+      "n": 5,
+      "arms": {
+        "deterministic": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 0,
+          "rawDetectedEveryRepeat": 1,
+          "rate": 0
+        },
+        "ragas": {
+          "detectedEveryRepeat": 3,
+          "detectedAtLeastOnce": 4,
+          "rawDetectedEveryRepeat": 5,
+          "rate": 0.6
+        },
+        "deepeval": {
+          "detectedEveryRepeat": 4,
+          "detectedAtLeastOnce": 5,
+          "rawDetectedEveryRepeat": 5,
+          "rate": 0.8
+        }
+      }
+    },
+    "inversion": {
+      "n": 5,
+      "arms": {
+        "deterministic": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 0,
+          "rawDetectedEveryRepeat": 2,
+          "rate": 0
+        },
+        "ragas": {
+          "detectedEveryRepeat": 4,
+          "detectedAtLeastOnce": 5,
+          "rawDetectedEveryRepeat": 5,
+          "rate": 0.8
+        },
+        "deepeval": {
+          "detectedEveryRepeat": 5,
+          "detectedAtLeastOnce": 5,
+          "rawDetectedEveryRepeat": 5,
+          "rate": 1
+        }
+      }
+    },
+    "observed-in-production": {
+      "n": 2,
+      "arms": {
+        "deterministic": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 0,
+          "rawDetectedEveryRepeat": 2,
+          "rate": 0
+        },
+        "ragas": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 0,
+          "rawDetectedEveryRepeat": 1,
+          "rate": 0
+        },
+        "deepeval": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 0,
+          "rawDetectedEveryRepeat": 0,
+          "rate": 0
+        }
+      }
+    },
+    "non_abstention": {
+      "n": 1,
+      "arms": {
+        "deterministic": {
+          "detectedEveryRepeat": 1,
+          "detectedAtLeastOnce": 1,
+          "rawDetectedEveryRepeat": 1,
+          "rate": 1
+        },
+        "ragas": {
+          "detectedEveryRepeat": 1,
+          "detectedAtLeastOnce": 1,
+          "rawDetectedEveryRepeat": 1,
+          "rate": 1
+        },
+        "deepeval": {
+          "detectedEveryRepeat": 0,
+          "detectedAtLeastOnce": 0,
+          "rawDetectedEveryRepeat": 0,
+          "rate": 0
+        }
+      }
+    }
+  },
+  "falsePositives": {
+    "deterministic": {
+      "n": 4,
+      "flaggedEveryRepeat": 0,
+      "flaggedAtLeastOnce": 0,
+      "rows": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        }
+      ]
+    },
+    "ragas": {
+      "n": 4,
+      "flaggedEveryRepeat": 1,
+      "flaggedAtLeastOnce": 1,
+      "rows": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "scores": [
+            0.375,
+            0.375,
+            0.375,
+            0.375,
+            0.4375
+          ],
+          "flaggedRepeats": 5,
+          "flaggedEveryRepeat": true
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        }
+      ]
+    },
+    "deepeval": {
+      "n": 4,
+      "flaggedEveryRepeat": 1,
+      "flaggedAtLeastOnce": 1,
+      "rows": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "scores": [
+            0.9090909090909091,
+            0.9090909090909091,
+            0.9166666666666666,
+            0.9166666666666666,
+            0.9090909090909091
+          ],
+          "flaggedRepeats": 5,
+          "flaggedEveryRepeat": true
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "scores": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "flaggedRepeats": 0,
+          "flaggedEveryRepeat": false
+        }
+      ]
+    }
+  },
+  "thresholdSensitivity": [
+    {
+      "threshold": 1,
+      "arms": {
+        "ragas": {
+          "verdictFlips": 0,
+          "falsePositivesOnCleanBase": "1/4",
+          "dropped_anchor": 0,
+          "fabricated_number": 4,
+          "contradiction": 3,
+          "inversion": 4
+        },
+        "deepeval": {
+          "verdictFlips": 2,
+          "falsePositivesOnCleanBase": "1/4",
+          "dropped_anchor": 1,
+          "fabricated_number": 0,
+          "contradiction": 4,
+          "inversion": 5
+        }
+      }
+    },
+    {
+      "threshold": 0.9,
+      "arms": {
+        "ragas": {
+          "verdictFlips": 0,
+          "falsePositivesOnCleanBase": "1/4",
+          "dropped_anchor": 0,
+          "fabricated_number": 4,
+          "contradiction": 3,
+          "inversion": 4
+        },
+        "deepeval": {
+          "verdictFlips": 2,
+          "falsePositivesOnCleanBase": "0/4",
+          "dropped_anchor": 1,
+          "fabricated_number": 0,
+          "contradiction": 3,
+          "inversion": 5
+        }
+      }
+    },
+    {
+      "threshold": 0.75,
+      "arms": {
+        "ragas": {
+          "verdictFlips": 0,
+          "falsePositivesOnCleanBase": "1/4",
+          "dropped_anchor": 0,
+          "fabricated_number": 2,
+          "contradiction": 1,
+          "inversion": 4
+        },
+        "deepeval": {
+          "verdictFlips": 0,
+          "falsePositivesOnCleanBase": "0/4",
+          "dropped_anchor": 1,
+          "fabricated_number": 0,
+          "contradiction": 1,
+          "inversion": 3
+        }
+      }
+    },
+    {
+      "threshold": 0.5,
+      "arms": {
+        "ragas": {
+          "verdictFlips": 1,
+          "falsePositivesOnCleanBase": "1/4",
+          "dropped_anchor": 0,
+          "fabricated_number": 1,
+          "contradiction": 1,
+          "inversion": 2
+        },
+        "deepeval": {
+          "verdictFlips": 0,
+          "falsePositivesOnCleanBase": "0/4",
+          "dropped_anchor": 1,
+          "fabricated_number": 0,
+          "contradiction": 0,
+          "inversion": 1
+        }
+      }
+    }
+  ],
+  "failingBases": [
+    {
+      "outputId": "simplify-lab-results::base",
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified"
+      },
+      "issues": [
+        "fabricated number \"12\" — not in the source"
+      ],
+      "text": "Alright, let’s break this down together. You recently had some blood tests done, and two important results came back showing that your haemoglobin and ferritin levels are low. \n\nHaemoglobin is a protein in your red blood cells that carries oxygen throughout your body. Normally, we like to see a haemoglobin level above 12 g/dL, but yours is 9.8 g/dL, which is a bit low. This means your body might not be getting as much oxygen as it needs, which can make you feel tired or weak.\n\nFerritin is a protein that helps your body store iron. Iron is crucial because it helps your body make the haemoglobin I mentioned earlier. Your ferritin level is 8 micrograms/L, which is lower than what's considered normal. This suggests that your body doesn't have enough iron, leading to what's known as iron-deficiency anaemia. This is a common condition and can usually be managed effectively.\n\nTo help your body get the iron it needs, we recommend you start taking a supplement called ferrous sulfate. You will take 200 mg twice a day. This should help boost your iron levels over time.\n\nIn about 8 weeks, we’ll repeat your blood tests to see how well the treatment is working. It’s important to take the supplement as directed and to come back for your follow-up test, so we can make sure your levels are improving.\n\nI understand that hearing about low levels can be concerning, but iron-deficiency anaemia is a common issue and quite manageable with treatment. If you have any questions or notice anything unusual while taking the supplement, please don't hesitate to reach out. We’re here to help you feel better."
+    },
+    {
+      "outputId": "grounding-legal-clause::base",
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini"
+      },
+      "issues": [
+        "missing answer fact \"written notice\""
+      ],
+      "text": "A notice period of ninety (90) days is required to terminate the agreement for convenience."
+    }
+  ],
+  "costPer1000": {
+    "deterministic": {
+      "usd": 0,
+      "tokens": 0
+    },
+    "ragas": {
+      "usd": 11.489,
+      "tokens": 2307059
+    },
+    "deepeval": {
+      "usd": 8.289,
+      "tokens": null
+    }
+  },
+  "localisation": [
+    {
+      "outputId": "simplify-discharge-brief::drop-anchor",
+      "injected": "dropped_anchor",
+      "deterministic": [
+        "missing fact \"500 mg\""
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+    },
+    {
+      "outputId": "simplify-discharge-brief::fabricate-number",
+      "injected": "fabricated_number",
+      "deterministic": [
+        "fabricated number \"11\" — not in the source"
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+    },
+    {
+      "outputId": "simplify-lab-results::base",
+      "injected": "none",
+      "deterministic": [
+        "fabricated number \"12\" — not in the source"
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+    },
+    {
+      "outputId": "simplify-lab-results::drop-anchor",
+      "injected": "dropped_anchor",
+      "deterministic": [
+        "missing fact \"9.8\"",
+        "fabricated number \"12\" — not in the source"
+      ],
+      "deepevalReason": "The score is 0.94 because the actual output omits the specific haemoglobin level of 9.8 g/dL, which is clearly stated in the retrieval context. This minor omission slightly affects the faithfulness of the output."
+    },
+    {
+      "outputId": "simplify-lab-results::fabricate-number",
+      "injected": "fabricated_number",
+      "deterministic": [
+        "fabricated number \"12\" — not in the source",
+        "fabricated number \"11\" — not in the source"
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+    },
+    {
+      "outputId": "simplify-lab-results::contradiction",
+      "injected": "contradiction",
+      "deterministic": [
+        "fabricated number \"12\" — not in the source"
+      ],
+      "deepevalReason": "The score is 0.94 because the actual output inaccurately claims that iron levels are within the normal range, while the retrieval context clearly indicates they are low. This minor discrepancy slightly affects the overall faithfulness."
+    },
+    {
+      "outputId": "simplify-lab-results::inversion",
+      "injected": "inversion",
+      "deterministic": [
+        "fabricated number \"12\" — not in the source"
+      ],
+      "deepevalReason": "The score is 0.82 because the actual output incorrectly states that haemoglobin and ferritin levels are high, whereas the retrieval context clearly indicates they are low. Additionally, the actual output misrepresents the condition as iron-deficiency iron overload instead of iron-deficiency anaemia. Despite these discrepancies, the overall alignment with the retrieval context is relatively strong, hence the score."
+    },
+    {
+      "outputId": "simplify-medication-change::drop-anchor",
+      "injected": "dropped_anchor",
+      "deterministic": [
+        "missing fact \"100 micrograms\""
+      ],
+      "deepevalReason": "The score is 0.82 because the actual output inaccurately states the dosage of levothyroxine as 50 micrograms, while the retrieval context clearly indicates it should be 100 micrograms. Additionally, the output fails to specify the frequency of the dosage increase, which is meant to be daily."
+    },
+    {
+      "outputId": "simplify-medication-change::fabricate-number",
+      "injected": "fabricated_number",
+      "deterministic": [
+        "fabricated number \"11\" — not in the source"
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+    },
+    {
+      "outputId": "grounding-legal-clause::base",
+      "injected": "none",
+      "deterministic": [
+        "missing answer fact \"written notice\""
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Great job!"
+    },
+    {
+      "outputId": "grounding-legal-clause::drop-anchor",
+      "injected": "dropped_anchor",
+      "deterministic": [
+        "missing answer fact \"90 days\"",
+        "missing answer fact \"written notice\""
+      ],
+      "deepevalReason": "The score is 0.00 because the actual output failed to include the critical detail that a ninety (90) day notice period is required to terminate the agreement for convenience, leading to an incomplete and misleading statement."
+    },
+    {
+      "outputId": "grounding-legal-clause::fabricate-number",
+      "injected": "fabricated_number",
+      "deterministic": [
+        "missing answer fact \"written notice\"",
+        "ungrounded number \"11\" — not in the provided context"
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+    },
+    {
+      "outputId": "grounding-legal-clause::inversion",
+      "injected": "inversion",
+      "deterministic": [
+        "missing answer fact \"written notice\""
+      ],
+      "deepevalReason": "The score is 0.00 because the actual output incorrectly claims a different notice period for termination for convenience, while the retrieval context clearly specifies a ninety (90) days' prior written notice requirement."
+    },
+    {
+      "outputId": "grounding-saas-refund::drop-anchor",
+      "injected": "dropped_anchor",
+      "deterministic": [
+        "missing answer fact \"30 days\""
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+    },
+    {
+      "outputId": "grounding-saas-refund::fabricate-number",
+      "injected": "fabricated_number",
+      "deterministic": [
+        "ungrounded number \"11\" — not in the provided context"
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context. Everything aligns perfectly, showcasing a high level of accuracy and consistency. Keep up the great work!"
+    },
+    {
+      "outputId": "grounding-unanswerable::non-abstention",
+      "injected": "non_abstention",
+      "deterministic": [
+        "unanswerable question — the answer did not abstain (risk of fabrication)"
+      ],
+      "deepevalReason": "The score is 1.00 because there are no contradictions, indicating that the actual output is perfectly aligned with the retrieval context. Great job maintaining accuracy and consistency!"
+    }
+  ]
+}

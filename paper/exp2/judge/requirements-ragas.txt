@@ -1,0 +1,10 @@
+# exp-2 judge arm A — RAGAS. Pinned: judge prompts change between minor versions,
+# and a result about judge stability must be reproducible against a known judge.
+# These three are verified importable together; ragas 0.4.x is NOT compatible with
+# langchain-community 0.4.x (it imports a chat model that moved packages).
+#
+# Install in its own virtualenv — the DeepEval arm's pins conflict with these:
+#   python3 -m venv .venv-ragas && .venv-ragas/bin/pip install -r requirements-ragas.txt
+ragas==0.2.15
+langchain-openai==0.3.35
+langchain-community==0.3.31

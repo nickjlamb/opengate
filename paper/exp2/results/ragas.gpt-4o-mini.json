@@ -1,0 +1,617 @@
+{
+  "arm": "ragas-faithfulness",
+  "judgeModel": "gpt-4o-mini",
+  "judgeTemperature": 0.0,
+  "note": "Judge run at temperature 0 over byte-identical inputs \u2014 the best case for stability. Faithfulness scores asserted claims only; omission is out of scope for this metric by construction.",
+  "ranAt": "2026-07-11T18:13:33.833303+00:00",
+  "corpusSha256": "0167bf8ad539b7f3832c906dd26eb66ae7093b2ba20572b8e5a2310d6c28d71e",
+  "repeats": 5,
+  "cost": {
+    "apiCalls": null,
+    "tokens": 309818,
+    "usd": 0.0925,
+    "meanWallSecondsPerRepeat": 314.4
+  },
+  "runs": [
+    {
+      "repeat": 1,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.6
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0.8620689655172413
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0.4642857142857143
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0.9032258064516129
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.53125
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.4482758620689655
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.5
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.6111111111111112
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0.5
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.625
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.4666666666666667
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0.0
+        }
+      ],
+      "wallSeconds": 297.9,
+      "tokens": {
+        "prompt": 40773,
+        "completion": 21546,
+        "total": 62319
+      },
+      "usd": 0.01888
+    },
+    {
+      "repeat": 2,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.75
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0.6896551724137931
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0.6071428571428571
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0.9
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.6774193548387096
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.5172413793103449
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.625
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.6
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0.75
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.625
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.6
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0.0
+        }
+      ],
+      "wallSeconds": 312.5,
+      "tokens": {
+        "prompt": 40701,
+        "completion": 21044,
+        "total": 61745
+      },
+      "usd": 0.018319
+    },
+    {
+      "repeat": 3,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.6
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0.9310344827586207
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0.42857142857142855
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0.6
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.8709677419354839
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.5172413793103449
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.7058823529411765
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.6
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0.5
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.625
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.5333333333333333
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0.0
+        }
+      ],
+      "wallSeconds": 331.5,
+      "tokens": {
+        "prompt": 40735,
+        "completion": 21264,
+        "total": 61999
+      },
+      "usd": 0.018369
+    },
+    {
+      "repeat": 4,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.75
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0.6896551724137931
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0.4642857142857143
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0.43333333333333335
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.78125
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.3103448275862069
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.5333333333333333
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.6111111111111112
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0.6875
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.5625
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.375
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0.0
+        }
+      ],
+      "wallSeconds": 317.5,
+      "tokens": {
+        "prompt": 40740,
+        "completion": 21343,
+        "total": 62083
+      },
+      "usd": 0.018571
+    },
+    {
+      "repeat": 5,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 0.8
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 0.75
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0.6551724137931034
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0.42857142857142855
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0.43333333333333335
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0.6451612903225806
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0.4482758620689655
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 0.4666666666666667
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0.6111111111111112
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0.625
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 0.4117647058823529
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 0.4
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0.5
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 0.75
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 0.6666666666666666
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1.0
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0.0
+        }
+      ],
+      "wallSeconds": 312.5,
+      "tokens": {
+        "prompt": 40680,
+        "completion": 20992,
+        "total": 61672
+      },
+      "usd": 0.018361
+    }
+  ]
+}

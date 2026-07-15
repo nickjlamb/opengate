@@ -1,0 +1,3 @@
+# exp-2 judge arm B — DeepEval. Install in its own virtualenv (its dependency
+# set conflicts with the RAGAS arm's).
+deepeval==3.9.9

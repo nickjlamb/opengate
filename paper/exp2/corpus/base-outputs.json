@@ -1,0 +1,96 @@
+{
+  "capturedAt": "2026-07-11T17:39:35.598Z",
+  "repoSha": "808e9ba",
+  "note": "FROZEN. Captured once; every judge and every repeat in exp-2 scores these exact bytes. Regenerating invalidates all downstream results.",
+  "producers": {
+    "simplification": "Patiently AI production endpoint (bundled adapter)",
+    "grounding": "generic RAG answerer — gpt-4o-mini, temperature 0, answer-from-context prompt"
+  },
+  "outputs": [
+    {
+      "outputId": "simplify-discharge-brief::base",
+      "caseId": "simplify-discharge-brief",
+      "kind": "simplification",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified"
+      },
+      "caseSha256": "50b87ccb18047dfef49599add648a844b1e19a76e178de85cb452aacfba9c4e7",
+      "text": "- You have pneumonia and are taking amoxicillin 500 mg three times a day for 5 days.  \n- Visit your GP for a check-up in 2 weeks.  \n- Go back to the hospital if you have more trouble breathing or a fever over 38°C."
+    },
+    {
+      "outputId": "simplify-lab-results::base",
+      "caseId": "simplify-lab-results",
+      "kind": "simplification",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified"
+      },
+      "caseSha256": "3cd5db5378a94c9380e5237f6189fe97e15f4ee304db88fed605f40ff3e7fda3",
+      "text": "Alright, let’s break this down together. You recently had some blood tests done, and two important results came back showing that your haemoglobin and ferritin levels are low. \n\nHaemoglobin is a protein in your red blood cells that carries oxygen throughout your body. Normally, we like to see a haemoglobin level above 12 g/dL, but yours is 9.8 g/dL, which is a bit low. This means your body might not be getting as much oxygen as it needs, which can make you feel tired or weak.\n\nFerritin is a protein that helps your body store iron. Iron is crucial because it helps your body make the haemoglobin I mentioned earlier. Your ferritin level is 8 micrograms/L, which is lower than what's considered normal. This suggests that your body doesn't have enough iron, leading to what's known as iron-deficiency anaemia. This is a common condition and can usually be managed effectively.\n\nTo help your body get the iron it needs, we recommend you start taking a supplement called ferrous sulfate. You will take 200 mg twice a day. This should help boost your iron levels over time.\n\nIn about 8 weeks, we’ll repeat your blood tests to see how well the treatment is working. It’s important to take the supplement as directed and to come back for your follow-up test, so we can make sure your levels are improving.\n\nI understand that hearing about low levels can be concerning, but iron-deficiency anaemia is a common issue and quite manageable with treatment. If you have any questions or notice anything unusual while taking the supplement, please don't hesitate to reach out. We’re here to help you feel better."
+    },
+    {
+      "outputId": "simplify-medication-change::base",
+      "caseId": "simplify-medication-change",
+      "kind": "simplification",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "patiently",
+        "kind": "production",
+        "model": "unspecified"
+      },
+      "caseSha256": "6c3ed06f3f6e74d7734c23bb3ecf7ea7dd3707a39a935ebd3de97a376394e45b",
+      "text": "Your current medication, levothyroxine, is used to help manage your thyroid levels. You've been taking 50 micrograms of it every day, but your recent blood test showed that your TSH level is 8.2 mU/L. TSH stands for Thyroid Stimulating Hormone, and it helps regulate your thyroid. A TSH level of 8.2 is a bit higher than what we usually aim for, which suggests your thyroid might not be producing enough hormones on its own. \n\nTo address this, your doctor has decided to increase your levothyroxine dose to 100 micrograms each day. This should help bring your hormone levels back to where they should be. You'll need to take this new dose every morning before you eat breakfast. Taking it on an empty stomach helps your body absorb the medication better.\n\nWe'll check your thyroid levels again in 6 to 8 weeks to see how the new dose is working. This follow-up test will help us make sure your TSH levels are back in a healthier range. If you have any questions about how to take your medication or if you notice any changes in how you feel, be sure to let your doctor know."
+    },
+    {
+      "outputId": "grounding-legal-clause::base",
+      "caseId": "grounding-legal-clause",
+      "kind": "grounding",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini"
+      },
+      "caseSha256": "1bff5256e448d8a9fc937c5a9ab68ac45f3c60bee61cb62b5088c7ef4c92bb31",
+      "text": "A notice period of ninety (90) days is required to terminate the agreement for convenience."
+    },
+    {
+      "outputId": "grounding-saas-refund::base",
+      "caseId": "grounding-saas-refund",
+      "kind": "grounding",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini"
+      },
+      "caseSha256": "e910854633efa17228ee7c0ad961b557dfabe8d903d65ae27f0b18c70dabea65",
+      "text": "Customers have 30 days to request a refund, and there is no restocking fee for standard plans. However, enterprise hardware returns are subject to a 15% restocking fee."
+    },
+    {
+      "outputId": "grounding-unanswerable::base",
+      "caseId": "grounding-unanswerable",
+      "kind": "grounding",
+      "variant": "base",
+      "injectedDefect": null,
+      "producer": {
+        "system": "generic-rag-answerer",
+        "kind": "reference implementation",
+        "model": "gpt-4o-mini"
+      },
+      "caseSha256": "eaab948dc7ef8aedc4fbc8e4efd0bbbd3d171e42831e8abb05c62e2fb4fe1756",
+      "text": "The context does not provide information about the annual price of the Enterprise plan."
+    }
+  ],
+  "corpusSha256": "fd9472b9936aaa107612fb981f9fa7ddc9e441ee99fad443e47aadef9fed0057"
+}

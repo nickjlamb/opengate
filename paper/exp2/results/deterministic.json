@@ -1,0 +1,1913 @@
+{
+  "arm": "opengate-deterministic",
+  "ranAt": "2026-07-11T17:43:55.072Z",
+  "corpusSha256": "0167bf8ad539b7f3832c906dd26eb66ae7093b2ba20572b8e5a2310d6c28d71e",
+  "repeats": 5,
+  "identicalAcrossRepeats": true,
+  "resultSha256": [
+    "84c125a1e55c1113037729d2f8586e71454f34b1fba954e28759800edcf9ba33"
+  ],
+  "cost": {
+    "apiCalls": 0,
+    "tokens": 0,
+    "usd": 0,
+    "meanWallMsPerRepeat": 3.81
+  },
+  "runs": [
+    {
+      "repeat": 1,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"500 mg\""
+          ],
+          "anchorsMissed": [
+            "500 mg"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": false,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"9.8\"",
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [
+            "9.8"
+          ],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source",
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12",
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"100 micrograms\""
+          ],
+          "anchorsMissed": [
+            "100 micrograms"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"90 days\"",
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "90 days",
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\"",
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"30 days\""
+          ],
+          "anchorsMissed": [
+            "30 days"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": true
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "unanswerable question — the answer did not abstain (risk of fabrication)"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        }
+      ],
+      "sha256": "84c125a1e55c1113037729d2f8586e71454f34b1fba954e28759800edcf9ba33"
+    },
+    {
+      "repeat": 2,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"500 mg\""
+          ],
+          "anchorsMissed": [
+            "500 mg"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": false,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"9.8\"",
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [
+            "9.8"
+          ],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source",
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12",
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"100 micrograms\""
+          ],
+          "anchorsMissed": [
+            "100 micrograms"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"90 days\"",
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "90 days",
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\"",
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"30 days\""
+          ],
+          "anchorsMissed": [
+            "30 days"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": true
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "unanswerable question — the answer did not abstain (risk of fabrication)"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        }
+      ],
+      "sha256": "84c125a1e55c1113037729d2f8586e71454f34b1fba954e28759800edcf9ba33"
+    },
+    {
+      "repeat": 3,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"500 mg\""
+          ],
+          "anchorsMissed": [
+            "500 mg"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": false,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"9.8\"",
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [
+            "9.8"
+          ],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source",
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12",
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"100 micrograms\""
+          ],
+          "anchorsMissed": [
+            "100 micrograms"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"90 days\"",
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "90 days",
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\"",
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"30 days\""
+          ],
+          "anchorsMissed": [
+            "30 days"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": true
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "unanswerable question — the answer did not abstain (risk of fabrication)"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        }
+      ],
+      "sha256": "84c125a1e55c1113037729d2f8586e71454f34b1fba954e28759800edcf9ba33"
+    },
+    {
+      "repeat": 4,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"500 mg\""
+          ],
+          "anchorsMissed": [
+            "500 mg"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": false,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"9.8\"",
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [
+            "9.8"
+          ],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source",
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12",
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"100 micrograms\""
+          ],
+          "anchorsMissed": [
+            "100 micrograms"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"90 days\"",
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "90 days",
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\"",
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"30 days\""
+          ],
+          "anchorsMissed": [
+            "30 days"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": true
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "unanswerable question — the answer did not abstain (risk of fabrication)"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        }
+      ],
+      "sha256": "84c125a1e55c1113037729d2f8586e71454f34b1fba954e28759800edcf9ba33"
+    },
+    {
+      "repeat": 5,
+      "scores": [
+        {
+          "outputId": "simplify-discharge-brief::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"500 mg\""
+          ],
+          "anchorsMissed": [
+            "500 mg"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": false,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [
+            "4 bullets > max 3"
+          ],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-discharge-brief::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"9.8\"",
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [
+            "9.8"
+          ],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source",
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12",
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::contradiction",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-lab-results::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"12\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "12"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing fact \"100 micrograms\""
+          ],
+          "anchorsMissed": [
+            "100 micrograms"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "fabricated number \"11\" — not in the source"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "simplify-medication-change::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": null
+        },
+        {
+          "outputId": "grounding-legal-clause::base",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"90 days\"",
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "90 days",
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\"",
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-legal-clause::inversion",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"written notice\""
+          ],
+          "anchorsMissed": [
+            "written notice"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::drop-anchor",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "missing answer fact \"30 days\""
+          ],
+          "anchorsMissed": [
+            "30 days"
+          ],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::fabricate-number",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "ungrounded number \"11\" — not in the provided context"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [
+            "11"
+          ],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::contradiction",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-saas-refund::inversion",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        },
+        {
+          "outputId": "grounding-unanswerable::base",
+          "score": 1,
+          "pass": true,
+          "fullGatePass": true,
+          "issues": [],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": true
+        },
+        {
+          "outputId": "grounding-unanswerable::non-abstention",
+          "score": 0,
+          "pass": false,
+          "fullGatePass": false,
+          "issues": [
+            "unanswerable question — the answer did not abstain (risk of fabrication)"
+          ],
+          "anchorsMissed": [],
+          "ungroundedNumbers": [],
+          "contractViolations": [],
+          "abstained": false
+        }
+      ],
+      "sha256": "84c125a1e55c1113037729d2f8586e71454f34b1fba954e28759800edcf9ba33"
+    }
+  ]
+}
