@@ -53,6 +53,29 @@ test('unanswerable: abstaining is grounded (contraction-aware)', () => {
   assert.equal(r.abstained, true);
 });
 
+// Regression: the marker list matched only passive phrasing ("not stated"), so
+// the far more common active abstention ("the context does not state the price")
+// was scored as a fabrication — a false positive against a correctly behaving
+// system. Found while building the exp-2 frozen corpus.
+test('unanswerable: active-voice abstention phrasings count as abstaining', () => {
+  const phrasings = [
+    'The context does not state the annual price of the Enterprise plan.',
+    "The provided context doesn't specify Enterprise pricing.",
+    'The policy does not mention an annual Enterprise price.',
+    'There is no mention of the Enterprise plan price in the context.',
+    'The Enterprise plan price is not specified.',
+  ];
+  for (const answer of phrasings) {
+    const r = checkGrounding({
+      answer,
+      context: 'Pro plan has a 30-day trial. Contact sales for volume discounts.',
+      answerable: false,
+    });
+    assert.equal(r.abstained, true, `should abstain: ${answer}`);
+    assert.equal(r.grounded, true, `should be grounded: ${answer}`);
+  }
+});
+
 test('unanswerable: fabricating instead of abstaining fails', () => {
   const r = checkGrounding({
     answer: 'The Enterprise plan is $499 per year.',

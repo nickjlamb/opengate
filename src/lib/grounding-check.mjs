@@ -11,7 +11,14 @@ export const DEFAULT_ABSTAIN = [
   'not in the provided context', 'not in the context', 'no information',
   "don't know", 'do not know', 'cannot answer', "can't answer",
   'unable to answer', 'not enough information', 'not stated', 'not mentioned',
-  'no answer', 'not available', 'insufficient information',
+  'no answer', 'not available', 'insufficient information', 'not specified',
+  'not provided',
+  // Active-voice forms. Systems abstain far more often with "the context does
+  // not state the price" than with "the price is not stated", and matching only
+  // the passive form scored a correct abstention as a fabrication.
+  // (normNeg() expands "doesn't" → "does not", so contractions are covered.)
+  'does not state', 'does not specify', 'does not say', 'does not mention',
+  'does not provide', 'does not contain', 'does not include', 'no mention',
 ];
 
 const norm = (s) => String(s).toLowerCase().replace(/\s+/g, ' ');

@@ -18,45 +18,19 @@
 //   • readability (info) — Flesch-Kincaid grade of the output; reported,
 //     not gated, in v1.
 //
+// The check itself lives in ../lib/simplification-check.mjs (pure, shared), so
+// the same code scores live adapter output and frozen outputs replayed offline
+// (paper/exp2).
+//
 // Case schema (datasets/SCHEMA.md):
 //   { "id", "kind": "simplification", "text", "audience", "tone", "length",
 //     "anchors": [{ "value", "aliases": [] }],
 //     "allowedNewNumbers": ["2"], "maxBullets": 3, "maxWordsPerBullet": 20 }
 
 import { mean } from '../lib/metrics.mjs';
+import { checkSimplification } from '../lib/simplification-check.mjs';
 
 export const meta = { id: 'simplification', mode: 'online' };
-
-const norm = (s) => String(s).toLowerCase().replace(/\s+/g, ' ');
-/** Whitespace-tolerant, case-insensitive containment. */
-function contains(haystack, needle) {
-  const h = norm(haystack).replace(/\s/g, '');
-  const n = norm(needle).replace(/\s/g, '');
-  return n.length > 0 && h.includes(n);
-}
-
-const NUM_RE = /\d+(?:\.\d+)?/g;
-const numbersIn = (s) => new Set((String(s).match(NUM_RE) || []).map(n => n.replace(/^0+(?=\d)/, '')));
-
-/** Lines that look like bullets: -, •, *, or "1." style. */
-function bulletLines(text) {
-  return String(text).split(/\r?\n/).map(l => l.trim())
-    .filter(l => /^([-•*]|\d+[.)])\s+/.test(l));
-}
-
-// Flesch-Kincaid grade with a vowel-group syllable heuristic. Approximate,
-// which is why readability is reported rather than gated.
-function fleschKincaidGrade(text) {
-  const words = String(text).toLowerCase().match(/[a-z]+/g) || [];
-  const sentences = Math.max(1, (String(text).match(/[.!?]+/g) || []).length);
-  if (!words.length) return null;
-  let syllables = 0;
-  for (const w of words) {
-    const groups = (w.replace(/e$/, '').match(/[aeiouy]+/g) || []).length;
-    syllables += Math.max(1, groups);
-  }
-  return 0.39 * (words.length / sentences) + 11.8 * (syllables / words.length) - 15.59;
-}
 
 export async function run({ cases, adapter }) {
   if (!adapter.capabilities.simplify) {
@@ -87,50 +61,34 @@ export async function run({ cases, adapter }) {
       continue;
     }
 
-    // Anchor recall: value or any alias must survive.
-    const missed = (c.anchors || []).filter(a =>
-      ![a.value, ...(a.aliases || [])].some(v => contains(out, v)));
-    for (const a of missed) {
-      failures.push(`DROPPED FACT in ${c.id}: anchor "${a.value}" absent from simplified output`);
-    }
+    // Shared, deterministic check — the same core the exp-2 replay harness runs
+    // over frozen outputs.
+    const chk = checkSimplification({
+      output: out,
+      text: c.text,
+      anchors: c.anchors,
+      allowedNewNumbers: c.allowedNewNumbers,
+      maxBullets: c.maxBullets,
+      maxWordsPerBullet: c.maxWordsPerBullet,
+    });
 
-    // Fabricated numbers: output numbers must come from somewhere legitimate.
-    const legitimate = new Set([
-      ...numbersIn(c.text),
-      ...(c.anchors || []).flatMap(a => [...numbersIn(a.value), ...(a.aliases || []).flatMap(x => [...numbersIn(x)])]),
-      ...(c.allowedNewNumbers || []).map(String),
-    ]);
-    const fabricated = [...numbersIn(out)].filter(n => !legitimate.has(n));
-    for (const n of fabricated) {
+    for (const a of chk.anchorsMissed) {
+      failures.push(`DROPPED FACT in ${c.id}: anchor "${a}" absent from simplified output`);
+    }
+    for (const n of chk.fabricated) {
       failures.push(`FABRICATED NUMBER in ${c.id}: "${n}" appears in output but not in source`);
     }
-
-    // Length contract (only when the case declares one).
-    const bullets = bulletLines(out);
-    const contractViolations = [];
-    if (c.maxBullets != null && bullets.length > c.maxBullets) {
-      contractViolations.push(`${bullets.length} bullets > max ${c.maxBullets}`);
-    }
-    if (c.maxWordsPerBullet != null) {
-      for (const b of bullets) {
-        const words = b.replace(/^([-•*]|\d+[.)])\s+/, '').split(/\s+/).filter(Boolean).length;
-        if (words > c.maxWordsPerBullet) contractViolations.push(`bullet has ${words} words > max ${c.maxWordsPerBullet}`);
-      }
-    }
-    if (c.maxBullets != null && bullets.length === 0) {
-      contractViolations.push('bullet output expected, none found');
-    }
-    for (const v of contractViolations) failures.push(`CONTRACT in ${c.id}: ${v}`);
+    for (const v of chk.contractViolations) failures.push(`CONTRACT in ${c.id}: ${v}`);
 
     perCase.push({
       case: c.id,
       anchors: (c.anchors || []).length,
-      anchorsMissed: missed.map(a => a.value),
-      fabricated,
-      contractViolations,
-      grade: round(fleschKincaidGrade(out) ?? -1),
+      anchorsMissed: chk.anchorsMissed,
+      fabricated: chk.fabricated,
+      contractViolations: chk.contractViolations,
+      grade: round(chk.grade ?? -1),
       outputChars: out.length,
-      bullets: bullets.length,
+      bullets: chk.bullets,
       // The output itself, so a dropped-fact failure can be diagnosed from the
       // snapshot (was it omitted, reworded past the aliases, or replaced?).
       output: out.slice(0, 600),
