@@ -15,6 +15,11 @@ authors:
 version: 0.9.0
 date-released: 2026-07-06
 license: MIT
+doi: 10.5281/zenodo.21365040
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21365040
+    description: "Archived snapshot underlying the OpenGATE preprint"
 repository-code: "https://github.com/nickjlamb/opengate"
 url: "https://www.pharmatools.ai/opengate"
 keywords:
@@ -25,3 +30,20 @@ keywords:
   - hallucination
   - regression-testing
   - medical-ai
+# The software above is archived at doi:10.5281/zenodo.21365040.
+# If you are citing the *ideas* (the framework, the found-and-fixed ledger, the
+# deterministic-vs-LLM-judge comparison), cite the paper below instead.
+preferred-citation:
+  type: article
+  title: >-
+    Evaluation as Infrastructure: Deterministic Regression Gating for
+    Evidence-Grounded AI Systems in Production
+  authors:
+    - family-names: "Lamb"
+      given-names: "Nick"
+      affiliation: "PharmaTools.AI"
+  year: 2026
+  month: 7
+  doi: 10.5281/zenodo.21365095
+  url: "https://doi.org/10.5281/zenodo.21365095"
+  notes: "Preprint. Archived on Zenodo; supplemented by the software artifact at doi:10.5281/zenodo.21365040."

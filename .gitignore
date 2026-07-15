@@ -8,3 +8,21 @@ results/*.json
 results/*.html
 !results/baseline.json
 !results/baseline.*.json
+
+# exp-2 judge virtualenvs. The experiment's own results (paper/exp2/results/,
+# paper/exp2/corpus/) ARE committed — every number in the paper must be
+# reproducible from the repo alone.
+paper/exp2/judge/.venv-*/
+# Resume checkpoints — transient, deleted on a successful run.
+paper/exp2/results/*.partial.json
+
+# LaTeX build artifacts. main.tex, refs.bib and main.pdf are committed;
+# the intermediates are not.
+paper/arxiv/*.aux
+paper/arxiv/*.bbl
+paper/arxiv/*.blg
+paper/arxiv/*.fdb_latexmk
+paper/arxiv/*.fls
+paper/arxiv/*.log
+paper/arxiv/*.out
+paper/arxiv/*.synctex.gz

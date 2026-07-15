@@ -1,0 +1,32 @@
+{
+  "title": "OpenGATE: Open Grounded AI Testing & Evaluation",
+  "description": "<p>An open-source framework for evaluating evidence-grounded AI systems: deterministic scorers, hand-labelled gold sets, and a CI regression gate that measures whether a system can prove its answers from its source material.</p><p>Five capabilities behind a small adapter contract: evidence QA, redaction, simplification, retrieval, and generic grounding for RAG. No LLM-as-judge: every scorer is a pure function of (system output, gold case), so results are reproducible bit-for-bit, cost nothing to run, and name the exact expectation violated.</p><p>This archived release is the artifact accompanying the preprint <em>Evaluation as Infrastructure: Deterministic Regression Gating for Evidence-Grounded AI Systems in Production</em>. It contains the framework, all gold cases, the committed scorecards from which every number in the paper is derived, the frozen corpus and per-repeat scores for the deterministic-vs-LLM-judge comparison, and the pre-registered blind labelling pack for the independent-labeller experiment.</p>",
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Lamb, Nick",
+      "affiliation": "PharmaTools.AI"
+    }
+  ],
+  "keywords": [
+    "AI engineering",
+    "evaluation",
+    "regression testing",
+    "retrieval-augmented generation",
+    "grounding",
+    "hallucination",
+    "LLM-as-judge",
+    "continuous integration",
+    "medical AI",
+    "de-identification"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/nickjlamb/opengate",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

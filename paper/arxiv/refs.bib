@@ -1,0 +1,209 @@
+% References for "Evaluation as Infrastructure".
+% Every entry verified against a primary source (ACL Anthology, NeurIPS proceedings,
+% IEEE/DOI, or the project's own CITATION.cff) — not reconstructed from memory.
+%
+% Two traps worth recording, since they bite anyone who copies from the obvious place:
+%   • The ACL Anthology's own BibTeX export for FActScore renders the sixth author as
+%     "Koh, Pang" — dropping "Wei". Corrected below against the arXiv page and the PDF.
+%   • DeepEval has no peer-reviewed paper. It is cited as software, per its CITATION.cff.
+%     Inventing a paper for it would have been a fabricated citation.
+
+% ── LLM evaluation frameworks and judges ────────────────────────────────────
+
+@inproceedings{es2024ragas,
+  title     = {{RAGAs}: Automated Evaluation of Retrieval Augmented Generation},
+  author    = {Es, Shahul and James, Jithin and Espinosa Anke, Luis and Schockaert, Steven},
+  booktitle = {Proceedings of the 18th Conference of the European Chapter of the
+               Association for Computational Linguistics: System Demonstrations},
+  pages     = {150--158},
+  year      = {2024},
+  address   = {St. Julians, Malta},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2024.eacl-demo.16},
+  url       = {https://aclanthology.org/2024.eacl-demo.16/},
+  note      = {arXiv:2309.15217}
+}
+
+@software{ip2026deepeval,
+  author  = {Ip, Jeffrey and Vongthongsri, Kritin},
+  title   = {{DeepEval}: The Open-Source {LLM} Evaluation Framework},
+  year    = {2026},
+  version = {4.1.0},
+  license = {Apache-2.0},
+  url     = {https://github.com/confident-ai/deepeval},
+  note    = {Software. Confident AI. No associated publication.}
+}
+
+@inproceedings{liu2023geval,
+  title     = {{G-Eval}: {NLG} Evaluation using {GPT-4} with Better Human Alignment},
+  author    = {Liu, Yang and Iter, Dan and Xu, Yichong and Wang, Shuohang and
+               Xu, Ruochen and Zhu, Chenguang},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in
+               Natural Language Processing},
+  pages     = {2511--2522},
+  year      = {2023},
+  address   = {Singapore},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2023.emnlp-main.153},
+  url       = {https://aclanthology.org/2023.emnlp-main.153/},
+  note      = {arXiv:2303.16634}
+}
+
+@inproceedings{zheng2023judging,
+  title     = {Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},
+  author    = {Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and
+               Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and
+               Li, Dacheng and Xing, Eric P. and Zhang, Hao and Gonzalez, Joseph E. and
+               Stoica, Ion},
+  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS 2023)
+               Datasets and Benchmarks Track},
+  volume    = {36},
+  pages     = {46595--46623},
+  year      = {2023},
+  url       = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/91f18a1287b398d378ef22505bf41832-Abstract-Datasets_and_Benchmarks.html},
+  note      = {arXiv:2306.05685}
+}
+
+@inproceedings{wang2024unfair,
+  title     = {Large Language Models are not Fair Evaluators},
+  author    = {Wang, Peiyi and Li, Lei and Chen, Liang and Cai, Zefan and Zhu, Dawei and
+               Lin, Binghuai and Cao, Yunbo and Kong, Lingpeng and Liu, Qi and
+               Liu, Tianyu and Sui, Zhifang},
+  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for
+               Computational Linguistics (Volume 1: Long Papers)},
+  pages     = {9440--9450},
+  year      = {2024},
+  address   = {Bangkok, Thailand},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2024.acl-long.511},
+  url       = {https://aclanthology.org/2024.acl-long.511/},
+  note      = {arXiv:2305.17926}
+}
+
+@inproceedings{panickssery2024selfpref,
+  title     = {{LLM} Evaluators Recognize and Favor Their Own Generations},
+  author    = {Panickssery, Arjun and Bowman, Samuel R. and Feng, Shi},
+  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS 2024)},
+  volume    = {37},
+  pages     = {68772--68802},
+  year      = {2024},
+  doi       = {10.52202/079017-2197},
+  url       = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/7f1f0218e45f5414c79c0679633e47bc-Abstract-Conference.html},
+  note      = {arXiv:2404.13076}
+}
+
+@inproceedings{koo2024biases,
+  title     = {Benchmarking Cognitive Biases in Large Language Models as Evaluators},
+  author    = {Koo, Ryan and Lee, Minhwa and Raheja, Vipul and Park, Jong Inn and
+               Kim, Zae Myung and Kang, Dongyeop},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},
+  pages     = {517--545},
+  year      = {2024},
+  address   = {Bangkok, Thailand},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2024.findings-acl.29},
+  url       = {https://aclanthology.org/2024.findings-acl.29/},
+  note      = {arXiv:2309.17012}
+}
+
+% ── Reference-based factuality checking ─────────────────────────────────────
+
+@inproceedings{thorne2018fever,
+  title     = {{FEVER}: a Large-scale Dataset for Fact Extraction and {VER}ification},
+  author    = {Thorne, James and Vlachos, Andreas and Christodoulopoulos, Christos and
+               Mittal, Arpit},
+  booktitle = {Proceedings of the 2018 Conference of the North American Chapter of the
+               Association for Computational Linguistics: Human Language Technologies,
+               Volume 1 (Long Papers)},
+  pages     = {809--819},
+  year      = {2018},
+  address   = {New Orleans, Louisiana},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/N18-1074},
+  url       = {https://aclanthology.org/N18-1074/}
+}
+
+@inproceedings{min2023factscore,
+  title     = {{FActScore}: Fine-grained Atomic Evaluation of Factual Precision in
+               Long Form Text Generation},
+  author    = {Min, Sewon and Krishna, Kalpesh and Lyu, Xinxi and Lewis, Mike and
+               Yih, Wen-tau and Koh, Pang Wei and Iyyer, Mohit and Zettlemoyer, Luke and
+               Hajishirzi, Hannaneh},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in
+               Natural Language Processing},
+  pages     = {12076--12100},
+  year      = {2023},
+  address   = {Singapore},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2023.emnlp-main.741},
+  url       = {https://aclanthology.org/2023.emnlp-main.741/},
+  note      = {arXiv:2305.14251}
+}
+
+@article{laban2022summac,
+  title     = {{SummaC}: Re-Visiting {NLI}-based Models for Inconsistency Detection in
+               Summarization},
+  author    = {Laban, Philippe and Schnabel, Tobias and Bennett, Paul N. and
+               Hearst, Marti A.},
+  journal   = {Transactions of the Association for Computational Linguistics},
+  volume    = {10},
+  pages     = {163--177},
+  year      = {2022},
+  publisher = {MIT Press},
+  doi       = {10.1162/tacl_a_00453},
+  url       = {https://aclanthology.org/2022.tacl-1.10/}
+}
+
+@inproceedings{fabbri2022qafacteval,
+  title     = {{QAFactEval}: Improved {QA}-Based Factual Consistency Evaluation for
+               Summarization},
+  author    = {Fabbri, Alexander and Wu, Chien-Sheng and Liu, Wenhao and Xiong, Caiming},
+  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the
+               Association for Computational Linguistics: Human Language Technologies},
+  pages     = {2587--2601},
+  year      = {2022},
+  address   = {Seattle, United States},
+  publisher = {Association for Computational Linguistics},
+  doi       = {10.18653/v1/2022.naacl-main.187},
+  url       = {https://aclanthology.org/2022.naacl-main.187/}
+}
+
+% ── Software engineering for ML systems ─────────────────────────────────────
+
+@inproceedings{sculley2015debt,
+  title     = {Hidden Technical Debt in Machine Learning Systems},
+  author    = {Sculley, D. and Holt, Gary and Golovin, Daniel and Davydov, Eugene and
+               Phillips, Todd and Ebner, Dietmar and Chaudhary, Vinay and Young, Michael and
+               Crespo, Jean-Fran{\c{c}}ois and Dennison, Dan},
+  booktitle = {Advances in Neural Information Processing Systems 28 (NIPS 2015)},
+  volume    = {28},
+  year      = {2015},
+  url       = {https://proceedings.neurips.cc/paper_files/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html}
+}
+
+@inproceedings{breck2017mltest,
+  title     = {The {ML} Test Score: A Rubric for {ML} Production Readiness and
+               Technical Debt Reduction},
+  author    = {Breck, Eric and Cai, Shanqing and Nielsen, Eric and Salib, Michael and
+               Sculley, D.},
+  booktitle = {2017 IEEE International Conference on Big Data (Big Data)},
+  pages     = {1123--1132},
+  year      = {2017},
+  publisher = {IEEE},
+  doi       = {10.1109/BigData.2017.8258038},
+  url       = {https://doi.org/10.1109/BigData.2017.8258038}
+}
+
+@inproceedings{amershi2019se4ml,
+  title     = {Software Engineering for Machine Learning: A Case Study},
+  author    = {Amershi, Saleema and Begel, Andrew and Bird, Christian and DeLine, Robert and
+               Gall, Harald C. and Kamar, Ece and Nagappan, Nachiappan and Nushi, Besmira and
+               Zimmermann, Thomas},
+  booktitle = {2019 IEEE/ACM 41st International Conference on Software Engineering:
+               Software Engineering in Practice (ICSE-SEIP)},
+  pages     = {291--300},
+  year      = {2019},
+  publisher = {IEEE},
+  doi       = {10.1109/ICSE-SEIP.2019.00042},
+  url       = {https://doi.org/10.1109/ICSE-SEIP.2019.00042}
+}
