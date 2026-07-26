@@ -4,7 +4,7 @@
 
 ### Open Grounded AI Testing & Evaluation
 
-**Deterministic, gold-anchored evaluation for evidence-grounded AI — no LLM judge.**
+**Don't trust AI. Verify it. Deterministic, gold-anchored verification for evidence-grounded AI — no LLM judge.**
 
 [![CI](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml/badge.svg)](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/%40pharmatools%2Fopengate?label=npm&logo=npm&color=cb3837)](https://www.npmjs.com/package/@pharmatools/opengate)
@@ -20,7 +20,7 @@
 
 ---
 
-**Evidence over plausibility.** OpenGATE evaluates AI systems that must justify every answer from source material — RAG pipelines, document-QA tools, legal and scientific assistants. It measures one thing above all: **can the system prove its answer from the evidence it was given?**
+**Evidence over plausibility.** OpenGATE verifies AI systems that must justify every answer from source material — RAG pipelines, document-QA tools, legal and scientific assistants. It answers one question above all: **can the system prove its answer from the evidence it was given?**
 
 The check is **deterministic** — no LLM-as-judge, no grader model, no six-point verdict scale. Required facts must be present, every number must trace back to the source, and when the context can't answer, the system must abstain rather than fabricate. Because it's pure logic, it's reproducible, free, and fast enough to run on every answer or gate on every commit.
 
@@ -95,7 +95,7 @@ flowchart LR
 
 ## Why not DeepEval?
 
-Use both. General-purpose frameworks like DeepEval and OpenAI Evals evaluate AI systems broadly. OpenGATE specialises in systems whose core promise is *grounded* answers:
+Use both — **evals measure, OpenGATE verifies**. General-purpose frameworks like DeepEval and OpenAI Evals evaluate AI systems broadly, usually with an LLM judging the output. OpenGATE verifies the narrower, harder promise: that every answer is *grounded* in evidence:
 
 - **Provenance is first-class** — does the cited passage actually exist, verbatim, in the source?
 - **No LLM judge** — scores are deterministic checks against hand-labelled gold, so they're reproducible and free to run in CI; your judgment lives in the gold set, not a grader model's.
