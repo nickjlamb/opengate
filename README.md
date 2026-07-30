@@ -1,10 +1,10 @@
 <div align="center">
 
-# OpenGATE
+<img src="docs/opengate-banner.png" alt="Don't trust AI. Verify it. — OpenGATE, open-source verification for evidence-grounded AI, no LLM judge" width="100%">
 
 ### Open Grounded AI Testing & Evaluation
 
-**Don't trust AI. Verify it. Deterministic, gold-anchored verification for evidence-grounded AI — no LLM judge.**
+**Deterministic, gold-anchored verification for evidence-grounded AI — no LLM judge.**
 
 [![CI](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml/badge.svg)](https://github.com/nickjlamb/opengate/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/%40pharmatools%2Fopengate?label=npm&logo=npm&color=cb3837)](https://www.npmjs.com/package/@pharmatools/opengate)
