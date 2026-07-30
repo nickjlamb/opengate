@@ -1,0 +1,86 @@
+{
+  "timestamp": "2026-07-30T12:47:52.082Z",
+  "sha": "ae09527",
+  "online": true,
+  "adapter": "pubcrawl",
+  "results": [
+    {
+      "id": "citation-detection",
+      "meta": {
+        "id": "citation-detection",
+        "mode": "offline"
+      },
+      "metrics": {
+        "perClaim_exactSetRate": 1,
+        "perClaim_jaccardMean": 1,
+        "supportedStyle_accuracy": 1,
+        "knownGap_styles": [
+          "number-adjacent-superscript"
+        ]
+      },
+      "failures": [],
+      "passed": true
+    },
+    {
+      "id": "claim-extraction",
+      "meta": {
+        "id": "claim-extraction",
+        "mode": "online"
+      },
+      "skipped": true,
+      "reason": "adapter \"pubcrawl\" has no QA capability"
+    },
+    {
+      "id": "verdict-accuracy",
+      "meta": {
+        "id": "verdict-accuracy",
+        "mode": "online"
+      },
+      "skipped": true,
+      "reason": "adapter \"pubcrawl\" has no QA capability"
+    },
+    {
+      "id": "redaction",
+      "meta": {
+        "id": "redaction",
+        "mode": "online"
+      },
+      "skipped": true,
+      "reason": "adapter \"pubcrawl\" has no redaction capability"
+    },
+    {
+      "id": "simplification",
+      "meta": {
+        "id": "simplification",
+        "mode": "online"
+      },
+      "skipped": true,
+      "reason": "adapter \"pubcrawl\" has no simplify capability"
+    },
+    {
+      "id": "retrieval",
+      "meta": {
+        "id": "retrieval",
+        "mode": "online"
+      },
+      "metrics": {
+        "n_cases": 2,
+        "n_checks": 16,
+        "fidelity": 1,
+        "failed_checks": 0,
+        "latency_p50_ms": 587
+      },
+      "failures": [],
+      "passed": true
+    },
+    {
+      "id": "grounding",
+      "meta": {
+        "id": "grounding",
+        "mode": "online"
+      },
+      "skipped": true,
+      "reason": "adapter \"pubcrawl\" has no grounding capability"
+    }
+  ]
+}
