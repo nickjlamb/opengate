@@ -1,6 +1,6 @@
 // PubCrawl adapter — fourth bundled implementation, exercising the framework's
 // retrieval capability. PubCrawl (@pharmatools/pubcrawl) is an MCP server that
-// gives AI clients access to PubMed, ClinicalTrials.gov, and drug labelling.
+// gives AI clients access to PubMed, Europe PMC, ClinicalTrials.gov, and labels.
 //
 // It is NOT an AI system — it's deterministic wrappers around public APIs. The
 // eval measures RETRIEVAL FIDELITY: does the record a client receives match the
@@ -70,6 +70,22 @@ function newTransport() {
 const TOOL_FOR = {
   pubmed: (id) => ({ name: 'get_abstract', arguments: { pmid: String(id) } }),
   trial: (id) => ({ name: 'get_trial', arguments: { nctId: String(id) } }),
+  // For europepmc, recordId is a Europe PMC query that pins ONE article, e.g.
+  // "EXT_ID:31904519 AND SRC:MED". search_europepmc returns a results list, so
+  // PICK_FOR unwraps the first hit to score its parse fidelity.
+  europepmc: (id) => ({ name: 'search_europepmc', arguments: { query: String(id), maxResults: 1 } }),
+};
+
+// Some tools return a wrapper (e.g. a results list) rather than a bare record.
+// PICK_FOR extracts the record to score; a type with no entry is scored as-is.
+const PICK_FOR = {
+  europepmc: (parsed) => {
+    const results = parsed && parsed.results;
+    if (!Array.isArray(results) || results.length === 0) {
+      throw new Error('search_europepmc returned no results for the query');
+    }
+    return results[0];
+  },
 };
 
 /**
@@ -99,6 +115,8 @@ export async function fetchRecord(req) {
     } catch {
       throw new Error(`non-JSON tool response: ${text.slice(0, 120)}`);
     }
+    const pick = PICK_FOR[type];
+    if (pick) record = pick(record);
     return { record };
   } finally {
     _calls.push({ ms: performance.now() - t0 });

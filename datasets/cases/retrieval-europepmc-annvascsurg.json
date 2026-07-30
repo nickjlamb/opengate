@@ -1,0 +1,15 @@
+{
+  "id": "retrieval-europepmc-annvascsurg",
+  "kind": "retrieval",
+  "notes": "PMID 31904519 via Europe PMC (SRC:MED) — the same four-author Ann Vasc Surg 2020 paper as retrieval-macra-vascular, with anchors independently verified against the PubMed record. Exercises search_europepmc's formatEuropePmcResult parse path: the right article is pinned (pmid), the author array doesn't collapse (minCount + surnames survive), and the year parses. Requires PubCrawl's europepmc authors:string[] fix; older builds return authors as a string and fail the retrieval scorer's array invariant — which is the point.",
+  "recordId": "EXT_ID:31904519 AND SRC:MED",
+  "recordType": "europepmc",
+  "requireFields": ["title", "authors", "year"],
+  "anchors": [
+    { "field": "pmid", "equals": "31904519" },
+    { "field": "authors", "contains": "Haurani" },
+    { "field": "authors", "contains": "Satiani" },
+    { "field": "authors", "minCount": 4 },
+    { "field": "year", "equals": "2020" }
+  ]
+}
