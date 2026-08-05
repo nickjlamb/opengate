@@ -1,0 +1,25 @@
+From abdc7fde626321ab09290893e72c4fb2ed3b29c0 Mon Sep 17 00:00:00 2001
+From: Nick Lamb <nickjlamb@gmail.com>
+Date: Thu, 30 Jul 2026 16:15:35 +0000
+Subject: [PATCH] docs: add docker pulls badge
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/README.md b/README.md
+index 7ec9551..e5ddf0f 100644
+--- a/README.md
++++ b/README.md
+@@ -11,6 +11,7 @@
+ [![npm downloads](https://img.shields.io/npm/dm/%40pharmatools%2Fopengate?color=cb3837)](https://www.npmjs.com/package/@pharmatools/opengate)
+ [![PyPI](https://img.shields.io/pypi/v/opengate-grounding?label=PyPI&logo=pypi&logoColor=white&color=3775A9)](https://pypi.org/project/opengate-grounding/)
+ [![Docker](https://img.shields.io/docker/v/pharmatools/opengate?label=Docker&logo=docker&logoColor=white&color=2496ED&sort=semver)](https://hub.docker.com/r/pharmatools/opengate)
++[![Docker pulls](https://img.shields.io/docker/pulls/pharmatools/opengate?label=docker%20pulls&color=2496ED)](https://hub.docker.com/r/pharmatools/opengate)
+ [![node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+ [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+ [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+-- 
+2.43.0
+

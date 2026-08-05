@@ -12,6 +12,37 @@ version independently: `opengate-grounding` (PyPI), `@pharmatools/opengate-mcp`
 
 _Nothing yet — open a PR._
 
+## [0.10.0] — 2026-08-04
+
+The structured-extraction release: documents → fields → schema validation →
+human review, scored deterministically against hand-labelled gold.
+
+### Added
+
+- **Extraction scorer + capability** — adapters can expose
+  `extract({ document, schema })` → `{ record }` and add gold cases of kind
+  `"extraction"`. The house rule the contract encodes: unknown → null, never
+  guessed. The scorer gates on schema validity (nullability is the abstention
+  contract — a dropped required field fails with no extra configuration),
+  field accuracy against gold with per-field normalisers (dates → ISO, money
+  → minor units, text folding) and aliases, and fabrication — a non-null
+  value in a field whose gold is null, named per field
+  (`FABRICATED field "date_of_birth": document does not state it`). Missed
+  fields and abstentions report as precision/recall metrics and gate on
+  regression via the existing baseline machinery.
+- **Shared extraction core** (`src/lib/extraction-check.mjs`, exported as
+  `@pharmatools/opengate/extraction`) — pure and dependency-free, the single
+  source of truth for downstream tools, in the same pattern as the grounding
+  core.
+- **JSON Schema validation** (`src/lib/schema-validate.mjs`, exported as
+  `@pharmatools/opengate/schema`) — real JSON Schema via [ajv], kept in its
+  own module so the pure comparison core carries no dependency. This is
+  OpenGATE's first runtime dependency, added deliberately: partners bring
+  schemas they already have, and a subset checker would validate less than it
+  appears to.
+
+[ajv]: https://ajv.js.org/
+
 ## [0.9.0] — 2026-07-06
 
 The evidence-grounding release: one shared grounding core, now reachable from
@@ -58,5 +89,6 @@ Pre-0.9.0 milestones, which predate this changelog:
 - **Capability implementations** — QA/citations (RefCheckr), redaction (Redacta),
   and simplification (Patiently AI), each with its own gold set and scorers.
 
-[Unreleased]: https://github.com/nickjlamb/opengate/compare/v0.9.0...HEAD
+[Unreleased]: https://github.com/nickjlamb/opengate/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/nickjlamb/opengate/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/nickjlamb/opengate/releases/tag/v0.9.0

@@ -69,3 +69,18 @@ Cases for the `grounding` scorer — the generic path for RAG, document QA, and 
 | `allowedNewNumbers[]` | no | Numbers the answer may introduce that aren't in the context (e.g. from the question). Any other number in the answer is an **ungrounded number** and fails the run. |
 | `answerable` | no | Default `true`. When `false`, the context does not contain the answer and the system must **abstain** rather than fabricate. |
 | `abstainMarkers[]` | no | Phrases that count as a valid refusal (defaults cover common ones; negating contractions like "isn't" are matched). Set these to match your system's refusal style. |
+
+## Extraction cases (`kind: "extraction"`)
+
+Cases for the `extraction` scorer, exercising an adapter's `extract()` capability: the system fills a JSON Schema from a document, and the scorer compares the result field by field against a hand-labelled gold record. Everything is deterministic — gold values compare exactly after per-field normalisation, so there is no paraphrase problem and no judge.
+
+| Field | Required | Meaning |
+|---|---|---|
+| `id` / `kind` | yes | `kind` must be `"extraction"`. |
+| `document` | yes | The source document text the record must be extracted from. |
+| `schema` | yes | The JSON Schema for the target record. **Nullability is the abstention contract**: type a field the system must always find as non-nullable (`"type": "string"`), and a field the document may legitimately not state as nullable (`"type": ["string", "null"]`). A `null` in a non-nullable required field then fails schema validity — the gate catches a dropped required field with no extra configuration. |
+| `gold` | yes | The hand-labelled record: `{ "field": value \| null }`. **`null` means the document does not state it** — the only correct extraction is `null`; any value there is a fabrication and fails the run, named per field. Gold's keys define which fields are compared. |
+| `normalize` | no | Per-field normaliser: `{ "field": "date" \| "money" \| "number" \| "text" }`. Dates converge to ISO `YYYY-MM-DD` (slashed dates read day-first), money to integer minor units (`"£1,250.50"` → `125050`), text folds whitespace and case. |
+| `aliases` | no | Per-field acceptable alternative gold values: `{ "field": ["value", …] }`, matched after normalisation — for wording the document itself varies. |
+
+Label gold from the **document**, never from the system's output — copying the system's answer pins its current bugs as ground truth. A missed field (extracted `null` where gold has a value) is reported in the `missed_fields` / `value_recall` metrics and gates via the baseline regression machinery, not as a hard failure; fabrications and wrong values always gate.

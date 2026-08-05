@@ -43,6 +43,7 @@ const CAPABILITIES = {
   simplify: ['simplify'],                     // faithful simplification of source text
   retrieval: ['fetchRecord'],                 // fidelity of retrieved records vs the authority
   grounding: ['answer'],                      // answer faithfully grounded in provided context (generic RAG)
+  extraction: ['extract'],                    // fill a JSON Schema from a document; unknown → null, never guessed
 };
 
 // Optional: validated if present; no-op defaults are supplied if absent, so
