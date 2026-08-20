@@ -45,6 +45,36 @@ test('letter-glued list converts (outcomes1,2)', () => {
   assert.ok(out.includes('consistent[1,2]'), out);
 });
 
+test('unicode superscripts convert (outcomes\u2079,\u00B9\u2070)', () => {
+  const out = normalizeCitations('improved outcomes\u2079,\u00B9\u2070 in the trial. ');
+  assert.ok(out.includes('outcomes[9,10]'), out);
+});
+
+test('superscript run above 200 is left alone', () => {
+  const out = normalizeCitations('the cohort of \u00B2\u2075\u2070 patients ');
+  assert.ok(!out.includes('['), out);
+});
+
+test('spaced parenthetical converts ((9, 10))', () => {
+  const out = normalizeCitations('shown previously (9, 10). ');
+  assert.ok(out.includes('[9,10]'), out);
+});
+
+test('spaced parenthetical range collapses to canonical form', () => {
+  const out = normalizeCitations('shown previously (9 - 11). ');
+  assert.ok(out.includes('[9-11]'), out);
+});
+
+test('parenthetical year is still not a citation after the whitespace change', () => {
+  const out = normalizeCitations('the protocol was amended (2020) before enrolment. ');
+  assert.ok(!out.includes('['), out);
+});
+
+test('parseClaimCitations handles semicolon separators and em-dash ranges', () => {
+  assert.deepEqual(parseClaimCitations('claim [9;10]'), [9, 10]);
+  assert.deepEqual(parseClaimCitations('claim [4\u20146]'), [4, 5, 6]);
+});
+
 // ── parseClaimCitations ──
 test('parseClaimCitations expands ranges and dedupes across markers', () => {
   assert.deepEqual(parseClaimCitations('claim [1,3-5] and again [3] end'), [1, 3, 4, 5]);
