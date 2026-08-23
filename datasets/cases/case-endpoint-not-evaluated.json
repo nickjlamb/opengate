@@ -1,0 +1,62 @@
+{
+  "id": "endpoint-not-evaluated",
+  "title": "Endpoint not evaluated — not_supported must not be labelled contradicted",
+  "notes": "Observed in production (RefCheckr v2.2.2, Aug 2026) during manual testing of a fictional trial report. The reference states an endpoint was 'not evaluated' and that the effect 'remains unknown and should not be inferred'; the model returned contradicted for a claim about that endpoint, reading 'we did not measure it' as 'it did not happen'. Rule 2 and the prompt's own boundary reminder both make this not_supported. Synthetic drug and trial, so no real literature exists for a search-grounded model to retrieve — any quote outside the reference text is fabricated.",
+
+  "manuscript": "At week 24, tozanibrutinib significantly reduced the annualised relapse rate compared with placebo.1 Tozanibrutinib also reduced hospitalisation within one year.1 Tozanibrutinib was effective in patients with prior treatment failure.2",
+
+  "goldClaims": [
+    {
+      "originalText": "At week 24, tozanibrutinib significantly reduced the annualised relapse rate compared with placebo.1",
+      "text": "At week 24, tozanibrutinib significantly reduced the annualised relapse rate compared with placebo",
+      "citations": [1]
+    },
+    {
+      "originalText": "Tozanibrutinib also reduced hospitalisation within one year.1",
+      "text": "Tozanibrutinib also reduced hospitalisation within one year",
+      "citations": [1]
+    },
+    {
+      "originalText": "Tozanibrutinib was effective in patients with prior treatment failure.2",
+      "text": "Tozanibrutinib was effective in patients with prior treatment failure",
+      "citations": [2]
+    }
+  ],
+
+  "goldNonClaims": [],
+
+  "references": {
+    "1": {
+      "name": "TOZANIB-1 primary report (Abadi 2025)",
+      "text": "At week 24, tozanibrutinib significantly reduced the annualised relapse rate compared with placebo (0.18 vs 0.34; rate ratio 0.53; 95% confidence interval 0.41 to 0.68; p<0.001), and the treatment effect was consistent across the prespecified sensitivity analyses. Hospitalisation within one year was not evaluated in this trial, and no data on healthcare utilisation were collected. Because hospitalisation and other healthcare utilisation outcomes were not assessed, the effect of tozanibrutinib on those endpoints remains unknown and should not be inferred from these data."
+    },
+    "2": {
+      "name": "TOZANIB-1 prior-failure subgroup",
+      "text": "Among patients with prior treatment failure, relapse rates with tozanibrutinib were higher than with placebo and did not favour tozanibrutinib."
+    }
+  },
+
+  "goldVerdicts": [
+    {
+      "claimText": "At week 24, tozanibrutinib significantly reduced the annualised relapse rate compared with placebo",
+      "citation": 1,
+      "verdict": "strong_support",
+      "rationale": "A narrative sentence states the claim explicitly and supplies the p-value the word 'significantly' requires (rule 5).",
+      "_requires": "online"
+    },
+    {
+      "claimText": "Tozanibrutinib also reduced hospitalisation within one year",
+      "citation": 1,
+      "verdict": "not_supported",
+      "rationale": "The reference says the endpoint was 'not evaluated' and that the effect 'remains unknown' — silent on the claim, not opposite to it (rule 2). Production returned contradicted here.",
+      "_requires": "online"
+    },
+    {
+      "claimText": "Tozanibrutinib was effective in patients with prior treatment failure",
+      "citation": 2,
+      "verdict": "contradicted",
+      "rationale": "The reference states the opposite of the claim — rates were higher and 'did not favour tozanibrutinib' (rule 2, opposite branch). Paired with claim 2 so the case measures both sides of the same boundary.",
+      "_requires": "online"
+    }
+  ]
+}

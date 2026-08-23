@@ -63,7 +63,7 @@ test('loadAdapter: default is the bundled RefCheckr reference adapter', async ()
   delete process.env.OPENGATE_ADAPTER;
   const a = await loadAdapter();
   assert.equal(a.name, 'refcheckr');
-  assert.deepEqual(a.capabilities, { qa: true, redaction: false, simplify: false, retrieval: false, grounding: false });
+  assert.deepEqual(a.capabilities, { qa: true, redaction: false, simplify: false, retrieval: false, grounding: false, extraction: false });
 });
 
 test('loadAdapter: bare built-in names resolve to bundled adapters (cwd-independent)', async () => {
@@ -80,19 +80,19 @@ test('loadAdapter: an unknown bare name is treated as a path and fails clearly',
 test('loadAdapter: bundled Redacta adapter exposes the redaction capability', async () => {
   const a = await loadAdapter(new URL('../src/adapters/redacta.mjs', import.meta.url).pathname);
   assert.equal(a.name, 'redacta');
-  assert.deepEqual(a.capabilities, { qa: false, redaction: true, simplify: false, retrieval: false, grounding: false });
+  assert.deepEqual(a.capabilities, { qa: false, redaction: true, simplify: false, retrieval: false, grounding: false, extraction: false });
 });
 
 test('loadAdapter: bundled Patiently adapter exposes the simplify capability', async () => {
   const a = await loadAdapter(new URL('../src/adapters/patiently.mjs', import.meta.url).pathname);
   assert.equal(a.name, 'patiently');
-  assert.deepEqual(a.capabilities, { qa: false, redaction: false, simplify: true, retrieval: false, grounding: false });
+  assert.deepEqual(a.capabilities, { qa: false, redaction: false, simplify: true, retrieval: false, grounding: false, extraction: false });
 });
 
 test('loadAdapter: bundled PubCrawl adapter exposes the retrieval capability', async () => {
   const a = await loadAdapter(new URL('../src/adapters/pubcrawl.mjs', import.meta.url).pathname);
   assert.equal(a.name, 'pubcrawl');
-  assert.deepEqual(a.capabilities, { qa: false, redaction: false, simplify: false, retrieval: true, grounding: false });
+  assert.deepEqual(a.capabilities, { qa: false, redaction: false, simplify: false, retrieval: true, grounding: false, extraction: false });
 });
 
 test('loadAdapter: explicit spec wins and meta.name is used', async () => {

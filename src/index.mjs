@@ -37,3 +37,17 @@ export {
   numbersIn,
   flattenContext,
 } from './lib/grounding-check.mjs';
+
+// Deterministic extraction check — the core behind the extraction scorer.
+// Usable directly: checkExtraction({ record, gold, … }); schema validation
+// (ajv) lives in schema-validate so this core stays dependency-free.
+export {
+  checkExtraction,
+  normalizeValue,
+  normalizeDate,
+  normalizeMoney,
+  normalizeNumber,
+  normalizeText,
+} from './lib/extraction-check.mjs';
+
+export { validateRecordAgainstSchema } from './lib/schema-validate.mjs';

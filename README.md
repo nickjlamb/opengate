@@ -63,37 +63,12 @@ The same deterministic grounding logic ships wherever your stack lives:
 
 ## Architecture
 
-```mermaid
-flowchart TB
-    subgraph CORE["OpenGATE core"]
-        direction TB
-        G["Gold datasets — hand-labelled cases"]
-        S["Scorers — one per metric family"]
-        R["Scorecards — versioned JSON + HTML"]
-        C["Regression gate — baseline diff, CI"]
-        G --> S --> R
-        S --> C
-    end
-    CORE -->|"adapter (one file)"| SUT
-    subgraph SUT["Systems under test"]
-        direction TB
-        A["RefCheckr — QA / citations"]
-        B["Redacta — redaction"]
-        D["Patiently AI — simplification"]
-        E["PubCrawl — retrieval"]
-        Y["Your system — write one adapter"]
-    end
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/architecture-dark.svg">
+  <img src="docs/architecture-light.svg" alt="OpenGATE architecture: systems under test connect through a one-file adapter to the deterministic core — gold datasets and system answers feed pure-logic scorers, which produce versioned scorecards; a regression gate compares each scorecard to the baseline on every commit — improved or held deploys, regressed fails the build." width="100%">
+</picture>
 
-Scorers never talk to a system directly — they reach it through a small **adapter**, so the methodology travels and only the gold set changes. Where it sits in the development loop:
-
-```mermaid
-flowchart LR
-    CH["Change a prompt, model,<br/>or pipeline"] --> RUN["Run OpenGATE"]
-    RUN --> Q{"Metrics vs<br/>baseline?"}
-    Q -->|"improved / held"| DEP["Deploy"]
-    Q -->|"regressed"| INV["Build fails —<br/>investigate"]
-```
+Scorers never talk to a system directly — they reach it through a small **adapter**, so the methodology travels and only the gold set changes. In the development loop it sits where CI sits: change a prompt, model, or pipeline; the regression gate diffs the new scorecard against the baseline — improved or held deploys, regressed fails the build.
 
 ## Why not DeepEval?
 

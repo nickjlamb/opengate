@@ -1,0 +1,27 @@
+From f463df7e41ea94b4183b88eb1ca415faccaec94a Mon Sep 17 00:00:00 2001
+From: Nick Lamb <nickjlamb@gmail.com>
+Date: Thu, 30 Jul 2026 16:01:14 +0000
+Subject: [PATCH] docs: add npm version + downloads badges for
+ @pharmatools/redacta
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/README.md b/README.md
+index e262317..3a30ec9 100644
+--- a/README.md
++++ b/README.md
+@@ -1,6 +1,8 @@
+ # Redacta
+ 
+ [![DOI](https://zenodo.org/badge/1250708518.svg)](https://doi.org/10.5281/zenodo.21115605)
++[![npm](https://img.shields.io/npm/v/%40pharmatools%2Fredacta?label=npm&logo=npm&color=cb3837)](https://www.npmjs.com/package/@pharmatools/redacta)
++[![npm downloads](https://img.shields.io/npm/dm/%40pharmatools%2Fredacta?color=cb3837)](https://www.npmjs.com/package/@pharmatools/redacta)
+ 
+ 
+ Pseudonymise medical and clinical documents before they're processed by AI or
+-- 
+2.43.0
+
