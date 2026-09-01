@@ -2,9 +2,16 @@
 // framework's simplify capability. Patiently AI (getpatiently.ai) converts
 // clinical text into patient-friendly language via a Firebase Cloud Function.
 //
-// Config via env (the endpoint is public; no token needed):
-//   PATIENTLY_API_URL     override the translate endpoint
+// Config via env:
+//   PATIENTLY_API_URL     override the translate endpoint (e.g. a Firebase
+//                         emulator URL in CI, or a future patiently-api
+//                         EU/Azure deployment — no adapter changes needed)
 //   PATIENTLY_EVAL_MODEL  optional label recorded in the scorecard
+//
+// Auth: no token is needed TODAY because the backend's App Check runs in
+// 'enforce-web' mode, which exempts requests without an Origin header (this
+// adapter sends none). If the backend moves to 'enforce-all', this adapter
+// must send an X-Firebase-AppCheck debug token or every call will 401.
 //
 // Request contract: POST { text, language, audience, tone, length }
 // Response contract: { optimisedText }
