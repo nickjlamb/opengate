@@ -140,7 +140,7 @@ node src/runner.mjs --online --adapter ./src/adapters/redacta.mjs
 <details>
 <summary><b>Patiently AI</b> — simplify capability (faithfulness of paraphrase)</summary>
 
-[Patiently AI](https://www.pharmatools.ai/patiently-ai) exercises faithfulness scoring for text that is paraphrase by design. The eval caught the simplifier **dropping safety-critical specifics** — an antibiotic dose vanished from a discharge summary (anchor recall 86%). A preservation rule took the next run to **100% anchor recall, 0 dropped facts, 0 fabricated numbers**.
+[Patiently AI](https://www.pharmatools.ai/patiently-ai) exercises faithfulness scoring for text that is paraphrase by design. The eval caught the simplifier **dropping safety-critical specifics** — an antibiotic dose vanished from a discharge summary (anchor recall 86%). A preservation rule took the next run to **100% anchor recall, 0 dropped facts, 0 fabricated numbers** — a per-run measurement, not a guarantee: one frozen exp-2 capture made six days *after* the fix still contains a correct-but-unsourced reference range, flagged by design ([RESULTS.md §6](paper/exp2/RESULTS.md)). That tail is why the eval now gates Patiently's backend in CI and re-scores the live service weekly, with fabrications failing on first occurrence.
 
 ```bash
 node src/runner.mjs --online --adapter ./src/adapters/patiently.mjs

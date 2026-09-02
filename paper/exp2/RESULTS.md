@@ -315,8 +315,16 @@ patient-facing simplifier, an unsourced clinical figure is exactly the thing a r
 see. That is a conservative design choice, not a false positive — but it *is* a design choice,
 and the paper should say so.
 
-`TODO(Nick): decide whether this contradicts §6's "zero fabrications" result for Patiently —
-a regression to fix, or a caveat that the earlier result was a single run.`
+**Resolution (2026-09-02):** neither a regression nor a contradiction — it is what
+"zero fabrications" means for a stochastic system. This base output was captured on
+2026-07-11, six days *after* the prompt-level faithfulness rule shipped, from the same
+production endpoint that measured 0 fabricated numbers on 5 July and again, twice, on
+12 July. At temperature 0.7 the preservation rule reduces unsourced figures; it does not
+eliminate them, and this capture is one tail sample — a correct-but-unsourced reference
+range, exactly the class the gate flags by design. "0 fabricated numbers" is therefore a
+per-run measurement, never a guarantee — which is why the eval now runs in CI against the
+live service (weekly, fabrications fail-on-any) rather than the prompt being trusted.
+The README's Patiently case study now carries this caveat.
 
 ---
 
