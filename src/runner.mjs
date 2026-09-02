@@ -205,7 +205,7 @@ async function loadJsonDir(dir, { skipPrefix } = {}) {
 }
 
 function gitSha() {
-  try { return execSync('git rev-parse --short HEAD', { cwd: EVAL_ROOT }).toString().trim(); }
+  try { return execSync('git rev-parse --short HEAD', { cwd: EVAL_ROOT, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim(); }
   catch { return 'unknown'; }
 }
 
