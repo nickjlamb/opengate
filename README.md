@@ -124,7 +124,7 @@ Four PharmaTools products run on OpenGATE in CI — four different capability sh
 
 - surfaced a **silent parse-failure mode** affecting ~50% of multi-claim verdicts, eliminated with enforced structured output (→ 0);
 - **halved passage hallucination** (5.8% → 2.4%) by driving a measured production model change — a decision made on numbers, not reputation;
-- holds claim extraction at **~0.95 F1** with near-full recall.
+- holds claim extraction at **0.91 F1** with 0.93 recall on the committed baseline (run-to-run spread 0.86–0.94 — the splitter is an LLM), and is currently **failing its own gate**: 2 known non-claims leak into extraction on most runs, an open splitter issue the gate reports rather than rounds away.
 
 <details>
 <summary><b>Redacta</b> — redaction capability (proof the methodology isn't QA-shaped)</summary>
