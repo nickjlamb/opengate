@@ -102,6 +102,11 @@ export async function run({ cases, adapter }) {
           downgraded: isGuardDowngrade(firstAnalysis?.summary),
           summary: String(firstAnalysis?.summary || '').slice(0, 200),
           passageCount: (firstAnalysis?.passages || []).length,
+          // Full quoted passages, stored verbatim so hallucination_rate can be
+          // recomputed (and re-checked with stricter rules) from the artifact
+          // alone — previously only passageCount survived, which made the
+          // headline metric unauditable after the fact.
+          passages: (firstAnalysis?.passages || []).map(p => String(passageQuote(p) || '').slice(0, 1000)),
         });
       } else {
         failures.push(`no prediction for "${g.claimText.slice(0, 40)}…" in ${c.id}`);

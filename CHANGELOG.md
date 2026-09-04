@@ -10,6 +10,21 @@ version independently: `opengate-grounding` (PyPI), `@pharmatools/opengate-mcp`
 
 ## [Unreleased]
 
+### Added
+- `verdict-accuracy` now stores each pair's quoted passages verbatim in the run
+  artifact (`detail.perClaim[].passages`), so `hallucination_rate` can be
+  recomputed and re-audited from the artifact alone. Previously only
+  `passageCount` survived, leaving the headline metric unauditable after the
+  fact (found in external review).
+
+### Known limitations (recorded, fix planned)
+- The verbatim passage check tests only the first 60 normalised characters of
+  each quote, under-counting hallucination in a known direction.
+- Judge repeats (`OPENGATE_EVAL_REPEATS`) feed only the consistency metric;
+  accuracy and hallucination use the first repeat alone.
+- Both will change metric semantics when fixed, so they land as a versioned
+  change ahead of a battery, never silently between comparable runs.
+
 _Nothing yet — open a PR._
 
 ## [0.10.0] — 2026-08-04
