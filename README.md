@@ -13,6 +13,7 @@
 [![Docker](https://img.shields.io/docker/v/pharmatools/opengate?label=Docker&logo=docker&logoColor=white&color=2496ED&sort=semver)](https://hub.docker.com/r/pharmatools/opengate)
 [![Docker pulls](https://img.shields.io/docker/pulls/pharmatools/opengate?label=docker%20pulls&color=2496ED)](https://hub.docker.com/r/pharmatools/opengate)
 [![Glama MCP server](https://glama.ai/mcp/servers/nickjlamb/opengate/badges/score.svg)](https://glama.ai/mcp/servers/nickjlamb/opengate)
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/nickjlamb/opengate)
 [![node](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
