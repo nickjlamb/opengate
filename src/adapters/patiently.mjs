@@ -32,8 +32,18 @@ export function onlineConfigHint() {
   return 'Set PATIENTLY_API_URL (or unset it to use the production endpoint).';
 }
 
+// The backend reports the model that served each call in an X-Patiently-Model
+// response header (Patiently backend, Oct 2026: model is env-configurable for
+// the GPT-4o retirement). Recorded so a scorecard always says which model it
+// scored; PATIENTLY_EVAL_MODEL still overrides for older backends.
+let _servedModel = null;
+function noteModel(res) {
+  const m = res.headers.get('x-patiently-model');
+  if (m) _servedModel = m;
+}
+
 export function runModel() {
-  return process.env.PATIENTLY_EVAL_MODEL || null;
+  return process.env.PATIENTLY_EVAL_MODEL || _servedModel || null;
 }
 
 // ── Timing capture ──────────────────────────────────────────────────────
@@ -60,6 +70,7 @@ export async function simplify(req) {
         length: req.length || 'Standard',
       }),
     });
+    noteModel(res);
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.error || `translate → HTTP ${res.status}`);
     if (typeof data.optimisedText !== 'string') {
@@ -87,6 +98,7 @@ export async function transcribeTable(req) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: req.text, language: req.language || 'en', type: 'extractLabTable' }),
     });
+    noteModel(res);
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.error || `translate(extractLabTable) → HTTP ${res.status}`);
     if (!Array.isArray(data.rows)) throw new Error('extractLabTable response missing rows[]');
