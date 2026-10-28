@@ -42,6 +42,20 @@ Cases for the `simplification` scorer, exercising an adapter's `simplify()` capa
 | `allowedNewNumbers[]` | no | Numbers legitimately introduced by rephrasing (e.g. "twice daily" → "2 times a day"). Any other output number absent from the source is a **fabricated number** and fails the run. |
 | `maxBullets` / `maxWordsPerBullet` | no | Length-contract gates (e.g. Patiently Brief: 3 / 20). Only checked when present. |
 
+## Table-transcription cases (`kind: "table-transcription"`)
+
+Cases for the `table-transcription` scorer, exercising an adapter's `transcribeTable()` capability: copying result rows (e.g. lab results) out of a source document. Deterministic, no LLM judge — see `src/lib/table-check.mjs`.
+
+| Field | Required | Meaning |
+|---|---|---|
+| `id` / `kind` | yes | `kind` must be `"table-transcription"`. |
+| `text` | yes | The source document (synthetic). |
+| `language` | no | Passed to the adapter (default `en`). |
+| `expectedRows[]` | no | `{ test, value, flag? }` — rows that must appear. `test` matches case-insensitively (either name containing the other); `value` must match exactly. A missing row is a **missed row**; a row whose `flag` differs from the gold flag is a **missing flag**. |
+| `expectNoTable` | no | `true` for documents that are not results reports (letters, prescriptions). Any row is a **false table** and fails the run. |
+
+Always checked on every row, regardless of gold: numbers in `test`/`value`/`unit`/`range` must exist in the source (**fabricated number**); `value`/`unit`/`range` must be printed in the source as written (**not verbatim**); a `flag` must appear in the source as a standalone token (**invented flag**); `explanation` may contain no digits (**number in explanation**).
+
 ## Retrieval cases (`kind: "retrieval"`)
 
 Cases for the `retrieval` scorer, exercising an adapter's `fetchRecord()` capability against a deterministic retrieval system (e.g. PubCrawl). The failure that matters is a parser regression: a field dropped, collapsed, or garbled. Anchors are **independent ground truth** — copied from the source record (the PubMed page, the paper), never from the system's own output. Bootstrap with `scripts/capture-retrieval-case.mjs`, then verify.

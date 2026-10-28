@@ -15,6 +15,7 @@
 //
 // Request contract: POST { text, language, audience, tone, length }
 // Response contract: { optimisedText }
+// Lab table (tableTranscription): POST { text, language, type: 'extractLabTable' } → { rows: [...] }
 // Patiently-flavoured keys: audience Child|Teenager|Adult|Carer,
 // tone Friendly|Reassuring|Informative, length Brief|Standard|Detailed.
 
@@ -65,6 +66,31 @@ export async function simplify(req) {
       throw new Error('translate response missing optimisedText');
     }
     return { text: data.optimisedText };
+  } finally {
+    _calls.push({ ms: performance.now() - t0 });
+  }
+}
+
+/**
+ * tableTranscription capability — Patiently's lab table (translate type
+ * "extractLabTable", web app v2.50+). The backend verifies every copied field
+ * against the source before returning; this capability lets OpenGATE check
+ * that end to end, independently of the backend's own verifier.
+ * @param {object} req — { text, language? }
+ * @returns {Promise<{ rows: Array<{test,value,unit,range,flag,explanation}> }>}
+ */
+export async function transcribeTable(req) {
+  const t0 = performance.now();
+  try {
+    const res = await fetch(URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: req.text, language: req.language || 'en', type: 'extractLabTable' }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `translate(extractLabTable) → HTTP ${res.status}`);
+    if (!Array.isArray(data.rows)) throw new Error('extractLabTable response missing rows[]');
+    return { rows: data.rows };
   } finally {
     _calls.push({ ms: performance.now() - t0 });
   }

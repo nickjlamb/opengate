@@ -1,0 +1,8 @@
+{
+  "id": "table-not-a-results-report",
+  "kind": "table-transcription",
+  "description": "SYNTHETIC discharge letter with doses, durations and a temperature but no test results. A results table here would present instructions as lab values, so it must produce no rows.",
+  "language": "en",
+  "text": "Discharge summary: You were admitted with community-acquired pneumonia. You have been started on amoxicillin 500 mg three times daily for 5 days. Please see your GP in 2 weeks for review. Return to hospital if you develop worsening breathlessness or a fever above 38 degrees.",
+  "expectNoTable": true
+}

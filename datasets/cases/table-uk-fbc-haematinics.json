@@ -1,0 +1,40 @@
+{
+  "id": "table-uk-fbc-haematinics",
+  "kind": "table-transcription",
+  "description": "SYNTHETIC UK results table (FBC + haematinics). Every row must be copied verbatim with the report's own L flags; rows without a flag must carry none. 'L' also appears inside the units x10^9/L and ug/L, which must not be read as a flag.",
+  "language": "en",
+  "text": "SYNTHETIC REPORT - FULL BLOOD COUNT AND HAEMATINICS\nTest                 Result   Units      Reference range   Flag\nHaemoglobin          102      g/L        130 - 170         L\nWhite cell count     6.4      x10^9/L    4.0 - 11.0\nPlatelets            245      x10^9/L    150 - 400\nMCV                  71       fL         80 - 100          L\nFerritin             8        ug/L       30 - 400          L\nVitamin B12          310      ng/L       197 - 771\nFolate               5.2      ug/L       3.9 - 26.8",
+  "expectedRows": [
+    {
+      "test": "Haemoglobin",
+      "value": "102",
+      "flag": "L"
+    },
+    {
+      "test": "White cell count",
+      "value": "6.4"
+    },
+    {
+      "test": "Platelets",
+      "value": "245"
+    },
+    {
+      "test": "MCV",
+      "value": "71",
+      "flag": "L"
+    },
+    {
+      "test": "Ferritin",
+      "value": "8",
+      "flag": "L"
+    },
+    {
+      "test": "Vitamin B12",
+      "value": "310"
+    },
+    {
+      "test": "Folate",
+      "value": "5.2"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "table-narrative-single-line",
+  "kind": "table-transcription",
+  "description": "SYNTHETIC GP note with results written as one paragraph (no line breaks). Tests that results run together in prose are still transcribed, each with its own range and the report's own word 'low', and that a value without a printed range gets no range.",
+  "language": "en",
+  "text": "FBC results: Hb 98 g/L (low, ref 115-165), MCV 68 fL (low, ref 80-100), consistent with microcytic anaemia. Ferritin 8 mcg/L (low, ref 15-300), serum iron 6 umol/L. TIBC elevated. Dx: iron deficiency anaemia, likely secondary to menorrhagia. Commenced ferrous sulfate 200mg TDS PO. Repeat FBC, ferritin in 3 months.",
+  "expectedRows": [
+    {
+      "test": "Hb",
+      "value": "98",
+      "flag": "low"
+    },
+    {
+      "test": "MCV",
+      "value": "68",
+      "flag": "low"
+    },
+    {
+      "test": "Ferritin",
+      "value": "8",
+      "flag": "low"
+    },
+    {
+      "test": "serum iron",
+      "value": "6"
+    }
+  ]
+}

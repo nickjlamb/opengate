@@ -51,3 +51,6 @@ export {
 } from './lib/extraction-check.mjs';
 
 export { validateRecordAgainstSchema } from './lib/schema-validate.mjs';
+
+// Deterministic table-transcription check (verbatim cells, no invented numbers or flags).
+export { checkTable, flagInSource } from './lib/table-check.mjs';

@@ -11,6 +11,17 @@ version independently: `opengate-grounding` (PyPI), `@pharmatools/opengate-mcp`
 ## [Unreleased]
 
 ### Added
+- `table-transcription` scorer and `tableTranscription` adapter capability
+  (`transcribeTable({ text, language? }) → { rows }`) for systems that copy
+  result rows out of a document. Deterministic gates: fabricated numbers,
+  not-verbatim cells (unit conversion, rounding), invented flags (standalone
+  tokens only, so "L" in "mg/L" is not a Low flag), digits in explanations,
+  and false tables for non-results documents; missed rows and missing flags
+  reported for policy gating. Pure check exported as `checkTable` /
+  `flagInSource`. The bundled Patiently adapter implements it against the
+  lab table (`extractLabTable`), with four synthetic gold cases
+  (`datasets/cases/table-*.json`: UK table, single-line narrative, US panel,
+  and a discharge letter that must yield no table).
 - `verdict-accuracy` now stores each pair's quoted passages verbatim in the run
   artifact (`detail.perClaim[].passages`), so `hallucination_rate` can be
   recomputed and re-audited from the artifact alone. Previously only
