@@ -11,7 +11,20 @@
 // Deterministic, no LLM judge. Single source of truth: if the check changes,
 // the scorer and any offline replay of frozen outputs change with it.
 
-const norm = (s) => String(s).toLowerCase().replace(/\s+/g, ' ');
+// Unit spellings a faithful paraphrase may use for the same dose — "200 milligrams",
+// "200-milligram tablet" and "200 mg" are the same fact. Applied to both sides, so
+// anchors and aliases keep working; mirrors the product-side dose check.
+const UNIT_SPELLINGS = [
+  [/\bmilligrams?\b/g, 'mg'],
+  [/\bmicrograms?\b|µg|\bug\b/g, 'mcg'],
+  [/\bkilograms?\b/g, 'kg'],
+  [/\bmillilit(?:re|er)s?\b/g, 'ml'],
+];
+const norm = (s) => {
+  let t = String(s).toLowerCase().replace(/\s+/g, ' ');
+  for (const [re, to] of UNIT_SPELLINGS) t = t.replace(re, to);
+  return t.replace(/(\d)\s*-\s*(?=[a-zµ])/g, '$1');
+};
 
 /** Whitespace-tolerant, case-insensitive containment. */
 export function contains(haystack, needle) {
@@ -23,6 +36,8 @@ export function contains(haystack, needle) {
 const NUM_RE = /\d+(?:\.\d+)?/g;
 export const numbersIn = (s) =>
   new Set((String(s).match(NUM_RE) || []).map(n => n.replace(/^0+(?=\d)/, '')));
+// Numbered-list markers ("1. ", "2) ") are layout, not facts.
+const stripListMarkers = (s) => String(s).replace(/^\s*\d+[.)]\s+/gm, '');
 
 /** Lines that look like bullets: -, •, *, or "1." style. */
 export function bulletLines(text) {
@@ -74,7 +89,7 @@ export function checkSimplification(input) {
     ]),
     ...(input.allowedNewNumbers || []).map(String),
   ]);
-  const fabricated = [...numbersIn(out)].filter(n => !legit.has(n));
+  const fabricated = [...numbersIn(stripListMarkers(out))].filter(n => !legit.has(n));
   for (const n of fabricated) issues.push(`fabricated number "${n}" — not in the source`);
 
   // Length contract (only when the case declares one).

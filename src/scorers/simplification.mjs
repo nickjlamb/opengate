@@ -91,7 +91,7 @@ export async function run({ cases, adapter }) {
       bullets: chk.bullets,
       // The output itself, so a dropped-fact failure can be diagnosed from the
       // snapshot (was it omitted, reworded past the aliases, or replaced?).
-      output: out.slice(0, 600),
+      output: out.slice(0, 4000),
     });
   }
 

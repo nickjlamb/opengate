@@ -10,6 +10,17 @@ version independently: `opengate-grounding` (PyPI), `@pharmatools/opengate-mcp`
 
 ## [Unreleased]
 
+### Fixed
+- `simplification`: anchor matching now treats unit spellings of the same dose as
+  equal on both sides ("200 milligrams", "200-milligram", "200 mg"; also
+  micrograms/µg → mcg, kilograms → kg, millilitres → ml), so a faithful
+  paraphrase is no longer reported as a dropped fact. A missing or different dose
+  is still caught.
+- `simplification`: numbered-list markers ("1. ", "2) ") are no longer counted as
+  fabricated numbers.
+- `simplification`: the per-case output snapshot keeps up to 4,000 characters
+  (was 600), so a dropped-fact failure can be diagnosed from the report.
+
 ### Added
 - `table-transcription` scorer and `tableTranscription` adapter capability
   (`transcribeTable({ text, language? }) → { rows }`) for systems that copy
